@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/drawable/edit_text_style.xml" value="0.15885416666666666" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_about.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_add_progress.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_admin_progress_detail.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_company.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_explore.xml" value="0.14270833333333333" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_fullscreen.xml" value="0.25885416666666666" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_home.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_main.xml" value="0.19882246376811594" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_open_source.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_pay.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_pembayaran.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_pembayaran_detail.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_pendaftar.xml" value="0.14270833333333333" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_pendaftar_detail.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_pilih_paket.xml" value="0.2658514492753623" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_profile.xml" value="0.21" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_progress_admin.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_register_form.xml" value="0.25" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_register_logged.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_show_detail_brosur.xml" value="0.14270833333333333" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_show_progress.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_splash.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_super_brosur.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_transaksi.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_transaksi_detail.xml" value="0.16" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_upload_brosur.xml" value="0.25885416666666666" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_view_video.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/content_main_activity_drawer.xml" value="0.19882246376811594" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/custom_create_account.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/custom_grid_explore.xml" value="0.2421875" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/custom_show_transaction.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/custom_view_brosur.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/detail_open_source.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/detail_pendaftar_adapter.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/fragment_company.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/fragment_gallery.xml" value="0.19882246376811594" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/fragment_home.xml" value="0.19882246376811594" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/fragment_slideshow.xml" value="0.19882246376811594" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/nav_header_main_activity_drawer.xml" value="0.19882246376811594" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/pembayaran_adapter.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/pendaftar_adapter.xml" value="0.22" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/menu/activity_main_drawer.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/menu/nav_main.xml" value="0.27291666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17_PREVIEW" project-jdk-name="temurin-17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

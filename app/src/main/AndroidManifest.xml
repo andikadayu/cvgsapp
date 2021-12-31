@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.cvgs.cvgsapp">
+	
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	
+	<application
+		 android:allowBackup="true"
+		 android:icon="@mipmap/ic_cvgs"
+		 android:label="@string/app_name"
+		 android:requestLegacyExternalStorage="true"
+		 android:roundIcon="@mipmap/ic_cvgs"
+		 android:supportsRtl="true"
+		 android:theme="@style/Theme.Cvgsapp">
+		<activity
+			 android:name=".ViewVideoActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="true"/>
+		<activity
+			 android:name=".ShowProgressActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="true"/>
+		<activity
+			 android:name=".AddProgressActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="true"/>
+		<activity
+			 android:name=".AdminProgressDetailActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="true"/>
+		<activity
+			 android:name=".ProgressAdminActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".RegisterLoggedActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".PayActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".TransaksiDetailActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".TransaksiActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".PembayaranDetailActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".PendaftarDetailActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".PembayaranActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".PendaftarActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".HomeActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".RegisterFormActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".PilihPaketActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".show_detail_brosur"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".UploadBrosurActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".SuperBrosur"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".OpenSourceActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".CompanyActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".AboutActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".SplashActivity"
+			 android:exported="true">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		<activity
+			 android:name=".LoginActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".ProfileActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+	</application>
+
+</manifest>

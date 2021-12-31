@@ -1,0 +1,54 @@
+<resources>
+	<string name="app_name">cvgsapp</string>
+	<string name="mHome">Home</string>
+	<string name="mExplore">Explore</string>
+	<string name="mMe">Me</string>
+	<string name="not_logged_in">Not Logged In</string>
+	<string name="login">Login</string>
+	<string name="company_name">CV Global Solusindo</string>
+	<string name="company_about">&#9;&#9;Bergerak dibidang jasa konsultasi dan riset IT, Pengolahan Data, Software &amp;
+		Hardware (Electronics) Developer dengan No. Ijin 503/0540/SIUP-K/421.302/2015 yang merupakan salah satu
+		perusahaan IT terkemuka di Indonesia didirikan pada 1 Juni 2015 untuk menjadi pelopor teknologi terbaru yang
+		hingga saat ini sudah menembus pangsa pasar Internasional. Bidang konsultasi &amp; riset IT merupakan inti dari
+		berkembangnya teknologi yang dapat membantu aktifitas manusia. Hal ini, CV. GLOBAL SOLUSINDO merupakan alat
+		bantu untuk institusi, pemerintahan, masyarakat umum, akademisi dan perusahaan untuk mengembangkan teknologi
+		yang masih menggunakan sistem konvensional maupun komputerisasi berbasis Teknologi Informasi.
+	</string>
+	<string name="company_about2">&#9;&#9;Sektor Teknologi Informasi (TI) sangat penting dan berpengaruh, jika TI
+		berkembang, maka sektor lain juga akan berkembang dengan sendirinya. Mayoritas bisnis lebih mengandalkan TI agar
+		prosesnya lebih mudah dan efisien. Terlebih lagi zaman sudah serba canggih dan modern, manusia sudah begitu
+		akrab bahkan sangat mengandalkan peranan TI dalam kehidupan sehari-harinya. Oleh sebab itu, Software Developer
+		yang merupakan layanan jasa CUSTOM APPLICATION dari CV. GLOBAL SOLUSINDO fokus pada sistem komputerisasi,
+		mobillity serta aplikasi-aplikasi yang terus mengalami pembaharuan. Diantaranya, penerapan aplikasi pada
+		perkantoran, rent car, toko online, perusahaan, klinik, rumah sakit, penelitian maupun pemerintahan menggunakan
+		semua jenis permintaan bahasa pemrograman (PHP, Java, Android, VB.Net, ASP. Net, C#, C++, Python, dll) mulai
+		dari aplikasi untuk usaha kecil, skala menengah sampai skala besar. Perusahaan ini pertama di Indonesia yang
+		bisa menggunakan SEMUA JENIS BAHASA PEMROGRAMAN sesuai permintaan pelanggan. Disamping itu, CV. GLOBAL SOLUSINDO
+		menawarkan beberapa opsi untuk pengembangan sistem yang lebih baik dalam segi teknologi apabila dibutuhkan ke
+		arah pengembangan.
+	</string>
+	<string name="company_address">Ruko JL. Candi Panggung No. 45c Kota Malang</string>
+	<string name="company_telp">(0341) 4384942 / 0813 1221 2015</string>
+	<string name="company_hp">0822 6419 4580 (Customer Care)</string>
+	<string name="company_other">Senin s/d Jum\'at : 08.00 - 16.00 WIB \nSabtu : 08.00 - 13.00 WIB\nHari minggu dan hari
+		libur nasional tutup
+	</string>
+	
+	<string-array name="list_tools">
+		<item>Pilih Tools</item>
+		<item>Pilih Tools</item>
+	</string-array>
+	
+	<string name="lorem">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eleifend placerat magna, sit amet blandit
+		augue lobortis at. Morbi volutpat felis metus, non ornare quam lobortis sit amet. Pellentesque habitant morbi
+		tristique senectus et netus et malesuada fames ac turpis egestas. Etiam hendrerit imperdiet aliquet. Vestibulum
+		suscipit interdum justo in bibendum. Vivamus porttitor erat nec velit bibendum faucibus. Nullam molestie justo
+		sapien, vitae egestas sem condimentum at. Quisque a quam ac turpis congue varius id vel elit. In efficitur
+		sollicitudin ligula nec lacinia. Cras ut aliquet sem, ut malesuada mauris. Vivamus vulputate non eros sed
+		vestibulum. Praesent sagittis neque consequat, bibendum risus ac, fringilla eros. Integer tristique enim eu
+		turpis suscipit sollicitudin. Fusce a luctus orci, vel fermentum urna. Morbi scelerisque leo rhoncus, sagittis
+		libero nec, facilisis diam. In sit amet magna vehicula, venenatis purus semper, rutrum augue.
+	</string>
+
+</resources>

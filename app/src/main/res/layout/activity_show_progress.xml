@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	 xmlns:android="http://schemas.android.com/apk/res/android"
+	 xmlns:tools="http://schemas.android.com/tools"
+	 xmlns:app="http://schemas.android.com/apk/res-auto"
+	 android:layout_width="match_parent"
+	 android:layout_height="match_parent"
+	 tools:context=".ShowProgressActivity">
+	
+	<ScrollView
+		 android:layout_width="match_parent"
+		 android:layout_height="match_parent">
+		
+		<RelativeLayout
+			 android:layout_width="match_parent"
+			 android:layout_height="match_parent">
+			
+			
+			<androidx.cardview.widget.CardView
+				 android:id="@+id/cardBack"
+				 android:layout_width="match_parent"
+				 android:layout_height="50dp"
+				 android:layout_margin="5dp"
+				 android:background="@color/black">
+				
+				<LinearLayout
+					 android:layout_width="match_parent"
+					 android:layout_height="match_parent"
+					 android:orientation="horizontal">
+					
+					<ImageView
+						 android:layout_width="40dp"
+						 android:layout_height="40dp"
+						 android:layout_gravity="center_vertical"
+						 android:src="@drawable/ic_baseline_arrow_back_ios_24"
+						 android:layout_marginLeft="10dp"
+						 android:id="@+id/btnBack"/>
+					
+					<TextView
+						 android:layout_width="match_parent"
+						 android:layout_height="wrap_content"
+						 android:text="Preview Progress"
+						 android:textColor="@color/black"
+						 android:textStyle="bold"
+						 android:textSize="18sp"
+						 android:layout_gravity="center_vertical"/>
+				
+				</LinearLayout>
+			
+			</androidx.cardview.widget.CardView>
+			
+			<TextView
+				 android:id="@+id/atas"
+				 android:layout_width="wrap_content"
+				 android:layout_height="wrap_content"
+				 android:layout_below="@id/cardBack"
+				 android:layout_centerHorizontal="true"
+				 android:text="General"
+				 android:textColor="@color/black"
+				 android:textSize="16sp"
+				 android:textStyle="bold"/>
+			
+			
+			<androidx.cardview.widget.CardView
+				 android:id="@+id/cardGeneral"
+				 android:layout_below="@id/atas"
+				 android:layout_width="match_parent"
+				 android:layout_height="wrap_content"
+				 android:layout_margin="5dp"
+				 android:background="@color/black">
+				
+				<LinearLayout
+					 android:layout_width="match_parent"
+					 android:layout_height="wrap_content"
+					 android:paddingBottom="5dp"
+					 android:orientation="vertical">
+					
+					<TextView
+						 android:id="@+id/tvNoProgress"
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"
+						 android:textSize="18sp"
+						 android:textColor="@color/black"
+						 android:layout_margin="5dp"
+						 android:text="Progress : 10%"
+					/>
+					
+					<TextView
+						 android:id="@+id/tvTglProgress"
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"
+						 android:textSize="18sp"
+						 android:textColor="@color/black"
+						 android:layout_margin="5dp"
+						 android:text="TGL NOW"
+					/>
+					
+					<TextView
+						 android:id="@+id/tvIsiProgress"
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"
+						 android:textSize="16sp"
+						 android:textColor="@color/black"
+						 android:layout_margin="5dp"
+						 android:text="@string/lorem"
+					/>
+					
+				</LinearLayout>
+				
+			</androidx.cardview.widget.CardView>
+			
+			<TextView
+				 android:id="@+id/bawah"
+				 android:layout_width="wrap_content"
+				 android:layout_height="wrap_content"
+				 android:layout_below="@id/cardGeneral"
+				 android:layout_centerHorizontal="true"
+				 android:text="Screenshot"
+				 android:textColor="@color/black"
+				 android:textSize="16sp"
+				 android:textStyle="bold"/>
+			
+			<androidx.cardview.widget.CardView
+				 android:id="@+id/cardScreenshot"
+				 android:layout_below="@id/bawah"
+				 android:layout_width="wrap_content"
+				 android:layout_height="wrap_content"
+				 android:layout_margin="5dp"
+				 android:background="@color/black"
+				 android:layout_centerHorizontal="true"
+			android:visibility="gone">
+				
+				
+				<LinearLayout
+					 android:layout_width="match_parent"
+					 android:layout_height="wrap_content"
+					 android:paddingBottom="5dp"
+					 android:orientation="vertical">
+					
+					
+					<ImageView
+						 android:id="@+id/imgSS"
+						 android:layout_width="250dp"
+						 android:layout_height="250dp"
+						 android:src="@drawable/ic_baseline_add_a_photo_24"
+					android:scaleType="fitXY"/>
+					
+				</LinearLayout>
+				
+			</androidx.cardview.widget.CardView>
+			
+			<TextView
+				 android:id="@+id/bawahh"
+				 android:layout_width="wrap_content"
+				 android:layout_height="wrap_content"
+				 android:layout_below="@id/cardScreenshot"
+				 android:layout_centerHorizontal="true"
+				 android:text="Video"
+				 android:textColor="@color/black"
+				 android:textSize="16sp"
+				 android:textStyle="bold"/>
+			
+			<androidx.cardview.widget.CardView
+				 android:id="@+id/cardVideo"
+				 android:layout_below="@id/bawahh"
+				 android:layout_width="match_parent"
+				 android:layout_height="wrap_content"
+				 android:layout_margin="5dp"
+				 android:background="@color/black"
+				 android:layout_centerHorizontal="true"
+			android:visibility="gone">
+				
+				
+				<LinearLayout
+					 android:layout_width="match_parent"
+					 android:layout_height="wrap_content"
+					 android:paddingBottom="5dp"
+					 android:orientation="vertical">
+					
+					<FrameLayout
+						 android:layout_width="match_parent"
+						 android:layout_height="250dp">
+						
+					<VideoView
+						 android:id="@+id/videoView"
+						 android:layout_width="match_parent"
+						 android:layout_height="250dp"/>
+						
+					</FrameLayout>
+					
+				
+				</LinearLayout>
+			
+			</androidx.cardview.widget.CardView>
+			
+			
+			
+		</RelativeLayout>
+		
+		
+	</ScrollView>
+	
+	
+
+</RelativeLayout>
