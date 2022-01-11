@@ -2,6 +2,10 @@ package com.cvgs.cvgsapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +14,7 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
@@ -32,14 +37,17 @@ public class ProgressAdminActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     ArrayList<ProgressModel> progressList;
     SessionManager sessionManager;
+    SwipeRefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_progress_admin);
 
         btnBack = findViewById(R.id.btnBack);
         recyProgress = findViewById(R.id.recyProgress);
+        refreshLayout = findViewById(R.id.refreshLayout);
 
         AndroidNetworking.initialize(getApplicationContext());
         progressList = new ArrayList<ProgressModel>();
@@ -51,6 +59,15 @@ public class ProgressAdminActivity extends AppCompatActivity {
         }else{
             initialize(this);
         }
+
+        refreshLayout.setOnRefreshListener(()->{
+            progressList = new ArrayList<ProgressModel>();
+            if(sessionManager.getUserDetail().get(SessionManager.ROLE).equals("pendaftar")){
+                initializeUser(this);
+            }else{
+                initialize(this);
+            }
+        });
 
         btnBack.setOnClickListener(view -> {startActivity(new Intent(getApplicationContext(),ProfileActivity.class));finish();});
     }
@@ -104,6 +121,8 @@ public class ProgressAdminActivity extends AppCompatActivity {
                     }
                 });
 
+        refreshLayout.setRefreshing(false);
+
     }
     private void initializeUser(Activity activity){
         AndroidNetworking.post(constance.server+"/api/progress/getOnceProject.php")
@@ -154,6 +173,6 @@ public class ProgressAdminActivity extends AppCompatActivity {
                         Toast.makeText(activity, "ERROR CONNECTION", Toast.LENGTH_SHORT).show();
                     }
                 });
-
+        refreshLayout.setRefreshing(false);
     }
 }

@@ -1,5 +1,8 @@
 package com.cvgs.cvgsapp;
 
+import android.graphics.Color;
+import android.os.Build;
+import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -38,6 +41,7 @@ public class SuperBrosur extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_super_brosur);
 
         fabAdd = findViewById(R.id.fabAddBrosur);

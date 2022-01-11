@@ -1,5 +1,8 @@
 package com.cvgs.cvgsapp;
 
+import android.graphics.Color;
+import android.os.Build;
+import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +54,7 @@ public class PayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_pay);
 
         tvNama = findViewById(R.id.tvNama);

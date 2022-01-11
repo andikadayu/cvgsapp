@@ -2,7 +2,10 @@ package com.cvgs.cvgsapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
@@ -31,7 +35,7 @@ public class AdminProgressDetailActivity extends AppCompatActivity {
     TextView tvNama,tvDetail,tvAlamat;
     Constance constance = new Constance();
     ImageView logoApps,btnBack;
-    FloatingActionButton fabAddProgress;
+    FloatingActionButton fabAddProgress,fabShowDetail;
 
     RecyclerView recyProgressDetail;
     RecyclerView.Adapter adapter;
@@ -41,6 +45,8 @@ public class AdminProgressDetailActivity extends AppCompatActivity {
     String id_daftar,judul,detail,logo,progress;
 
     SessionManager sessionManager;
+
+    SwipeRefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,8 @@ public class AdminProgressDetailActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
         fabAddProgress = findViewById(R.id.fabAddProgress);
         recyProgressDetail = findViewById(R.id.recyProgressDetail);
+        fabShowDetail = findViewById(R.id.fabShowDetail);
+        refreshLayout = findViewById(R.id.refreshLayout);
 
         Intent currentIntent = getIntent();
         if(currentIntent.hasExtra("id_daftar")){
@@ -89,6 +97,17 @@ public class AdminProgressDetailActivity extends AppCompatActivity {
             sendData.putExtra("logo",logo);
             sendData.putExtra("progress",progress);
             startActivity(sendData);
+        });
+
+        fabShowDetail.setOnClickListener(view->{
+            Intent sendData = new Intent(getApplicationContext(),DetailProjectActivity.class);
+            sendData.putExtra("id_daftar",id_daftar);
+            startActivity(sendData);
+        });
+
+        refreshLayout.setOnRefreshListener(()->{
+            detailList = new ArrayList<DetailProgressModel>();
+            initializeData(this);
         });
 
     }
@@ -152,6 +171,8 @@ public class AdminProgressDetailActivity extends AppCompatActivity {
                         Toast.makeText(activity, "ERROR CONNECTION", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        refreshLayout.setRefreshing(false);
     }
 
 }

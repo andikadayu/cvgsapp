@@ -18,21 +18,33 @@
 		 android:supportsRtl="true"
 		 android:theme="@style/Theme.Cvgsapp">
 		<activity
-			 android:name=".ViewVideoActivity"
+			 android:name=".DetailProjectActivity"
 			 android:configChanges="orientation|screenSize"
 			 android:exported="true"/>
+		<activity
+			 android:name=".DetailNotificationActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".NotificationActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		<activity
+			 android:name=".ViewVideoActivity"
+			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
 		<activity
 			 android:name=".ShowProgressActivity"
 			 android:configChanges="orientation|screenSize"
-			 android:exported="true"/>
+			 android:exported="false"/>
 		<activity
 			 android:name=".AddProgressActivity"
 			 android:configChanges="orientation|screenSize"
-			 android:exported="true"/>
+			 android:exported="false"/>
 		<activity
 			 android:name=".AdminProgressDetailActivity"
 			 android:configChanges="orientation|screenSize"
-			 android:exported="true"/>
+			 android:exported="false"/>
 		<activity
 			 android:name=".ProgressAdminActivity"
 			 android:configChanges="orientation|screenSize"
@@ -121,6 +133,11 @@
 		<activity
 			 android:name=".ProfileActivity"
 			 android:configChanges="orientation|screenSize"
+			 android:exported="false"/>
+		
+		<service
+			 android:name=".advances.NotificationReceiver"
+			 android:enabled="true"
 			 android:exported="false"/>
 	</application>
 

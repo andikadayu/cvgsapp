@@ -1,5 +1,8 @@
 package com.cvgs.cvgsapp;
 
+import android.graphics.Color;
+import android.os.Build;
+import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -19,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
@@ -51,9 +55,12 @@ public class PendaftarDetailActivity extends AppCompatActivity {
     ImageView btnBack;
     TextInputLayout txtUsername,txtPassword;
 
+    SwipeRefreshLayout refreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_pendaftar_detail);
 
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
@@ -65,6 +72,7 @@ public class PendaftarDetailActivity extends AppCompatActivity {
         recyDetailPendaftar = findViewById(R.id.recyDetailPendaftar);
 
         btnBack = findViewById(R.id.btnBack);
+        refreshLayout = findViewById(R.id.refreshLayout);
 
         Intent currentIntent = getIntent();
         if(currentIntent.hasExtra("id_detail")){
@@ -89,6 +97,11 @@ public class PendaftarDetailActivity extends AppCompatActivity {
         btnBack.setOnClickListener(view -> {startActivity(new Intent(getApplicationContext(),PendaftarActivity.class));finish();});
 
         btnCreateAccount.setOnClickListener(view->openDialoag(this));
+
+        refreshLayout.setOnRefreshListener(()->{
+            detailList = new ArrayList<>();
+            initializeData(this);
+        });
     }
 
     private void initializeProfile(){
@@ -152,6 +165,8 @@ public class PendaftarDetailActivity extends AppCompatActivity {
                         Toast.makeText(activity, "ERROR CONNECTION", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        refreshLayout.setRefreshing(false);
     }
 
     private void openDialoag(@NonNull Activity activity){

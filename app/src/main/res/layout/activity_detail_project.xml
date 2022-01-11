@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	 xmlns:android="http://schemas.android.com/apk/res/android"
+	 xmlns:tools="http://schemas.android.com/tools"
+	 xmlns:app="http://schemas.android.com/apk/res-auto"
+	 android:layout_width="match_parent"
+	 android:layout_height="match_parent"
+	 tools:context=".DetailProjectActivity">
+	
+	<ScrollView
+		 android:layout_width="match_parent"
+		 android:layout_height="match_parent">
+		
+		<RelativeLayout
+			 android:layout_width="match_parent"
+			 android:layout_height="match_parent">
+			
+			<androidx.cardview.widget.CardView
+				 android:id="@+id/cardBack"
+				 android:layout_width="match_parent"
+				 android:layout_height="50dp"
+				 android:layout_margin="5dp"
+				 android:background="@color/black">
+				
+				<LinearLayout
+					 android:layout_width="match_parent"
+					 android:layout_height="match_parent"
+					 android:orientation="horizontal">
+					
+					<ImageView
+						 android:layout_width="40dp"
+						 android:layout_height="40dp"
+						 android:layout_gravity="center_vertical"
+						 android:src="@drawable/ic_baseline_arrow_back_ios_24"
+						 android:layout_marginLeft="10dp"
+						 android:id="@+id/btnBack"/>
+					
+					<TextView
+						 android:layout_width="match_parent"
+						 android:layout_height="wrap_content"
+						 android:text="Detail Project"
+						 android:textColor="@color/black"
+						 android:textStyle="bold"
+						 android:textSize="18sp"
+						 android:layout_gravity="center_vertical"/>
+				
+				</LinearLayout>
+			
+			</androidx.cardview.widget.CardView>
+			
+			<androidx.cardview.widget.CardView
+				 android:id="@+id/cardProfile"
+				 android:layout_width="match_parent"
+				 android:layout_height="wrap_content"
+				 android:layout_margin="5dp"
+				 android:layout_below="@id/cardBack"
+				 android:background="@color/black">
+				
+				<LinearLayout
+					 android:layout_width="match_parent"
+					 android:orientation="vertical"
+					 android:layout_height="match_parent"
+					 android:padding="10dp">
+					
+					<TextView
+						 android:text="Detail Pendaftar"
+						 android:textSize="20sp"
+						 android:textStyle="bold"
+						 android:textColor="@color/black"
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"/>
+					
+					<View
+						 android:layout_width="match_parent"
+						 android:layout_height="2dp"
+						 android:background="#E91E63"/>
+					
+					<HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+					
+					
+					
+					<TableLayout
+						 android:layout_width="match_parent"
+						 android:layout_height="wrap_content"
+						 android:stretchColumns="2"
+						 android:padding="8dp" >
+						
+						<TableRow>
+							
+							<TextView
+								 android:text="Nama"
+								 android:layout_column="1"
+								 android:textSize="16sp"
+								 android:textStyle="bold"
+								 android:textColor="@color/black"
+								 android:layout_width="150dp"
+							/>
+							
+							<TextView
+								 android:id="@+id/tvNama"
+								 android:text="@string/company_name"
+								 android:textSize="16sp"
+								 android:textStyle="bold"
+								 android:textColor="@color/black"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"/>
+						
+						</TableRow>
+						
+						<TableRow android:layout_marginTop="10dp">
+							<TextView
+								 android:text="Telp"
+								 android:layout_column="1"
+								 android:textSize="16sp"
+								 android:textStyle="bold"
+								 android:textColor="@color/black"
+								 android:layout_width="150dp"
+							/>
+							
+							<TextView
+								 android:id="@+id/tvTelp"
+								 android:text="@string/company_telp"
+								 android:textSize="16sp"
+								 android:textStyle="bold"
+								 android:textColor="@color/black"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"/>
+							
+							
+						</TableRow>
+						<TableRow android:layout_marginTop="10dp">
+							<TextView
+								 android:text="Email"
+								 android:layout_column="1"
+								 android:textSize="16sp"
+								 android:textStyle="bold"
+								 android:textColor="@color/black"
+								 android:layout_width="150dp"
+							/>
+						
+							<TextView
+								 android:id="@+id/tvEmail"
+								 android:text="@string/company_hp"
+								 android:textSize="16sp"
+								 android:textStyle="bold"
+								 android:textColor="@color/black"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"/>
+						</TableRow>
+						
+						<TableRow android:layout_marginTop="10dp">
+							<TextView
+								 android:text="Alamat"
+								 android:layout_column="1"
+								 android:textSize="16sp"
+								 android:textStyle="bold"
+								 android:textColor="@color/black"
+								 android:layout_width="150dp"
+							/>
+							
+							<TextView
+								android:id="@+id/tvAlamat"
+								android:text="@string/company_address"
+								android:textSize="16sp"
+								android:textStyle="bold"
+								android:textColor="@color/black"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"/>
+							
+						</TableRow>
+					</TableLayout>
+					</HorizontalScrollView>
+					
+					
+					
+				</LinearLayout>
+			
+			</androidx.cardview.widget.CardView>
+			
+			
+			<androidx.cardview.widget.CardView
+				 android:id="@+id/cardProject"
+				 android:layout_width="match_parent"
+				 android:layout_height="wrap_content"
+				 android:layout_margin="5dp"
+				 android:layout_below="@id/cardProfile"
+				 android:background="@color/black">
+				
+				<LinearLayout
+					 android:layout_width="match_parent"
+					 android:orientation="vertical"
+					 android:layout_height="match_parent"
+					 android:padding="10dp">
+					
+					<TextView
+						 android:text="Detail Project"
+						 android:textSize="20sp"
+						 android:textStyle="bold"
+						 android:textColor="@color/black"
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"/>
+					
+					<View
+						 android:layout_width="match_parent"
+						 android:layout_height="2dp"
+						 android:background="#E91E63"/>
+					
+					<HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+						
+						<TableLayout
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:stretchColumns="2"
+							 android:padding="8dp" >
+							
+							<TableRow>
+								
+								<TextView
+									 android:text="Judul"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvJudul"
+									 android:text="Judul Project"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
+							
+							</TableRow>
+							
+							<TableRow android:layout_marginTop="10dp">
+								<TextView
+									 android:text="Paket"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvPaket"
+									 android:text="Nama Paket"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
+							
+							
+							</TableRow>
+							
+							<TableRow android:layout_marginTop="10dp">
+								<TextView
+									 android:text="Tool"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvTool"
+									 android:text="Tool"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
+							
+							
+							</TableRow>
+							
+							<TableRow android:layout_marginTop="10dp">
+								<TextView
+									 android:text="Tgl Daftar"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvTgl"
+									 android:text="Tgl Daftar"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
+							
+							
+							</TableRow>
+							
+							<TableRow android:layout_marginTop="10dp">
+								<TextView
+									 android:text="Harga"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvHarga"
+									 android:text="Harga"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
+							
+							
+							</TableRow>
+							
+							
+						</TableLayout>
+						
+					</HorizontalScrollView>
+				
+				
+				</LinearLayout>
+			
+			</androidx.cardview.widget.CardView>
+			
+			<androidx.cardview.widget.CardView
+				 android:id="@+id/cardPenjelasan"
+				 android:layout_width="match_parent"
+				 android:layout_height="wrap_content"
+				 android:layout_margin="5dp"
+				 android:layout_below="@id/cardProject"
+				 android:background="@color/black">
+				
+				<LinearLayout
+					 android:layout_width="match_parent"
+					 android:orientation="vertical"
+					 android:layout_height="match_parent"
+					 android:padding="10dp">
+					
+					<TextView
+						 android:text="Skema"
+						 android:textSize="20sp"
+						 android:textStyle="bold"
+						 android:textColor="@color/black"
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"/>
+					
+					<View
+						 android:layout_width="match_parent"
+						 android:layout_height="2dp"
+						 android:background="#E91E63"/>
+					
+					<Button
+						 android:layout_marginTop="10dp"
+						 android:id="@+id/btnSkema"
+						 style="?android:attr/borderlessButtonStyle"
+						 android:layout_width="match_parent"
+						 android:layout_height="wrap_content"
+						 android:backgroundTint="@color/white"
+						 android:drawableEnd="@drawable/ic_baseline_file_download_24"
+						 android:text="file.pdf"
+						 android:textAlignment="textStart"
+						 android:textAllCaps="false"
+						 android:textColor="@color/black"
+						 android:textSize="14sp"
+						 android:textStyle="bold" />
+					
+				</LinearLayout>
+			</androidx.cardview.widget.CardView>
+			
+			
+			<androidx.cardview.widget.CardView
+				 android:id="@+id/cardLainnya"
+				 android:layout_width="match_parent"
+				 android:layout_height="wrap_content"
+				 android:layout_margin="5dp"
+				 android:layout_below="@id/cardPenjelasan"
+				 android:background="@color/black"
+				 android:visibility="gone">
+				
+				<LinearLayout
+					 android:layout_width="match_parent"
+					 android:orientation="vertical"
+					 android:layout_height="match_parent"
+					 android:padding="10dp">
+					
+					<TextView
+						 android:text="Lainnya"
+						 android:textSize="20sp"
+						 android:textStyle="bold"
+						 android:textColor="@color/black"
+						 android:layout_width="wrap_content"
+						 android:layout_height="wrap_content"/>
+					
+					<View
+						 android:layout_width="match_parent"
+						 android:layout_height="2dp"
+						 android:background="#E91E63"/>
+					
+					<HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+						
+						<TableLayout
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:stretchColumns="2"
+							 android:padding="8dp" >
+							
+							
+							<TableRow>
+								
+								<TextView
+									 android:text="Jangka"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvJangka"
+									 android:text="Jangka Waktu"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
+							
+							</TableRow>
+							
+							<TableRow android:layout_marginTop="10dp">
+								<TextView
+									 android:text="Training"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvTraning"
+									 android:text="Training"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
+							
+							
+							</TableRow>
+							
+							<TableRow android:layout_marginTop="10dp">
+								<TextView
+									 android:text="Garansi"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvGaransi"
+									 android:text="Garansi"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
+							
+							
+							</TableRow>
+							
+							
+							
+							
+						</TableLayout>
+						
+					</HorizontalScrollView>
+					
+				</LinearLayout>
+				
+				
+			</androidx.cardview.widget.CardView>
+		
+		</RelativeLayout>
+	
+	</ScrollView>
+
+</RelativeLayout>

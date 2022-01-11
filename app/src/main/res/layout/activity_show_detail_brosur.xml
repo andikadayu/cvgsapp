@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".show_detail_brosur">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitCenter"
-        android:id="@+id/imgBrosurDetail"
-        android:src="@mipmap/ic_cvgs"/>
+    
+    
+    <com.github.chrisbanes.photoview.PhotoView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:scaleType="fitCenter"
+         android:id="@+id/imgBrosurDetail"
+         android:src="@mipmap/ic_cvgs"/>
 
 
 

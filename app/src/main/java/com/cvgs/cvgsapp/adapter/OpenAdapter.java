@@ -43,7 +43,13 @@ public class OpenAdapter extends ArrayAdapter<OpenModel> {
 
         openName.setText(dataModels.getNamePackage());
         openLink.setText(dataModels.getLinkPackage());
+        if(position == 1){
+        openLicense.setText(dataModels.getLicensePackage());
+
+        }else{
         openLicense.setText("This Package Licensed under "+dataModels.getLicensePackage());
+
+        }
 
         return view;
     }

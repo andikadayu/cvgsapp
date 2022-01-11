@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">cvgsapp</string>
+	<string name="app_name">CV Global Solusindo</string>
 	<string name="mHome">Home</string>
 	<string name="mExplore">Explore</string>
 	<string name="mMe">Me</string>
@@ -50,5 +50,8 @@
 		turpis suscipit sollicitudin. Fusce a luctus orci, vel fermentum urna. Morbi scelerisque leo rhoncus, sagittis
 		libero nec, facilisis diam. In sit amet magna vehicula, venenatis purus semper, rutrum augue.
 	</string>
+	<string name="title_activity_fullscreen">FullscreenActivity</string>
+	<string name="dummy_button">Dummy Button</string>
+	<string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

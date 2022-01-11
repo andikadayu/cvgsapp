@@ -1,5 +1,8 @@
 package com.cvgs.cvgsapp;
 
+import android.graphics.Color;
+import android.os.Build;
+import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
@@ -43,9 +47,12 @@ public class TransaksiDetailActivity extends AppCompatActivity {
 
     String id_daftar,judul,detail,logo,sisa;
 
+    SwipeRefreshLayout refreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_transaksi_detail);
 
         recyDetailPembayaran = findViewById(R.id.recyDetailPembayaran);
@@ -55,6 +62,7 @@ public class TransaksiDetailActivity extends AppCompatActivity {
         logoApps = findViewById(R.id.logoApps);
         btnBack = findViewById(R.id.btnBack);
         fabBayar = findViewById(R.id.fabBayar);
+        refreshLayout = findViewById(R.id.refreshLayout);
 
         Intent currentIntent = getIntent();
         if(currentIntent.hasExtra("id_daftar")){
@@ -86,6 +94,11 @@ public class TransaksiDetailActivity extends AppCompatActivity {
             sendData.putExtra("logo",logo);
             sendData.putExtra("sisa",sisa);
             startActivity(sendData);
+        });
+
+        refreshLayout.setOnRefreshListener(()->{
+            detailList = new ArrayList<DetailPembayaranModel>();
+            initializeData(this);
         });
 
     }
@@ -151,6 +164,8 @@ public class TransaksiDetailActivity extends AppCompatActivity {
                         Toast.makeText(activity, "ERROR CONNECTION", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        refreshLayout.setRefreshing(false);
     }
 
 }

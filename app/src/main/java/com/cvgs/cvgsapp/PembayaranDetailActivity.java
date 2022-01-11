@@ -1,6 +1,10 @@
 package com.cvgs.cvgsapp;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
@@ -38,11 +43,15 @@ public class PembayaranDetailActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     ArrayList<DetailPembayaranModel> detailList;
 
+
+    SwipeRefreshLayout refreshLayout;
+
     String id_daftar,judul,detail,logo,sisa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_pembayaran_detail);
 
         recyDetailPembayaran = findViewById(R.id.recyDetailPembayaran);
@@ -51,6 +60,7 @@ public class PembayaranDetailActivity extends AppCompatActivity {
         tvAlamat = findViewById(R.id.tvAlamat);
         logoApps = findViewById(R.id.logoApps);
         btnBack = findViewById(R.id.btnBack);
+        refreshLayout = findViewById(R.id.refreshLayout);
 
         Intent currentIntent = getIntent();
         if(currentIntent.hasExtra("id_daftar")){
@@ -73,6 +83,11 @@ public class PembayaranDetailActivity extends AppCompatActivity {
         initializeData(this);
 
         btnBack.setOnClickListener(view -> {startActivity(new Intent(getApplicationContext(),PembayaranActivity.class));finish();});
+
+        refreshLayout.setOnRefreshListener(()->{
+            detailList = new ArrayList<DetailPembayaranModel>();
+            initializeData(this);
+        });
 
     }
 
@@ -132,5 +147,7 @@ public class PembayaranDetailActivity extends AppCompatActivity {
                         Toast.makeText(activity, "ERROR CONNECTION", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        refreshLayout.setRefreshing(false);
     }
 }

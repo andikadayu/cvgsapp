@@ -1,5 +1,11 @@
 package com.cvgs.cvgsapp;
 
+import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.graphics.Color;
+import android.os.Build;
+import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -14,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cvgs.cvgsapp.advances.Constance;
+import com.cvgs.cvgsapp.advances.NotificationReceiver;
 import com.cvgs.cvgsapp.advances.SessionManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -31,9 +39,12 @@ public class ProfileActivity extends AppCompatActivity{
 
     ImageView btnBack;
 
+    Constance constance = new Constance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_profile);
 
         btnToLogin = findViewById(R.id.btntoLogin);
@@ -78,6 +89,11 @@ public class ProfileActivity extends AppCompatActivity{
 
         if(sessionManager.isLoggedIn()){
             SetProfileLogin();
+
+            if(!isMyServiceRunning(NotificationReceiver.class)){
+                startService(new Intent(getApplicationContext(),NotificationReceiver.class));
+            }
+
         }else{
             changeToDefault();
         }
@@ -110,8 +126,9 @@ public class ProfileActivity extends AppCompatActivity{
                         }).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        stopService(new Intent(getApplicationContext(),NotificationReceiver.class));
                         sessionManager.logoutSession();
-                        startActivity(getIntent());
+                        startActivity(getIntent().setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_HISTORY));
                         finish();
                     }
                 }).show();
@@ -133,6 +150,16 @@ public class ProfileActivity extends AppCompatActivity{
 
 
 
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void changeToDefault(){

@@ -4,15 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/drawable/edit_text_style.xml" value="0.15885416666666666" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/drawable/notification_badge.xml" value="0.2835897435897436" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_about.xml" value="0.27291666666666664" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_add_progress.xml" value="0.27291666666666664" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_admin_progress_detail.xml" value="0.27291666666666664" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_company.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_detail_notification.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_detail_project.xml" value="0.33" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_explore.xml" value="0.14270833333333333" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_fullscreen.xml" value="0.25885416666666666" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_home.xml" value="0.27291666666666664" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_main.xml" value="0.19882246376811594" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_notification.xml" value="0.25" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_open_source.xml" value="0.27291666666666664" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_pay.xml" value="0.27291666666666664" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_pembayaran.xml" value="0.27291666666666664" />
@@ -25,7 +29,7 @@
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_register_form.xml" value="0.25" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_register_logged.xml" value="0.27291666666666664" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_show_detail_brosur.xml" value="0.14270833333333333" />
-        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_show_progress.xml" value="0.27291666666666664" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_show_progress.xml" value="0.33" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_splash.xml" value="0.27291666666666664" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_super_brosur.xml" value="0.27291666666666664" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/activity_transaksi.xml" value="0.27291666666666664" />
@@ -44,6 +48,7 @@
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/fragment_home.xml" value="0.19882246376811594" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/fragment_slideshow.xml" value="0.19882246376811594" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/nav_header_main_activity_drawer.xml" value="0.19882246376811594" />
+        <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/notification_adapter.xml" value="0.271875" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/pembayaran_adapter.xml" value="0.27291666666666664" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/layout/pendaftar_adapter.xml" value="0.22" />
         <entry key="..\:/test/Android Project/cvgsapp/app/src/main/res/menu/activity_main_drawer.xml" value="0.27291666666666664" />

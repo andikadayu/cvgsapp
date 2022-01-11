@@ -1,5 +1,9 @@
 package com.cvgs.cvgsapp;
 
+import android.graphics.Color;
+import android.os.Build;
+import android.view.View;
+import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +15,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
@@ -35,14 +40,17 @@ public class TransaksiActivity extends AppCompatActivity {
     ImageView btnBack;
     SessionManager sessionManager;
     String id_detail,role = null;
+    SwipeRefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_transaksi);
 
         recyPembayaran = findViewById(R.id.recyPembayaran);
         btnBack = findViewById(R.id.btnBack);
+        refreshLayout = findViewById(R.id.refreshLayout);
 
         AndroidNetworking.initialize(getApplicationContext());
         pembayaranList = new ArrayList<PembayaranModel>();
@@ -55,6 +63,11 @@ public class TransaksiActivity extends AppCompatActivity {
         initialize();
 
         btnBack.setOnClickListener(view -> {startActivity(new Intent(getApplicationContext(),ProfileActivity.class));finish();});
+
+        refreshLayout.setOnRefreshListener(()->{
+            pembayaranList = new ArrayList<PembayaranModel>();
+            initialize();
+        });
 
     }
 
@@ -113,5 +126,6 @@ public class TransaksiActivity extends AppCompatActivity {
                         Toast.makeText(TransaksiActivity.this, "ERROR CONNECTION", Toast.LENGTH_SHORT).show();
                     }
                 });
+        refreshLayout.setRefreshing(false);
     }
 }

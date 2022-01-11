@@ -20,6 +20,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.cvgs.cvgsapp.PembayaranActivity;
 import com.cvgs.cvgsapp.R;
 import com.cvgs.cvgsapp.model.DetailPembayaranModel;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.squareup.picasso.Picasso;
 
@@ -64,7 +65,7 @@ public class DetailPembayaranAdapter extends RecyclerView.Adapter<DetailPembayar
                         if(i == 0){
                             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                             View v = inflater.inflate(R.layout.custom_show_transaction,null);
-                            final ImageView imgTrans;
+                            final PhotoView imgTrans;
                             imgTrans = v.findViewById(R.id.imgTrans);
                             Picasso.get().load(server+dataModels.getImage()).into(imgTrans);
 

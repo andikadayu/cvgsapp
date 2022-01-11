@@ -1,5 +1,9 @@
 package com.cvgs.cvgsapp;
 
+import android.graphics.Color;
+import android.os.Build;
+import android.view.View;
+import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,12 +15,14 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.cvgs.cvgsapp.adapter.PembayaranAdapter;
 import com.cvgs.cvgsapp.advances.Constance;
 import com.cvgs.cvgsapp.advances.SessionManager;
+import com.cvgs.cvgsapp.model.NotificationModel;
 import com.cvgs.cvgsapp.model.PembayaranModel;
 
 import org.json.JSONArray;
@@ -35,14 +41,17 @@ public class PembayaranActivity extends AppCompatActivity {
     ImageView btnBack;
     SessionManager sessionManager;
     String role = null;
+    SwipeRefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_pembayaran);
 
         recyPembayaran = findViewById(R.id.recyPembayaran);
         btnBack = findViewById(R.id.btnBack);
+        refreshLayout = findViewById(R.id.refreshLayout);
 
         AndroidNetworking.initialize(getApplicationContext());
         pembayaranList = new ArrayList<PembayaranModel>();
@@ -53,6 +62,11 @@ public class PembayaranActivity extends AppCompatActivity {
         initialize();
 
         btnBack.setOnClickListener(view -> {startActivity(new Intent(getApplicationContext(),ProfileActivity.class));finish();});
+
+        refreshLayout.setOnRefreshListener(()->{
+            pembayaranList = new ArrayList<PembayaranModel>();
+            initialize();
+        });
     }
 
     private void initialize(){
@@ -109,5 +123,7 @@ public class PembayaranActivity extends AppCompatActivity {
                         Toast.makeText(PembayaranActivity.this, "ERROR CONNECTION", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        refreshLayout.setRefreshing(false);
     }
 }

@@ -1,5 +1,7 @@
 package com.cvgs.cvgsapp;
 
+import android.graphics.Color;
+import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -36,6 +38,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.UploadProgressListener;
 import com.cvgs.cvgsapp.advances.Constance;
 import com.cvgs.cvgsapp.advances.SessionManager;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
@@ -94,6 +97,18 @@ public class RegisterLoggedActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }else{
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            }
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
+
         setContentView(R.layout.activity_register_logged);
 
         sessionManager = new SessionManager(getApplicationContext());
@@ -244,24 +259,20 @@ public class RegisterLoggedActivity extends AppCompatActivity implements View.On
 
     private void selectImage() {
         final CharSequence[] options = { "Take Photo", "Choose From Gallery", "Cancel" };
-        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterLoggedActivity.this);
-        builder.setTitle("Upload Bukti Transfer");
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (options[i].equals("Take Photo")) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, 100);
-                } else if (options[i].equals("Choose From Gallery")) {
-                    Intent intent = new Intent(Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(intent, 200);
-                } else {
-                    dialogInterface.dismiss();
-                }
-            }
-        });
-        builder.show();
+        new MaterialAlertDialogBuilder(RegisterLoggedActivity.this)
+                .setTitle("Upload Bukti Transfer")
+                .setItems(options,(dialogInterface,i)->{
+                    if (options[i].equals("Take Photo")) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intent, 100);
+                    } else if (options[i].equals("Choose From Gallery")) {
+                        Intent intent = new Intent(Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, 200);
+                    } else {
+                        dialogInterface.dismiss();
+                    }
+                }).show();
     }
 
     @Override

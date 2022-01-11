@@ -1,5 +1,8 @@
 package com.cvgs.cvgsapp;
 
+import android.graphics.Color;
+import android.os.Build;
+import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -46,6 +49,7 @@ public class UploadBrosurActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_upload_brosur);
 
         imgBrosur = findViewById(R.id.imgBrosur);
@@ -116,23 +120,20 @@ public class UploadBrosurActivity extends AppCompatActivity {
 
     private void selectImage(){
         final CharSequence[] options = {"Take Photo","Choose From Gallery","Cancel"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(UploadBrosurActivity.this);
-        builder.setTitle("Add Brosur");
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if(options[i].equals("Take Photo")){
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent,1);
-                }else if(options[i].equals("Choose From Gallery")){
-                    Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(intent, 2);
-                }else{
-                    dialogInterface.dismiss();
-                }
-            }
-        });
-        builder.show();
+
+        new MaterialAlertDialogBuilder(UploadBrosurActivity.this)
+                .setTitle("Add Brosur")
+                .setItems(options,(dialogInterface,i)->{
+                    if(options[i].equals("Take Photo")){
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intent,1);
+                    }else if(options[i].equals("Choose From Gallery")){
+                        Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, 2);
+                    }else{
+                        dialogInterface.dismiss();
+                    }
+                }).show();
     }
 
     @Override

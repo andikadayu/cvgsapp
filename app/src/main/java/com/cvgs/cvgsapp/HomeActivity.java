@@ -1,5 +1,13 @@
 package com.cvgs.cvgsapp;
 
+import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
+import android.view.WindowManager;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,12 +15,6 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -20,12 +22,14 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.cvgs.cvgsapp.adapter.ExploreAdapter;
 import com.cvgs.cvgsapp.advances.Constance;
+import com.cvgs.cvgsapp.advances.NotificationReceiver;
 import com.cvgs.cvgsapp.advances.SessionManager;
 import com.cvgs.cvgsapp.model.ExploreModel;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -40,13 +44,16 @@ public class HomeActivity extends AppCompatActivity {
     ArrayAdapter<ExploreModel> adapter;
     ArrayList<ExploreModel> exploreList;
     LinearLayout linearBawah;
-    ImageView homeProfile,homeNotif;
-    TextView homeName;
+    ImageView homeProfile;
+    FrameLayout homeNotif;
+    TextView homeName,tvNotification;
     SessionManager sessionManager;
+    String nama,role,id_detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home);
 
         bannerBrosur = findViewById(R.id.bannerBrosur);
@@ -57,6 +64,8 @@ public class HomeActivity extends AppCompatActivity {
         homeProfile = findViewById(R.id.homeProfile);
         homeNotif = findViewById(R.id.homeNotif);
 
+        tvNotification = findViewById(R.id.tvNotification);
+
         brosurList = new ArrayList<SlideModel>();
         exploreList = new ArrayList<ExploreModel>();
 
@@ -65,8 +74,17 @@ public class HomeActivity extends AppCompatActivity {
         AndroidNetworking.initialize(getApplicationContext());
 
         if(sessionManager.isLoggedIn()){
+            nama = sessionManager.getUserDetail().get(SessionManager.NAMA);
+            role = sessionManager.getUserDetail().get(SessionManager.ROLE);
+            id_detail = sessionManager.getUserDetail().get(SessionManager.ID_DETAIL);
+
+            if(!isMyServiceRunning(NotificationReceiver.class)){
+                startService(new Intent(getApplicationContext(),NotificationReceiver.class));
+            }
+
             homeNotif.setVisibility(View.VISIBLE);
-            homeName.setText(sessionManager.getUserDetail().get(SessionManager.NAMA));
+            homeName.setText(nama);
+            getNotificationNumber();
         }else{
             homeNotif.setVisibility(View.GONE);
             homeName.setText(getString(R.string.not_logged_in));
@@ -85,6 +103,47 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(HomeActivity.this,ProfileActivity.class));
         });
 
+        homeNotif.setOnClickListener(view->startActivity(new Intent(getApplicationContext(),NotificationActivity.class)));
+
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void getNotificationNumber(){
+        AndroidNetworking.post(constance.server+"/api/notification/getNumber.php")
+                .addBodyParameter("role",role)
+                .addBodyParameter("id_detail",id_detail)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            boolean status = response.getBoolean("status");
+                            if(status){
+                                String jumlah = response.getString("jumlah");
+                                tvNotification.setText(jumlah);
+                                tvNotification.setVisibility(View.VISIBLE);
+                            }else{
+                                tvNotification.setVisibility(View.GONE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        anError.printStackTrace();
+                    }
+                });
     }
 
     private void loadData(){

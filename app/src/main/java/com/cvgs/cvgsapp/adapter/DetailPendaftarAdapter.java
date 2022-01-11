@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.cvgs.cvgsapp.DetailProjectActivity;
 import com.cvgs.cvgsapp.PendaftarActivity;
 import com.cvgs.cvgsapp.R;
 import com.cvgs.cvgsapp.model.DetailPendaftarModel;
@@ -57,7 +58,7 @@ public class DetailPendaftarAdapter extends RecyclerView.Adapter<DetailPendaftar
         holder.tvBDetail.setText(dataModels.getTool());
         holder.tvBSisa.setText(dataModels.getStatus());
 
-        String[] options= {"Confirm Project","Close"};
+        String[] options= {"Detail Project","Confirm Project","Close"};
 
         holder.layoutOuter.setOnClickListener(view->{
             new MaterialAlertDialogBuilder(activity)
@@ -65,9 +66,9 @@ public class DetailPendaftarAdapter extends RecyclerView.Adapter<DetailPendaftar
                     .setItems(options, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            if(i == 1){
+                            if(i == 2){
                                 dialogInterface.dismiss();
-                            }else if(i == 0){
+                            }else if(i == 1){
                                 new MaterialAlertDialogBuilder(activity)
                                         .setTitle("Confirm Project")
                                         .setMessage("Are you sure confirm this project?")
@@ -77,6 +78,10 @@ public class DetailPendaftarAdapter extends RecyclerView.Adapter<DetailPendaftar
                                         .setPositiveButton("Confirm",(dialog,position)->{
                                             holder.setConfirmProject(dataModels.getId_daftar());
                                         }).show();
+                            }else if(i == 0){
+                                Intent sendData = new Intent(activity, DetailProjectActivity.class);
+                                sendData.putExtra("id_daftar",dataModels.getId_daftar());
+                                activity.startActivity(sendData);
                             }
                         }
                     }).show();

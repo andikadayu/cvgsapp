@@ -1,5 +1,9 @@
 package com.cvgs.cvgsapp;
 
+import android.graphics.Color;
+import android.os.Build;
+import android.view.View;
+import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,11 +14,13 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.cvgs.cvgsapp.adapter.PendaftarAdapter;
 import com.cvgs.cvgsapp.advances.Constance;
+import com.cvgs.cvgsapp.model.NotificationModel;
 import com.cvgs.cvgsapp.model.PendaftarModel;
 
 import org.json.JSONArray;
@@ -31,6 +37,9 @@ public class PendaftarActivity extends AppCompatActivity {
     ArrayList<PendaftarModel> pendaftarList;
     Constance constance = new Constance();
 
+    SwipeRefreshLayout refreshLayout;
+
+
     ImageView btnBack;
 
 
@@ -38,10 +47,12 @@ public class PendaftarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_pendaftar);
 
         recyPendaftar = findViewById(R.id.recyPendaftar);
         btnBack = findViewById(R.id.btnBack);
+        refreshLayout = findViewById(R.id.refreshLayout);
 
         AndroidNetworking.initialize(getApplicationContext());
         pendaftarList = new ArrayList<PendaftarModel>();
@@ -50,7 +61,13 @@ public class PendaftarActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(view -> {startActivity(new Intent(getApplicationContext(),ProfileActivity.class));finish();});
 
+        refreshLayout.setOnRefreshListener(()->{
+            pendaftarList = new ArrayList<>();
+            initialize();
+        });
+
     }
+
 
     private void initialize(){
         AndroidNetworking.post(constance.server+"/api/pendaftar/getPendaftar.php")
@@ -98,5 +115,6 @@ public class PendaftarActivity extends AppCompatActivity {
                         Toast.makeText(PendaftarActivity.this, "ERROR CONNECTION", Toast.LENGTH_SHORT).show();
                     }
                 });
+    refreshLayout.setRefreshing(false);
     }
 }

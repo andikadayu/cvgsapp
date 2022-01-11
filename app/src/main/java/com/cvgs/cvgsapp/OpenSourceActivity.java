@@ -1,5 +1,9 @@
 package com.cvgs.cvgsapp;
 
+import android.graphics.Color;
+import android.os.Build;
+import android.view.View;
+import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -20,6 +24,7 @@ public class OpenSourceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_open_source);
 
         lvOpenSource = findViewById(R.id.lvOpenSource);
@@ -37,6 +42,7 @@ public class OpenSourceActivity extends AppCompatActivity {
         dataList.add(new OpenModel("picasso:2.71828","https://github.com/square/picasso","Apache-2.0 License"));
         dataList.add(new OpenModel("ImageSlideshow:0.0.6","https://github.com/denzcoskun/ImageSlideshow","Apache-2.0 License"));
         dataList.add(new OpenModel("ExoPlayer:2.16.1","https://github.com/google/ExoPlayer","Apache-2.0 License"));
+        dataList.add(new OpenModel("PhotoView:2.3.0","https://github.com/Baseflow/PhotoView","Apache-2.0 License"));
         adapter = new OpenAdapter(OpenSourceActivity.this,dataList);
 
         lvOpenSource.setAdapter(adapter);
