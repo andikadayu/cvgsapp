@@ -268,6 +268,21 @@
                                 android:textStyle="bold"
                                 android:id="@+id/btnProgressSuper"
                             />
+    
+                            <Button
+                                 style="?android:attr/borderlessButtonStyle"
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:backgroundTint="@color/white"
+                                 android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                                 android:text="Broadcast"
+                                 android:textAlignment="textStart"
+                                 android:textAllCaps="false"
+                                 android:textColor="@color/black"
+                                 android:textSize="18sp"
+                                 android:textStyle="bold"
+                                 android:id="@+id/btnBroadcastSuper"
+                            />
 
 
                         </LinearLayout>
@@ -306,6 +321,21 @@
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:id="@+id/btnPembayaranAdm"/>
+    
+                            <Button
+                                 style="?android:attr/borderlessButtonStyle"
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:backgroundTint="@color/white"
+                                 android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                                 android:text="Broadcast"
+                                 android:textAlignment="textStart"
+                                 android:textAllCaps="false"
+                                 android:textColor="@color/black"
+                                 android:textSize="18sp"
+                                 android:textStyle="bold"
+                                 android:id="@+id/btnBroadcastAdm"
+                            />
 
 
                         </LinearLayout>

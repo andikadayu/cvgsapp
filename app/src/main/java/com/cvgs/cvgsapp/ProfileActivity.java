@@ -23,11 +23,12 @@ import android.widget.TextView;
 import com.cvgs.cvgsapp.advances.Constance;
 import com.cvgs.cvgsapp.advances.NotificationReceiver;
 import com.cvgs.cvgsapp.advances.SessionManager;
+import com.cvgs.cvgsapp.model.BroadcastModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class ProfileActivity extends AppCompatActivity{
 
-    Button btnToLogin,btnToAbout,btnLogout,btnAdminGoBrosur,btnPendaftarAdm,btnPendaftarSuper,btnPembayaranAdm,btnPembayaranSuper,btnUserTransaksi,btnProgressSuper,btnProgressUser;
+    Button btnToLogin,btnToAbout,btnLogout,btnAdminGoBrosur,btnPendaftarAdm,btnPendaftarSuper,btnPembayaranAdm,btnPembayaranSuper,btnUserTransaksi,btnProgressSuper,btnProgressUser,btnBroadcastSuper,btnBroadcastAdm;
 
     CardView CardNoLogin,CardHasLogin;
 
@@ -64,7 +65,8 @@ public class ProfileActivity extends AppCompatActivity{
         btnUserTransaksi = findViewById(R.id.btnUserTransaksi);
         btnProgressUser = findViewById(R.id.btnProgressUser);
 
-
+        btnBroadcastSuper = findViewById(R.id.btnBroadcastSuper);
+        btnBroadcastAdm = findViewById(R.id.btnBroadcastAdm);
 
         btnBack= findViewById(R.id.btnBack);
 
@@ -148,7 +150,8 @@ public class ProfileActivity extends AppCompatActivity{
         btnProgressSuper.setOnClickListener(view->startActivity(new Intent(getApplicationContext(),ProgressAdminActivity.class)));
         btnProgressUser.setOnClickListener(view->startActivity(new Intent(getApplicationContext(),ProgressAdminActivity.class)));
 
-
+        btnBroadcastSuper.setOnClickListener(view->startActivity(new Intent(getApplicationContext(), BroadcastActivity.class)));
+        btnBroadcastAdm.setOnClickListener(view->startActivity(new Intent(getApplicationContext(),BroadcastActivity.class)));
 
     }
 
