@@ -223,13 +223,6 @@ public class HomeActivity extends AppCompatActivity {
                             adapter = new ExploreAdapter(HomeActivity.this,exploreList);
                             gridHome.setAdapter(adapter);
 
-                            float dp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, heights,
-                                    getResources().getDisplayMetrics());
-
-                            ViewGroup.LayoutParams lp =  linearBawah.getLayoutParams();
-                            lp.height = (int) dp;
-                            linearBawah.setLayoutParams(lp);
-
                         }catch (Exception e){
                             e.printStackTrace();
                             Toast.makeText(HomeActivity.this, "Error Response", Toast.LENGTH_SHORT).show();

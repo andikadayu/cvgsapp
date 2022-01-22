@@ -20,9 +20,12 @@ import com.androidnetworking.interfaces.DownloadListener;
 import com.androidnetworking.interfaces.DownloadProgressListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.cvgs.cvgsapp.advances.Constance;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.UUID;
 
 public class DetailProjectActivity extends AppCompatActivity {
 
@@ -33,6 +36,8 @@ public class DetailProjectActivity extends AppCompatActivity {
 
     Constance constance = new Constance();
     String id_daftar;
+
+    MaterialButton btnPendaftaran;
 
     String nama,no_telp,email,alamat,judul,nama_paket,tool,penjelasan,tgl_daftar,jangka_waktu,training,garansi,harga;
 
@@ -59,6 +64,7 @@ public class DetailProjectActivity extends AppCompatActivity {
         cardPenjelasan = findViewById(R.id.cardPenjelasan);
         cardLainnya = findViewById(R.id.cardLainnya);
         btnSkema = findViewById(R.id.btnSkema);
+        btnPendaftaran = findViewById(R.id.btnPendaftaran);
 
         AndroidNetworking.initialize(getApplicationContext());
 
@@ -79,6 +85,14 @@ public class DetailProjectActivity extends AppCompatActivity {
                     .setMessage("Do you want download skema")
                     .setNegativeButton("Cancel",(dialog,i)->dialog.cancel())
                     .setPositiveButton("Confirm",(dialog,i)->downloadSkema(this)).show();
+        });
+
+        btnPendaftaran.setOnClickListener(view->{
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle("Download Receipt")
+                    .setMessage("Are you sure to download this receipt?")
+                    .setNegativeButton("Camcel",((dialogInterfacel,is)->dialogInterfacel.cancel()))
+                    .setPositiveButton("Confirm",((dialogInterface, i) -> downloadReceipt(this))).show();
         });
 
     }
@@ -186,5 +200,47 @@ public class DetailProjectActivity extends AppCompatActivity {
                 });
 
     }
+
+    private void downloadReceipt(Activity activity){
+        ProgressDialog pgb = new ProgressDialog(activity);
+        pgb.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        pgb.setTitle("Download Receipt");
+        pgb.setMax(100);
+
+        pgb.setCancelable(false);
+        pgb.show();
+        UUID number = UUID.randomUUID();
+        String randomId = number.toString().replace("-", "");
+        AndroidNetworking.download(constance.server+"/api/report/pendaftaran.php",String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)),id_daftar+"_"+randomId+".pdf")
+                .addQueryParameter("id_daftar",id_daftar)
+                .addQueryParameter("mode","download")
+                .setTag("DownloadReceipt")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .setDownloadProgressListener(new DownloadProgressListener() {
+                    @Override
+                    public void onProgress(long bytesDownloaded, long totalBytes) {
+                        double progress = (100.0 * bytesDownloaded) / totalBytes;
+
+                        pgb.setProgress((int) progress);
+                    }
+                })
+                .startDownload(new DownloadListener() {
+                    @Override
+                    public void onDownloadComplete() {
+                        pgb.dismiss();
+                        Toast.makeText(activity, "Download Complete", Toast.LENGTH_SHORT).show();
+                        activity.startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        anError.printStackTrace();
+                        Toast.makeText(activity, anError.getMessage(), Toast.LENGTH_SHORT).show();
+                        pgb.dismiss();
+                    }
+                });
+    }
+
 
 }

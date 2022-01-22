@@ -1,5 +1,6 @@
 package com.cvgs.cvgsapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -44,6 +45,7 @@ public class ExploreAdapter extends ArrayAdapter<ExploreModel> {
         return 0;
     }
 
+    @SuppressLint("ViewHolder")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @NonNull
     @Override

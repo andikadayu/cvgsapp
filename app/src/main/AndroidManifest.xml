@@ -113,10 +113,6 @@
 			 android:configChanges="orientation|screenSize"
 			 android:exported="false"/>
 		<activity
-			 android:name=".CompanyActivity"
-			 android:configChanges="orientation|screenSize"
-			 android:exported="false"/>
-		<activity
 			 android:name=".AboutActivity"
 			 android:configChanges="orientation|screenSize"
 			 android:exported="false"/>

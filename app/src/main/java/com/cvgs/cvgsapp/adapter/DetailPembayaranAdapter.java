@@ -168,6 +168,7 @@ public class DetailPembayaranAdapter extends RecyclerView.Adapter<DetailPembayar
             String randomId = number.toString().replace("-", "");
             AndroidNetworking.download(server+"/api/report/kwitansi.php",String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)),id_transaksi+"_"+randomId+".pdf")
                     .addQueryParameter("id_transaksi",id_transaksi)
+                    .addQueryParameter("mode","download")
                     .setTag("DownloadReceipt")
                     .setPriority(Priority.MEDIUM)
                     .build()

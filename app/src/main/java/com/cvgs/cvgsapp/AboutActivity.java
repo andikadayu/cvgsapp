@@ -18,7 +18,7 @@ import android.widget.TextView;
 public class AboutActivity extends AppCompatActivity {
 
     TextView versionApps;
-    Button btnOpenSource,btnCompany;
+    Button btnOpenSource;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -27,7 +27,6 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         versionApps = findViewById(R.id.versionApps);
-        btnCompany = findViewById(R.id.btnToOpenCompany);
         btnOpenSource = findViewById(R.id.btnToOpenLicense);
 
         String version;
@@ -37,13 +36,6 @@ public class AboutActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
-        btnCompany.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),CompanyActivity.class));
-            }
-        });
 
         btnOpenSource.setOnClickListener(new View.OnClickListener() {
             @Override

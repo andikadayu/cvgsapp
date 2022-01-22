@@ -59,22 +59,7 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="normal" />
-
-
-            <Button
-                android:id="@+id/btnToOpenCompany"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btnToOpenLicense"
-                android:backgroundTint="@color/white"
-                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-                android:text="About Company"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="normal" />
+            
 
         </RelativeLayout>
 
