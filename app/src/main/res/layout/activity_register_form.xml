@@ -533,7 +533,7 @@
                         android:layout_marginTop="10dp"
                         android:orientation="vertical"
                         android:visibility="gone">
-
+                        
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -542,57 +542,17 @@
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
-
+    
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:text="1. Uang yang masuk akan hilang apabila pendaftar membatalkan pendaftaran ini."
-                            android:textColor="@color/black"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="2. Penambahan komponen di luar persetujuan harga awal di kenakan biaya tambahan"
-                            android:textColor="@color/black"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="3. Apabila revisi program, pendaftar dikenakan biaya tambahan."
-                            android:textColor="@color/black"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="4. CV. Global Solusindo TIDAK BERTANGGUNG JAWAB atas:"
-                            android:textColor="@color/black"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="A. Program/alat yang tidak diambil melebihi 2 minggu dari tanggal selesai sehingga terjadinya ERROR/Kendala/Ketidaksesuaian BUKAN TANGGUNGJAWAB KAMI"
-                            android:textColor="@color/black"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="B. Program/alat yang tidak diambil melebihi 1 Bulan dari tanggal selesai, kami anggap sudah selesai mengerjakan PROGRAM tersebut dan KAMI TIDAK MENERIMA COMPLAIN APAPUN serta PENDAFTARAN kami nyatakan HANGUS."
-                            android:textColor="@color/black"
-                            android:textSize="13sp" />
-
+                             android:id="@+id/tvAgreement"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="20dp"
+                             android:textColor="@color/black"
+                             android:textSize="13sp"
+                             android:text="@string/lorem"
+                        />
+                        
 
                         <CheckBox
                             android:id="@+id/cbAgree"

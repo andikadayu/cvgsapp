@@ -1,6 +1,7 @@
 package com.cvgs.cvgsapp;
 
 import android.graphics.Color;
+import android.text.Html;
 import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -70,7 +71,7 @@ public class RegisterLoggedActivity extends AppCompatActivity implements View.On
     TextInputEditText txtDate;
     ImageView imgPaket, imgBukti;
 
-    TextView tvLayanan, tvPaket, tvFile;
+    TextView tvLayanan, tvPaket, tvFile,tvAgreement;
 
     Spinner spnTools;
 
@@ -180,6 +181,7 @@ public class RegisterLoggedActivity extends AppCompatActivity implements View.On
         layoutSetuju = findViewById(R.id.layoutSetuju);
         btnPrevSetuju = findViewById(R.id.btnPrevSetuju);
         btnNextSetuju = findViewById(R.id.btnNextSetuju);
+        tvAgreement = findViewById(R.id.tvAgreement);
         btnPrevSetuju.setOnClickListener(this);
         btnNextSetuju.setOnClickListener(this);
 
@@ -357,6 +359,15 @@ public class RegisterLoggedActivity extends AppCompatActivity implements View.On
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            String agreement = response.getString("agreement");
+
+                            // Set Agreement
+                            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                                tvAgreement.setText(Html.fromHtml(agreement,Html.FROM_HTML_MODE_COMPACT));
+                            }else{
+                                tvAgreement.setText(Html.fromHtml(agreement));
+                            }
+
                             JSONArray ja = response.getJSONArray("data");
                             for (int i = 0; i < ja.length(); i++) {
                                 listTools.add(ja.getString(i));
