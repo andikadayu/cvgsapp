@@ -2,17 +2,10 @@ package com.cvgs.cvgsapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
-import android.os.Handler;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
+import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,7 +39,7 @@ public class NotificationActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refreshLayout;
 
-    String id_detail,role;
+    String id_detail, role;
 
 
     @Override
@@ -70,48 +63,51 @@ public class NotificationActivity extends AppCompatActivity {
 
         initialize(this);
 
-        btnBack.setOnClickListener(view -> {startActivity(new Intent(getApplicationContext(),HomeActivity.class));finish();});
+        btnBack.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            finish();
+        });
 
-        btnClear.setOnClickListener(view->{
+        btnClear.setOnClickListener(view -> {
             new MaterialAlertDialogBuilder(this)
                     .setTitle("Clear Notification")
                     .setMessage("Are you sure to clear all notification?")
-                    .setNegativeButton("Cancel",(dialog,i)->dialog.cancel())
-                    .setPositiveButton("Confirm",(dialog,i)->clearAllNotification(this)).show();
+                    .setNegativeButton("Cancel", (dialog, i) -> dialog.cancel())
+                    .setPositiveButton("Confirm", (dialog, i) -> clearAllNotification(this)).show();
         });
 
-        refreshLayout.setOnRefreshListener(()->{
+        refreshLayout.setOnRefreshListener(() -> {
             notificationList = new ArrayList<NotificationModel>();
             initialize(this);
         });
 
     }
 
-    private void initialize(Activity activity){
-        AndroidNetworking.post(constance.server+"/api/notification/getListNotification.php")
-                .addBodyParameter("id_detail",id_detail)
-                .addBodyParameter("role",role)
+    private void initialize(Activity activity) {
+        AndroidNetworking.post(constance.server + "/api/notification/getListNotification.php")
+                .addBodyParameter("id_detail", id_detail)
+                .addBodyParameter("role", role)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
                             boolean status = response.getBoolean("status");
-                            if(status){
+                            if (status) {
                                 layoutManager = new LinearLayoutManager(activity, RecyclerView.VERTICAL, false);
                                 recyNotification.setLayoutManager(layoutManager);
 
                                 recyNotification.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
-                                adapter = new NotificationAdapter(activity,notificationList);
+                                adapter = new NotificationAdapter(activity, notificationList);
 
                                 recyNotification.setAdapter(adapter);
 
                                 JSONArray ja = response.getJSONArray("data");
-                                for(int i = 0;i<ja.length();i++){
-                                    JSONObject jo =ja.getJSONObject(i);
+                                for (int i = 0; i < ja.length(); i++) {
+                                    JSONObject jo = ja.getJSONObject(i);
 
                                     notificationList.add(new NotificationModel(
-                                       jo.getString("id_notification"),
+                                            jo.getString("id_notification"),
                                             jo.getString("description"),
                                             jo.getString("details"),
                                             jo.getString("date_notify"),
@@ -140,24 +136,24 @@ public class NotificationActivity extends AppCompatActivity {
         refreshLayout.setRefreshing(false);
     }
 
-    private void clearAllNotification(Activity activity){
-        AndroidNetworking.post(constance.server+"/api/notification/clearAll.php")
-                .addBodyParameter("id_detail",id_detail)
-                .addBodyParameter("role",role)
+    private void clearAllNotification(Activity activity) {
+        AndroidNetworking.post(constance.server + "/api/notification/clearAll.php")
+                .addBodyParameter("id_detail", id_detail)
+                .addBodyParameter("role", role)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
                             boolean status = response.getBoolean("status");
-                            if(status){
+                            if (status) {
                                 Toast.makeText(activity, "SUCCESS CLEAR", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(activity,NotificationActivity.class));
+                                startActivity(new Intent(activity, NotificationActivity.class));
                                 finish();
-                            }else{
+                            } else {
                                 Toast.makeText(activity, "ERROR CLEAR", Toast.LENGTH_SHORT).show();
                             }
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(activity, "ERROR RESPONSES", Toast.LENGTH_SHORT).show();
                         }

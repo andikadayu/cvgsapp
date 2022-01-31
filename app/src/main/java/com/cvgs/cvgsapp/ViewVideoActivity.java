@@ -4,13 +4,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
@@ -26,19 +25,19 @@ public class ViewVideoActivity extends AppCompatActivity {
 
     StyledPlayerView playerView;
     PhotoView imageView;
-    String mode,urls;
+    String mode, urls;
     ExoPlayer exoPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            }else{
+            } else {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             }
             getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -50,29 +49,29 @@ public class ViewVideoActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
 
         Intent currentIntent = getIntent();
-        if(currentIntent.hasExtra("mode")){
+        if (currentIntent.hasExtra("mode")) {
             mode = currentIntent.getStringExtra("mode");
             urls = currentIntent.getStringExtra("urls");
 
             initializing();
 
-        }else{
-            startActivity(new Intent(getApplicationContext(),ProgressAdminActivity.class));
+        } else {
+            startActivity(new Intent(getApplicationContext(), ProgressAdminActivity.class));
             finish();
         }
     }
 
-    private void initializing(){
-        if(mode.equals("image")){
+    private void initializing() {
+        if (mode.equals("image")) {
             imageView.setVisibility(View.VISIBLE);
             initialzeScreenshot();
-        }else{
+        } else {
             playerView.setVisibility(View.VISIBLE);
             initialzeVideo();
         }
     }
 
-    private void initialzeScreenshot(){
+    private void initialzeScreenshot() {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
         storageReference.child(urls).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -90,7 +89,7 @@ public class ViewVideoActivity extends AppCompatActivity {
 
     }
 
-    private void initialzeVideo(){
+    private void initialzeVideo() {
 
         exoPlayer = new ExoPlayer.Builder(ViewVideoActivity.this).build();
 
@@ -113,7 +112,6 @@ public class ViewVideoActivity extends AppCompatActivity {
                 Toast.makeText(ViewVideoActivity.this, "ERROR STORAGE", Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
     }

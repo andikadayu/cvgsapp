@@ -1,7 +1,7 @@
 package com.cvgs.cvgsapp.model;
 
 public class PaketModel {
-    String id_paket,id_layanan,nama_paket,isi_paket,harga_paket,logo_paket,color_paket;
+    String id_paket, id_layanan, nama_paket, isi_paket, harga_paket, logo_paket, color_paket;
 
     public PaketModel(String id_paket, String id_layanan, String nama_paket, String isi_paket, String harga_paket, String logo_paket, String color_paket) {
         this.id_paket = id_paket;

@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.Serializable;
 
 public class BroadcastModel implements Serializable {
-    private String id_detail,name;
+    private String id_detail, name;
 
     public BroadcastModel(String id_detail, String name) {
         this.id_detail = id_detail;

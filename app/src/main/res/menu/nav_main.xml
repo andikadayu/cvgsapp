@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/mHome"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="@string/mHome"
-        />
-
-    <item
-        android:id="@+id/mExpolore"
-        android:icon="@drawable/ic_baseline_explore_24"
-        android:title="@string/mExplore"
-        />
-
-    <item
-        android:id="@+id/mMe"
-        android:icon="@drawable/ic_baseline_person_24"
-        android:title="@string/mMe"
-        />
+	<item
+		 android:id="@+id/mHome"
+		 android:icon="@drawable/ic_baseline_home_24"
+		 android:title="@string/mHome"
+	/>
+	
+	<item
+		 android:id="@+id/mExpolore"
+		 android:icon="@drawable/ic_baseline_explore_24"
+		 android:title="@string/mExplore"
+	/>
+	
+	<item
+		 android:id="@+id/mMe"
+		 android:icon="@drawable/ic_baseline_person_24"
+		 android:title="@string/mMe"
+	/>
 </menu>

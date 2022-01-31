@@ -2,9 +2,9 @@ package com.cvgs.cvgsapp.model;
 
 public class ExploreModel {
 
-    String id_explore,detail_explore,isi_explore,image_explore,color_explore;
+    String id_explore, detail_explore, isi_explore, image_explore, color_explore;
 
-    public ExploreModel(String id_explore, String detail_explore,String isi_explore, String image_explore, String color_explore) {
+    public ExploreModel(String id_explore, String detail_explore, String isi_explore, String image_explore, String color_explore) {
         this.id_explore = id_explore;
         this.detail_explore = detail_explore;
         this.isi_explore = isi_explore;

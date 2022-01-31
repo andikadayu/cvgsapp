@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.Holder>{
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.Holder> {
     Activity activity;
     ArrayList<NotificationModel> dataModel;
 
@@ -30,7 +30,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @NotNull
     @Override
     public Holder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_adapter,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_adapter, parent, false);
         return new Holder(v);
     }
 
@@ -41,17 +41,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.tvDescription.setText(dataModels.getDescription());
         holder.tvTgl.setText(dataModels.getDate_notify());
 
-        if(dataModels.is_read()){
+        if (dataModels.is_read()) {
             holder.layoutOuter.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
-        }else{
+        } else {
             holder.layoutOuter.setBackgroundColor(Color.parseColor("#D6E6F2"));
         }
 
-        holder.layoutOuter.setOnClickListener(view->{
+        holder.layoutOuter.setOnClickListener(view -> {
             Intent sendData = new Intent(activity, DetailNotificationActivity.class);
-            sendData.putExtra("id_notification",dataModels.getId_notification());
-            sendData.putExtra("date_notify",dataModels.getDatetime_notify());
-            sendData.putExtra("detail",dataModels.getDetails());
+            sendData.putExtra("id_notification", dataModels.getId_notification());
+            sendData.putExtra("date_notify", dataModels.getDatetime_notify());
+            sendData.putExtra("detail", dataModels.getDetails());
             activity.startActivity(sendData);
         });
 
@@ -63,11 +63,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return dataModel.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder{
+    public class Holder extends RecyclerView.ViewHolder {
 
         NotificationModel model;
         RelativeLayout layoutOuter;
-        TextView tvDescription,tvTgl;
+        TextView tvDescription, tvTgl;
 
 
         public Holder(@NonNull @NotNull View v) {

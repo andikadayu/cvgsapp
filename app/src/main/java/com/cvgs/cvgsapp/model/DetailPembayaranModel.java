@@ -1,7 +1,7 @@
 package com.cvgs.cvgsapp.model;
 
 public class DetailPembayaranModel {
-    String id_transaksi,image,nominal,tgl_transaksi,status;
+    String id_transaksi, image, nominal, tgl_transaksi, status;
 
     public DetailPembayaranModel(String id_transaksi, String image, String nominal, String tgl_transaksi, String status) {
         this.id_transaksi = id_transaksi;

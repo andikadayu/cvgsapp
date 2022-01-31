@@ -1,7 +1,7 @@
 package com.cvgs.cvgsapp.model;
 
 public class DetailProgressModel {
-    String id_progress,id_daftar,progress,isi_progress,tgl_progress,screenshot,video;
+    String id_progress, id_daftar, progress, isi_progress, tgl_progress, screenshot, video;
 
     public DetailProgressModel(String id_progress, String id_daftar, String progress, String isi_progress, String tgl_progress, String screenshot, String video) {
         this.id_progress = id_progress;

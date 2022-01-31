@@ -1,7 +1,7 @@
 package com.cvgs.cvgsapp.model;
 
 public class DetailPendaftarModel {
-    String id_daftar,logo,judul ,tool,status;
+    String id_daftar, logo, judul, tool, status;
 
     public DetailPendaftarModel(String id_daftar, String logo, String judul, String tool, String status) {
         this.id_daftar = id_daftar;

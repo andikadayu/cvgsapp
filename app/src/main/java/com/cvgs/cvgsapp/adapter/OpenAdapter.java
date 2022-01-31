@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.cvgs.cvgsapp.R;
 import com.cvgs.cvgsapp.model.OpenModel;
 
@@ -19,7 +17,7 @@ import java.util.ArrayList;
 public class OpenAdapter extends ArrayAdapter<OpenModel> {
 
     ArrayList<OpenModel> dataModel;
-    TextView openName,openLink,openLicense;
+    TextView openName, openLink, openLicense;
 
     public OpenAdapter(@NonNull Context context, ArrayList<OpenModel> dataModel) {
         super(context, 0, dataModel);
@@ -34,7 +32,7 @@ public class OpenAdapter extends ArrayAdapter<OpenModel> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
-        view = LayoutInflater.from(getContext()).inflate(R.layout.detail_open_source,parent,false);
+        view = LayoutInflater.from(getContext()).inflate(R.layout.detail_open_source, parent, false);
         OpenModel dataModels = (OpenModel) getItem(position);
 
         openName = view.findViewById(R.id.openName);
@@ -43,11 +41,11 @@ public class OpenAdapter extends ArrayAdapter<OpenModel> {
 
         openName.setText(dataModels.getNamePackage());
         openLink.setText(dataModels.getLinkPackage());
-        if(position == 1){
-        openLicense.setText(dataModels.getLicensePackage());
+        if (position == 1) {
+            openLicense.setText(dataModels.getLicensePackage());
 
-        }else{
-        openLicense.setText("This Package Licensed under "+dataModels.getLicensePackage());
+        } else {
+            openLicense.setText("This Package Licensed under " + dataModels.getLicensePackage());
 
         }
 

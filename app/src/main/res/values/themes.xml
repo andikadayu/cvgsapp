@@ -1,30 +1,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Cvgsapp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryVariant">@color/green_accent</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <!-- Customize your theme here. -->
-    </style>
-    
-    <style name="Theme.Cvgsapp.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-    
-    <style name="Theme.Cvgsapp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    
-    <style name="Theme.Cvgsapp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+	<!-- Base application theme. -->
+	<style name="Theme.Cvgsapp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+		<!-- Primary brand color. -->
+		<item name="colorPrimary">@color/green</item>
+		<item name="colorPrimaryVariant">@color/green_accent</item>
+		<item name="colorOnPrimary">@color/white</item>
+		<!-- Secondary brand color. -->
+		<item name="colorSecondary">@color/teal_200</item>
+		<item name="colorSecondaryVariant">@color/teal_700</item>
+		<item name="colorOnSecondary">@color/black</item>
+		<!-- Status bar color. -->
+		<item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+		<item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+		<!-- Customize your theme here. -->
+	</style>
+	
+	<style name="Theme.Cvgsapp.NoActionBar">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+	</style>
+	
+	<style name="Theme.Cvgsapp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+	
+	<style name="Theme.Cvgsapp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 	<style name="Theme.Cvgsapp.Fullscreen" parent="Theme.Cvgsapp">
 		<item name="android:actionBarStyle">@style/Widget.Theme.Cvgsapp.ActionBar.Fullscreen</item>
 		<item name="android:windowActionBarOverlay">true</item>

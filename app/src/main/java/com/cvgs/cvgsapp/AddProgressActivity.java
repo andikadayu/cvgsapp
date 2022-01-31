@@ -9,16 +9,14 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
@@ -41,7 +39,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -49,22 +46,21 @@ public class AddProgressActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_PERMISSION = 10;
 
-    CheckBox cbSS,cbVideo;
-    LinearLayout layoutScreenshot,layoutVideo;
-    TextView tvNama,tvDetail,tvAlamat,tvFile;
-    ImageView logoApps,btnBack,imgScreenshot;
+    CheckBox cbSS, cbVideo;
+    LinearLayout layoutScreenshot, layoutVideo;
+    TextView tvNama, tvDetail, tvAlamat, tvFile;
+    ImageView logoApps, btnBack, imgScreenshot;
     Constance constance = new Constance();
-    TextInputLayout txtPercent,txtDescription;
-    Button btnPilih,btnSend;
-    String id_daftar,judul,detail,logo,progress;
+    TextInputLayout txtPercent, txtDescription;
+    Button btnPilih, btnSend;
+    String id_daftar, judul, detail, logo, progress;
     Bitmap bmpSS;
     Uri video;
-    String namaSS,namaVideo,dateNow,proPercent,proDescription,name_video,name_screenshot = null;
-    String has_screenshot,has_video = "no";
+    String namaSS, namaVideo, dateNow, proPercent, proDescription, name_video, name_screenshot = null;
+    String has_screenshot, has_video = "no";
     String format_video;
     boolean done_image = true;
     boolean done_video = true;
-
 
 
     @Override
@@ -96,68 +92,68 @@ public class AddProgressActivity extends AppCompatActivity {
         dateNow = dateFormat.format(date);
 
         Intent currentIntent = getIntent();
-        if(currentIntent.hasExtra("id_daftar")){
+        if (currentIntent.hasExtra("id_daftar")) {
             id_daftar = currentIntent.getStringExtra("id_daftar");
             judul = currentIntent.getStringExtra("judul");
             detail = currentIntent.getStringExtra("detail");
             logo = currentIntent.getStringExtra("logo");
             progress = currentIntent.getStringExtra("progress");
-        }else{
-            startActivity(new Intent(getApplicationContext(),ProgressAdminActivity.class));
+        } else {
+            startActivity(new Intent(getApplicationContext(), ProgressAdminActivity.class));
             finish();
         }
 
         AndroidNetworking.initialize(getApplicationContext());
 
-        imgScreenshot.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_add_a_photo_24,getApplicationContext().getTheme()));
+        imgScreenshot.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_add_a_photo_24, getApplicationContext().getTheme()));
 
         initializeProfile();
 
-        btnBack.setOnClickListener(view->{
-            Intent sendData = new Intent(getApplicationContext(),AdminProgressDetailActivity.class);
-            sendData.putExtra("id_daftar",id_daftar);
-            sendData.putExtra("judul",judul);
-            sendData.putExtra("detail",detail);
-            sendData.putExtra("logo",logo);
-            sendData.putExtra("progress",progress);
+        btnBack.setOnClickListener(view -> {
+            Intent sendData = new Intent(getApplicationContext(), AdminProgressDetailActivity.class);
+            sendData.putExtra("id_daftar", id_daftar);
+            sendData.putExtra("judul", judul);
+            sendData.putExtra("detail", detail);
+            sendData.putExtra("logo", logo);
+            sendData.putExtra("progress", progress);
             startActivity(sendData);
             finish();
         });
 
         cbSS.setOnClickListener(view -> {
             CheckBox current = (CheckBox) view;
-            if(current.isChecked()){
+            if (current.isChecked()) {
                 layoutScreenshot.setVisibility(View.VISIBLE);
                 has_screenshot = "yes";
-            }else{
+            } else {
                 layoutScreenshot.setVisibility(View.GONE);
                 clearScreenshot();
                 has_screenshot = "no";
             }
         });
 
-        cbVideo.setOnClickListener(view->{
+        cbVideo.setOnClickListener(view -> {
             CheckBox current = (CheckBox) view;
-            if(current.isChecked()){
+            if (current.isChecked()) {
                 layoutVideo.setVisibility(View.VISIBLE);
                 has_video = "yes";
-            }else{
+            } else {
                 layoutVideo.setVisibility(View.GONE);
                 clearVideo();
                 has_video = "no";
             }
         });
 
-        imgScreenshot.setOnClickListener(view->optionScreenshot(this));
+        imgScreenshot.setOnClickListener(view -> optionScreenshot(this));
 
-        btnPilih.setOnClickListener(view->optionVideo());
+        btnPilih.setOnClickListener(view -> optionVideo());
 
         btnSend.setOnClickListener(view -> {
             proPercent = txtPercent.getEditText().getText().toString();
             proDescription = txtDescription.getEditText().getText().toString();
-            if(!progress.equals("") && !proDescription.equals("")){
+            if (!progress.equals("") && !proDescription.equals("")) {
                 actionProgress(this);
-            }else{
+            } else {
                 Toast.makeText(this, "Complete Form", Toast.LENGTH_SHORT).show();
             }
         });
@@ -166,8 +162,8 @@ public class AddProgressActivity extends AppCompatActivity {
 
     private void enablePermission() {
         ActivityCompat.requestPermissions(AddProgressActivity.this,
-                new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA },
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA},
                 REQUEST_CODE_PERMISSION);
     }
 
@@ -185,45 +181,45 @@ public class AddProgressActivity extends AppCompatActivity {
         }
     }
 
-    private void initializeProfile(){
-        Picasso.get().load(constance.server+logo).into(logoApps);
+    private void initializeProfile() {
+        Picasso.get().load(constance.server + logo).into(logoApps);
         tvNama.setText(judul);
         tvDetail.setText(detail);
         tvAlamat.setText(progress);
     }
 
-    private void clearScreenshot(){
+    private void clearScreenshot() {
         bmpSS = null;
         imgScreenshot.setImageBitmap(bmpSS);
-        imgScreenshot.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_add_a_photo_24,getApplicationContext().getTheme()));
+        imgScreenshot.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_add_a_photo_24, getApplicationContext().getTheme()));
         imgScreenshot.setBackgroundColor(Color.parseColor("#EAEAEA"));
     }
 
-    private void clearVideo(){
+    private void clearVideo() {
         video = null;
     }
 
-    private void optionScreenshot(Activity activity){
-        String[] options = {"Take Camera","Select From Gallery","Close"};
+    private void optionScreenshot(Activity activity) {
+        String[] options = {"Take Camera", "Select From Gallery", "Close"};
         new MaterialAlertDialogBuilder(activity)
                 .setTitle("List Options")
-                .setItems(options,(dialog,i)->{
-                    if(i == 0){
+                .setItems(options, (dialog, i) -> {
+                    if (i == 0) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         startActivityForResult(intent, 100);
-                    }else if(i == 1){
+                    } else if (i == 1) {
                         Intent intent = new Intent(Intent.ACTION_PICK,
                                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                         startActivityForResult(intent, 200);
-                    }else if(i == 2){
+                    } else if (i == 2) {
                         dialog.cancel();
                     }
                 }).show();
     }
 
-    private void optionVideo(){
-        Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent,300);
+    private void optionVideo() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, 300);
     }
 
     @Override
@@ -233,7 +229,7 @@ public class AddProgressActivity extends AppCompatActivity {
             assert data != null;
             if (requestCode == 100) {
                 UUID number = UUID.randomUUID();
-                namaSS = "IMG-"+number.toString().replace("-", "");
+                namaSS = "IMG-" + number.toString().replace("-", "");
                 bmpSS = (Bitmap) data.getExtras().get("data");
                 imgScreenshot.setImageBitmap(bmpSS);
 
@@ -243,7 +239,7 @@ public class AddProgressActivity extends AppCompatActivity {
                     bmpSS = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                     imgScreenshot.setImageBitmap(bmpSS);
                     UUID number = UUID.randomUUID();
-                    namaSS = "IMG-"+number.toString().replace("-", "");
+                    namaSS = "IMG-" + number.toString().replace("-", "");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -260,33 +256,33 @@ public class AddProgressActivity extends AppCompatActivity {
 
                 video = selectedVideo;
                 UUID number = UUID.randomUUID();
-                namaVideo = "VID-"+number.toString().replace("-", "");
+                namaVideo = "VID-" + number.toString().replace("-", "");
             }
         }
     }
 
-    private void actionProgress(Activity activity){
+    private void actionProgress(Activity activity) {
 
-        if(has_screenshot.equalsIgnoreCase("yes")){
+        if (has_screenshot.equalsIgnoreCase("yes")) {
             done_image = false;
         }
 
-        if(has_video.equalsIgnoreCase("yes")){
+        if (has_video.equalsIgnoreCase("yes")) {
             done_video = true;
         }
 
         uploadImage(activity);
     }
 
-    private void uploadImage(Activity activity){
+    private void uploadImage(Activity activity) {
         String ImageSegment = "images/";
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        if(cbSS.isChecked() && bmpSS != null){
+        if (cbSS.isChecked() && bmpSS != null) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bmpSS.compress(Bitmap.CompressFormat.PNG, 100, baos);
 
             byte[] data = baos.toByteArray();
-            name_screenshot = ImageSegment+dateNow+namaSS+".png";
+            name_screenshot = ImageSegment + dateNow + namaSS + ".png";
             UploadTask uploadTask = storage.getReference().child(name_screenshot).putBytes(data);
             ProgressDialog pgb = new ProgressDialog(activity);
             pgb.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -329,18 +325,18 @@ public class AddProgressActivity extends AppCompatActivity {
                 }
             });
 
-        }else{
+        } else {
             done_image = true;
             uploadVideo(activity);
         }
     }
 
-    private void uploadVideo(Activity activity){
+    private void uploadVideo(Activity activity) {
         String VideoSegment = "videos/";
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        if(cbVideo.isChecked() && video != null){
+        if (cbVideo.isChecked() && video != null) {
             done_video = false;
-            name_video = VideoSegment+dateNow+namaVideo+"."+format_video;
+            name_video = VideoSegment + dateNow + namaVideo + "." + format_video;
 
             UploadTask videoTask = storage.getReference().child(name_video).putFile(video);
 
@@ -384,39 +380,39 @@ public class AddProgressActivity extends AppCompatActivity {
                     uploadToServer(activity);
                 }
             });
-        }else{
+        } else {
             done_video = true;
             uploadToServer(activity);
         }
     }
 
 
-    private void uploadToServer(Activity activity){
-        if(done_image && done_video){
-            AndroidNetworking.post(constance.server+"/api/progress/addProgress.php")
-                    .addBodyParameter("id_daftar",id_daftar)
-                    .addBodyParameter("progress",proPercent)
-                    .addBodyParameter("description",proDescription)
-                    .addBodyParameter("has_screenshot",has_screenshot)
-                    .addBodyParameter("has_video",has_video)
-                    .addBodyParameter("screenshot",name_screenshot)
-                    .addBodyParameter("video",name_video)
+    private void uploadToServer(Activity activity) {
+        if (done_image && done_video) {
+            AndroidNetworking.post(constance.server + "/api/progress/addProgress.php")
+                    .addBodyParameter("id_daftar", id_daftar)
+                    .addBodyParameter("progress", proPercent)
+                    .addBodyParameter("description", proDescription)
+                    .addBodyParameter("has_screenshot", has_screenshot)
+                    .addBodyParameter("has_video", has_video)
+                    .addBodyParameter("screenshot", name_screenshot)
+                    .addBodyParameter("video", name_video)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            try{
+                            try {
                                 boolean status = response.getBoolean("status");
 
-                                if(status){
+                                if (status) {
                                     Toast.makeText(activity, "SUCCESS", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(activity,ProgressAdminActivity.class));
+                                    startActivity(new Intent(activity, ProgressAdminActivity.class));
                                     finish();
-                                }else{
+                                } else {
                                     Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
                                 }
 
-                            }catch (JSONException e){
+                            } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(activity, "ERROR RESPONSES", Toast.LENGTH_SHORT).show();
                             }

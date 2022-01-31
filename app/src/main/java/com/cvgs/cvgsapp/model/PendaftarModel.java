@@ -1,7 +1,7 @@
 package com.cvgs.cvgsapp.model;
 
 public class PendaftarModel {
-    private String id_detail,nama,no_telp,email,alamat;
+    private String id_detail, nama, no_telp, email, alamat;
 
     public PendaftarModel(String id_detail, String nama, String no_telp, String email, String alamat) {
         this.id_detail = id_detail;

@@ -37,7 +37,7 @@ public class DetailProgressAdapter extends RecyclerView.Adapter<DetailProgressAd
     @NotNull
     @Override
     public Holder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pembayaran_adapter,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pembayaran_adapter, parent, false);
         return new Holder(v);
     }
 
@@ -45,7 +45,7 @@ public class DetailProgressAdapter extends RecyclerView.Adapter<DetailProgressAd
     public void onBindViewHolder(@NonNull @NotNull Holder holder, int position) {
         DetailProgressModel dataModels = dataModel.get(position);
 
-        Picasso.get().load(server+logo).into(holder.imgBLoogo);
+        Picasso.get().load(server + logo).into(holder.imgBLoogo);
 
         holder.tvBJudul.setText(dataModels.getIsi_progress());
         holder.tvBDetail.setText(dataModels.getTgl_progress());
@@ -54,15 +54,15 @@ public class DetailProgressAdapter extends RecyclerView.Adapter<DetailProgressAd
         holder.tvBJudul.setMaxLines(1);
         holder.tvBJudul.setEllipsize(TextUtils.TruncateAt.END);
 
-        holder.layoutOuter.setOnClickListener(view->{
+        holder.layoutOuter.setOnClickListener(view -> {
             // TODO Something
             Intent sendData = new Intent(activity, ShowProgressActivity.class);
-            sendData.putExtra("id_progress",dataModels.getId_progress());
-            sendData.putExtra("progress",dataModels.getProgress());
-            sendData.putExtra("isi_progress",dataModels.getIsi_progress());
-            sendData.putExtra("tgl_progress",dataModels.getTgl_progress());
-            sendData.putExtra("screenshot",dataModels.getScreenshot());
-            sendData.putExtra("video",dataModels.getVideo());
+            sendData.putExtra("id_progress", dataModels.getId_progress());
+            sendData.putExtra("progress", dataModels.getProgress());
+            sendData.putExtra("isi_progress", dataModels.getIsi_progress());
+            sendData.putExtra("tgl_progress", dataModels.getTgl_progress());
+            sendData.putExtra("screenshot", dataModels.getScreenshot());
+            sendData.putExtra("video", dataModels.getVideo());
             activity.startActivity(sendData);
         });
 
@@ -74,7 +74,7 @@ public class DetailProgressAdapter extends RecyclerView.Adapter<DetailProgressAd
         return dataModel.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder{
+    public class Holder extends RecyclerView.ViewHolder {
 
         DetailProgressModel model;
         ImageView imgBLoogo;

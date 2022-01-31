@@ -2,15 +2,10 @@ package com.cvgs.cvgsapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
-import android.view.View;
-import android.view.WindowManager;
+import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,43 +49,46 @@ public class ProgressAdminActivity extends AppCompatActivity {
 
         sessionManager = new SessionManager(getApplicationContext());
 
-        if(sessionManager.getUserDetail().get(SessionManager.ROLE).equals("pendaftar")){
+        if (sessionManager.getUserDetail().get(SessionManager.ROLE).equals("pendaftar")) {
             initializeUser(this);
-        }else{
+        } else {
             initialize(this);
         }
 
-        refreshLayout.setOnRefreshListener(()->{
+        refreshLayout.setOnRefreshListener(() -> {
             progressList = new ArrayList<ProgressModel>();
-            if(sessionManager.getUserDetail().get(SessionManager.ROLE).equals("pendaftar")){
+            if (sessionManager.getUserDetail().get(SessionManager.ROLE).equals("pendaftar")) {
                 initializeUser(this);
-            }else{
+            } else {
                 initialize(this);
             }
         });
 
-        btnBack.setOnClickListener(view -> {startActivity(new Intent(getApplicationContext(),ProfileActivity.class));finish();});
+        btnBack.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            finish();
+        });
     }
 
-    private void initialize(Activity activity){
-        AndroidNetworking.post(constance.server+"/api/progress/getAllProject.php")
+    private void initialize(Activity activity) {
+        AndroidNetworking.post(constance.server + "/api/progress/getAllProject.php")
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
                             boolean status = response.getBoolean("status");
-                            if(status){
-                                layoutManager = new LinearLayoutManager(activity,RecyclerView.VERTICAL,false);
+                            if (status) {
+                                layoutManager = new LinearLayoutManager(activity, RecyclerView.VERTICAL, false);
                                 recyProgress.setLayoutManager(layoutManager);
-                                recyProgress.addItemDecoration(new DividerItemDecoration(activity,DividerItemDecoration.VERTICAL));
+                                recyProgress.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
 
-                                adapter = new ProgressAdapter(activity,progressList,constance.server);
+                                adapter = new ProgressAdapter(activity, progressList, constance.server);
 
                                 recyProgress.setAdapter(adapter);
 
                                 JSONArray ja = response.getJSONArray("data");
-                                for(int i = 0;i<ja.length();i++){
+                                for (int i = 0; i < ja.length(); i++) {
                                     JSONObject jo = ja.getJSONObject(i);
 
                                     progressList.add(new ProgressModel(
@@ -105,10 +103,10 @@ public class ProgressAdminActivity extends AppCompatActivity {
 
                                 }
 
-                            }else{
+                            } else {
                                 Toast.makeText(activity, "NO DATA", Toast.LENGTH_SHORT).show();
                             }
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(activity, "ERROR RESPONSES", Toast.LENGTH_SHORT).show();
                         }
@@ -124,26 +122,27 @@ public class ProgressAdminActivity extends AppCompatActivity {
         refreshLayout.setRefreshing(false);
 
     }
-    private void initializeUser(Activity activity){
-        AndroidNetworking.post(constance.server+"/api/progress/getOnceProject.php")
-                .addBodyParameter("id_detail",sessionManager.getUserDetail().get(SessionManager.ID_DETAIL))
+
+    private void initializeUser(Activity activity) {
+        AndroidNetworking.post(constance.server + "/api/progress/getOnceProject.php")
+                .addBodyParameter("id_detail", sessionManager.getUserDetail().get(SessionManager.ID_DETAIL))
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
                             boolean status = response.getBoolean("status");
-                            if(status){
-                                layoutManager = new LinearLayoutManager(activity,RecyclerView.VERTICAL,false);
+                            if (status) {
+                                layoutManager = new LinearLayoutManager(activity, RecyclerView.VERTICAL, false);
                                 recyProgress.setLayoutManager(layoutManager);
-                                recyProgress.addItemDecoration(new DividerItemDecoration(activity,DividerItemDecoration.VERTICAL));
+                                recyProgress.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
 
-                                adapter = new ProgressAdapter(activity,progressList,constance.server);
+                                adapter = new ProgressAdapter(activity, progressList, constance.server);
 
                                 recyProgress.setAdapter(adapter);
 
                                 JSONArray ja = response.getJSONArray("data");
-                                for(int i = 0;i<ja.length();i++){
+                                for (int i = 0; i < ja.length(); i++) {
                                     JSONObject jo = ja.getJSONObject(i);
 
                                     progressList.add(new ProgressModel(
@@ -158,10 +157,10 @@ public class ProgressAdminActivity extends AppCompatActivity {
 
                                 }
 
-                            }else{
+                            } else {
                                 Toast.makeText(activity, "NO DATA", Toast.LENGTH_SHORT).show();
                             }
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(activity, "ERROR RESPONSES", Toast.LENGTH_SHORT).show();
                         }

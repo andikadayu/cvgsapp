@@ -1,14 +1,5 @@
 package com.cvgs.cvgsapp;
 
-import android.graphics.Color;
-import android.os.Build;
-import android.view.WindowManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -23,14 +14,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.cvgs.cvgsapp.advances.Constance;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -38,10 +31,10 @@ import java.io.IOException;
 
 public class UploadBrosurActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE_PERMISSION = 10;
     ImageView imgBrosur;
     Button btnUpload;
     Bitmap bitmap;
-    private static final int REQUEST_CODE_PERMISSION = 10;
     Constance constance = new Constance();
     String id_brosur;
     boolean is_update = false;
@@ -59,10 +52,10 @@ public class UploadBrosurActivity extends AppCompatActivity {
 
         AndroidNetworking.initialize(UploadBrosurActivity.this);
         Intent intents = getIntent();
-        if(intents.hasExtra("id_brosur")){
+        if (intents.hasExtra("id_brosur")) {
             id_brosur = intents.getStringExtra("id_brosur");
             is_update = true;
-        }else{
+        } else {
             is_update = false;
         }
 
@@ -76,7 +69,7 @@ public class UploadBrosurActivity extends AppCompatActivity {
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(is_update){
+                if (is_update) {
                     new MaterialAlertDialogBuilder(UploadBrosurActivity.this)
                             .setTitle("Update Brosur")
                             .setMessage("Are You Sure to Update Brosur?")
@@ -93,7 +86,7 @@ public class UploadBrosurActivity extends AppCompatActivity {
                                 }
                             }).show();
 
-                }else{
+                } else {
                     uploadImage();
                 }
             }
@@ -101,8 +94,8 @@ public class UploadBrosurActivity extends AppCompatActivity {
 
     }
 
-    private void enablePermission(){
-        ActivityCompat.requestPermissions(UploadBrosurActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CAMERA}, REQUEST_CODE_PERMISSION);
+    private void enablePermission() {
+        ActivityCompat.requestPermissions(UploadBrosurActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, REQUEST_CODE_PERMISSION);
     }
 
     @Override
@@ -118,19 +111,19 @@ public class UploadBrosurActivity extends AppCompatActivity {
         }
     }
 
-    private void selectImage(){
-        final CharSequence[] options = {"Take Photo","Choose From Gallery","Cancel"};
+    private void selectImage() {
+        final CharSequence[] options = {"Take Photo", "Choose From Gallery", "Cancel"};
 
         new MaterialAlertDialogBuilder(UploadBrosurActivity.this)
                 .setTitle("Add Brosur")
-                .setItems(options,(dialogInterface,i)->{
-                    if(options[i].equals("Take Photo")){
+                .setItems(options, (dialogInterface, i) -> {
+                    if (options[i].equals("Take Photo")) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent,1);
-                    }else if(options[i].equals("Choose From Gallery")){
-                        Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, 1);
+                    } else if (options[i].equals("Choose From Gallery")) {
+                        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                         startActivityForResult(intent, 2);
-                    }else{
+                    } else {
                         dialogInterface.dismiss();
                     }
                 }).show();
@@ -139,13 +132,13 @@ public class UploadBrosurActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK){
-            if(requestCode == 1){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 1) {
 
                 bitmap = (Bitmap) data.getExtras().get("data");
                 imgBrosur.setImageBitmap(bitmap);
 
-            }else if(requestCode == 2){
+            } else if (requestCode == 2) {
                 Uri selectedImage = data.getData();
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
@@ -158,7 +151,7 @@ public class UploadBrosurActivity extends AppCompatActivity {
         }
     }
 
-    private String getStringImage(@NonNull Bitmap bmp){
+    private String getStringImage(@NonNull Bitmap bmp) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
@@ -166,37 +159,37 @@ public class UploadBrosurActivity extends AppCompatActivity {
         return encodedImage;
     }
 
-    private void uploadImage(){
+    private void uploadImage() {
 
         Bitmap emptyBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
-        if(bitmap.sameAs(emptyBitmap)){
+        if (bitmap.sameAs(emptyBitmap)) {
             Toast.makeText(UploadBrosurActivity.this, "Choose Photo First", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             ProgressDialog pdg = new ProgressDialog(UploadBrosurActivity.this);
             pdg.setCancelable(false);
             pdg.setMessage("Loading...");
             pdg.show();
 
             String brosur = getStringImage(bitmap);
-            AndroidNetworking.post(constance.server+"/api/brosur/addBrosur.php")
-                    .addBodyParameter("brosur",brosur)
+            AndroidNetworking.post(constance.server + "/api/brosur/addBrosur.php")
+                    .addBodyParameter("brosur", brosur)
                     .setPriority(Priority.MEDIUM)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            try{
+                            try {
                                 boolean status = response.getBoolean("status");
-                                if(status){
+                                if (status) {
                                     pdg.dismiss();
                                     Toast.makeText(UploadBrosurActivity.this, "Success Upload Brosur", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(UploadBrosurActivity.this,SuperBrosur.class));
+                                    startActivity(new Intent(UploadBrosurActivity.this, SuperBrosur.class));
                                     finish();
-                                }else{
+                                } else {
                                     pdg.dismiss();
                                     Toast.makeText(UploadBrosurActivity.this, "Error Upload Brosur", Toast.LENGTH_SHORT).show();
                                 }
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                                 pdg.dismiss();
                                 Toast.makeText(UploadBrosurActivity.this, "Error Responses", Toast.LENGTH_SHORT).show();
@@ -216,37 +209,37 @@ public class UploadBrosurActivity extends AppCompatActivity {
 
     }
 
-    private void updateImage(){
+    private void updateImage() {
         Bitmap emptyBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
-        if(bitmap.sameAs(emptyBitmap)){
+        if (bitmap.sameAs(emptyBitmap)) {
             Toast.makeText(UploadBrosurActivity.this, "Choose Photo First", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             ProgressDialog pdg = new ProgressDialog(UploadBrosurActivity.this);
             pdg.setCancelable(false);
             pdg.setMessage("Loading...");
             pdg.show();
 
             String brosur = getStringImage(bitmap);
-            AndroidNetworking.post(constance.server+"/api/brosur/addBrosur.php")
-                    .addBodyParameter("id_brosur",id_brosur)
-                    .addBodyParameter("brosur",brosur)
+            AndroidNetworking.post(constance.server + "/api/brosur/addBrosur.php")
+                    .addBodyParameter("id_brosur", id_brosur)
+                    .addBodyParameter("brosur", brosur)
                     .setPriority(Priority.MEDIUM)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            try{
+                            try {
                                 boolean status = response.getBoolean("status");
-                                if(status){
+                                if (status) {
                                     pdg.dismiss();
                                     Toast.makeText(UploadBrosurActivity.this, "Success Upload Brosur", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(UploadBrosurActivity.this,SuperBrosur.class));
+                                    startActivity(new Intent(UploadBrosurActivity.this, SuperBrosur.class));
                                     finish();
-                                }else{
+                                } else {
                                     pdg.dismiss();
                                     Toast.makeText(UploadBrosurActivity.this, "Error Upload Brosur", Toast.LENGTH_SHORT).show();
                                 }
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                                 pdg.dismiss();
                                 Toast.makeText(UploadBrosurActivity.this, "Error Responses", Toast.LENGTH_SHORT).show();

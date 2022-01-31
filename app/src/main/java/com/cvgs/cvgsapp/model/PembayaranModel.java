@@ -1,7 +1,7 @@
 package com.cvgs.cvgsapp.model;
 
 public class PembayaranModel {
-    private String id_daftar,logo,judul,detail,sisa;
+    private String id_daftar, logo, judul, detail, sisa;
 
     public PembayaranModel(String id_daftar, String logo, String judul, String detail, String sisa) {
         this.id_daftar = id_daftar;

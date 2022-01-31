@@ -14,11 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-
 import com.cvgs.cvgsapp.PilihPaketActivity;
 import com.cvgs.cvgsapp.R;
 import com.cvgs.cvgsapp.advances.Constance;
@@ -50,7 +48,7 @@ public class ExploreAdapter extends ArrayAdapter<ExploreModel> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
-        view = LayoutInflater.from(getContext()).inflate(R.layout.custom_grid_explore,parent,false);
+        view = LayoutInflater.from(getContext()).inflate(R.layout.custom_grid_explore, parent, false);
         ExploreModel dataModels = (ExploreModel) getItem(position);
 
         menuImage = view.findViewById(R.id.menuImage);
@@ -58,7 +56,7 @@ public class ExploreAdapter extends ArrayAdapter<ExploreModel> {
         MenuOuter = view.findViewById(R.id.MenuOuter);
 
         // TODO Set Image
-        Picasso.get().load(constance.server+"/api/explore/assets/"+dataModels.getImage_explore()).into(menuImage);
+        Picasso.get().load(constance.server + "/api/explore/assets/" + dataModels.getImage_explore()).into(menuImage);
 
         // TODO set Title
         MenuTitle.setText(dataModels.getDetail_explore());
@@ -66,9 +64,9 @@ public class ExploreAdapter extends ArrayAdapter<ExploreModel> {
         // Todo set Color
         MenuOuter.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(dataModels.getColor_explore())));
 
-        MenuOuter.setOnClickListener(view2->{
+        MenuOuter.setOnClickListener(view2 -> {
             new MaterialAlertDialogBuilder(getContext())
-                    .setTitle("Konfirmasi "+dataModels.getDetail_explore()+"?")
+                    .setTitle("Konfirmasi " + dataModels.getDetail_explore() + "?")
                     .setMessage(dataModels.getIsi_explore())
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
@@ -80,8 +78,8 @@ public class ExploreAdapter extends ArrayAdapter<ExploreModel> {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Intent kirimData = new Intent(getContext(), PilihPaketActivity.class);
-                            kirimData.putExtra("id_layanan",dataModels.getId_explore());
-                            kirimData.putExtra("nama_layanan",dataModels.getDetail_explore());
+                            kirimData.putExtra("id_layanan", dataModels.getId_explore());
+                            kirimData.putExtra("nama_layanan", dataModels.getDetail_explore());
                             getContext().startActivity(kirimData);
                         }
                     })

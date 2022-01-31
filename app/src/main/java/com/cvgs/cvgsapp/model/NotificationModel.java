@@ -1,7 +1,7 @@
 package com.cvgs.cvgsapp.model;
 
 public class NotificationModel {
-    String id_notification,description,details,date_notify,datetime_notify;
+    String id_notification, description, details, date_notify, datetime_notify;
     boolean is_read;
 
     public NotificationModel(String id_notification, String description, String details, String date_notify, String datetime_notify, boolean is_read) {

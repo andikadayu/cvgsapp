@@ -1,498 +1,498 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/light_blue_600"
-    tools:context=".RegisterLoggedActivity">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical"
-            android:paddingBottom="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:text="Form Pendaftaran"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <androidx.cardview.widget.CardView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="30dp"
-                app:cardCornerRadius="20dp"
-                android:layout_marginRight="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:id="@+id/layoutPaket"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="visible">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:text="Pilihan Paket"
-                            android:textColor="@color/black"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@color/grey"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/imgPaket"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
-                                android:src="@drawable/ic_baseline_mail_24" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="5dp"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tvLayanan"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Nama Layanan"
-                                    android:textColor="@color/black"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/tvPaket"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="Nama Paket"
-                                    android:textColor="@color/black"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/txtHarga"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:hint="Harga"
-                            app:helperText="Untuk harga hubungi ke nomor kantor 081312212015, setelah itu isi harga diatas. Jangan dibiarkan 0 !"
-                            app:helperTextEnabled="true"
-                            app:startIconDrawable="@drawable/ic_baseline_attach_money_24"
-                            app:boxBackgroundColor="@android:color/transparent"
-                            android:background="@android:color/transparent">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/btnNextPaket"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="10dp"
-                                android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right_24"
-                                android:text="Lanjutkan" />
-
-                        </RelativeLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layoutPembayaran"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:text="Pembayaran"
-                            android:textColor="@color/black"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/imgBukti"
-                            android:layout_width="250dp"
-                            android:layout_height="250dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="10dp"
-                            android:background="@color/grey"
-                            android:src="@drawable/ic_baseline_add_a_photo_24" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/txtDP"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:hint="Nominal DP"
-                            app:startIconDrawable="@drawable/ic_baseline_attach_money_24"
-                            app:boxBackgroundColor="@android:color/transparent"
-                            android:background="@android:color/transparent">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/btnPrevPembayaran"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginTop="10dp"
-                                android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_24"
-                                android:text="Sebelumnya" />
-
-                            <Button
-                                android:id="@+id/btnNextPembayaran"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="10dp"
-                                android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right_24"
-                                android:text="Lanjutkan" />
-
-                        </RelativeLayout>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layoutDetail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:text="Detail Pemesanan"
-                            android:textColor="@color/black"
-                            android:textSize="25sp"
-                            android:textStyle="bold" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/txtJudul"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:hint="Judul Aplikasi/Alat"
-                            app:startIconDrawable="@drawable/ic_baseline_content_paste_24"
-                            app:boxBackgroundColor="@android:color/transparent"
-                            android:background="@android:color/transparent">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/btnPilih"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginLeft="5dp"
-                                android:layout_toLeftOf="@id/tvFile"
-                                android:background="@drawable/edit_text_style"
-                                android:drawableLeft="@drawable/ic_baseline_archive_24"
-                                android:drawablePadding="5dp"
-                                android:text="Pilih File" />
-
-                            <TextView
-                                android:id="@+id/tvFile"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="Pilih Skema/Proposal"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-
-
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="Pilih Tools"
-                            android:textSize="16sp" />
-
-                        <Spinner
-                            android:id="@+id/spnTools"
-                            style="@style/TextAppearance.MaterialComponents.Body2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:spinnerMode="dialog"
-                            android:textSize="16sp" />
-
-
-                        <LinearLayout
-                            android:id="@+id/linearCustom"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:visibility="gone">
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/txtJangka"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:clickable="true"
-                                android:hint="Jangka Waktu"
-                                app:startIconDrawable="@drawable/ic_baseline_date_range_24"
-                                android:focusable="true"
-                                app:boxBackgroundColor="@android:color/transparent"
-                                android:background="@android:color/transparent">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/txtDate"
-                                    android:focusable="false"
-                                    android:clickable="true"/>
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/txtGaransi"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:hint="Garansi (Bulan)"
-                                app:startIconDrawable="@drawable/ic_baseline_browse_gallery_24"
-                                app:boxBackgroundColor="@android:color/transparent"
-                                android:background="@android:color/transparent">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="number"
-                                    android:maxLength="3"
-                                    android:text="0"/>
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="Masa Training"
-                                android:textSize="16sp" />
-
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/txtMonthTrain"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="10dp"
-                                android:hint="Training(Bulan)"
-                                app:startIconDrawable="@drawable/ic_baseline_browse_gallery_24"
-                                app:boxBackgroundColor="@android:color/transparent"
-                                android:background="@android:color/transparent">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="number"
-                                    android:maxLength="2"
-                                    android:text="0"/>
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/txtDayTrain"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="10dp"
-                                android:hint="Training (Hari)"
-                                app:startIconDrawable="@drawable/ic_baseline_browse_gallery_24"
-                                app:boxBackgroundColor="@android:color/transparent"
-                                android:background="@android:color/transparent">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:inputType="number"
-                                    android:maxLength="2"
-                                    android:text="0"/>
-
-                            </com.google.android.material.textfield.TextInputLayout>
-
-
-                        </LinearLayout>
-
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/btnPrevDetail"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginTop="10dp"
-                                android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_24"
-                                android:text="Sebelumnya" />
-
-                            <Button
-                                android:id="@+id/btnNextDetail"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="10dp"
-                                android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right_24"
-                                android:text="Lanjutkan" />
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/layoutSetuju"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="Peraturan Dan Ketentuan"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-    
-                        <TextView
-                             android:id="@+id/tvAgreement"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:layout_marginTop="20dp"
-                             android:textColor="@color/black"
-                             android:textSize="13sp"
-                             android:text="@string/lorem"
-                        />
-
-
-                        <CheckBox
-                            android:id="@+id/cbAgree"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Saya Setuju dengan Peraturan dan Ketentuan"
-                            android:textColor="@color/black"
-                            android:textSize="12sp" />
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/btnPrevSetuju"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginTop="10dp"
-                                android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_24"
-                                android:text="Sebelumnya" />
-
-                            <Button
-                                android:id="@+id/btnNextSetuju"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="10dp"
-                                android:drawableRight="@drawable/ic_baseline_app_registration_24"
-                                android:text="Daftar" />
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-    </ScrollView>
+                android:background="@color/light_blue_600"
+                tools:context=".RegisterLoggedActivity">
+	
+	<ScrollView
+		 android:layout_width="match_parent"
+		 android:layout_height="match_parent">
+		
+		<LinearLayout
+			 android:layout_width="match_parent"
+			 android:layout_height="wrap_content"
+			 android:layout_gravity="center_vertical"
+			 android:orientation="vertical"
+			 android:paddingBottom="10dp">
+			
+			<TextView
+				 android:layout_width="wrap_content"
+				 android:layout_height="wrap_content"
+				 android:layout_gravity="center"
+				 android:layout_marginTop="5dp"
+				 android:text="Form Pendaftaran"
+				 android:textColor="@color/white"
+				 android:textSize="30sp"
+				 android:textStyle="bold"/>
+			
+			<androidx.cardview.widget.CardView
+				 android:layout_width="match_parent"
+				 android:layout_height="match_parent"
+				 android:layout_marginLeft="10dp"
+				 android:layout_marginTop="30dp"
+				 app:cardCornerRadius="20dp"
+				 android:layout_marginRight="10dp">
+				
+				<LinearLayout
+					 android:layout_width="match_parent"
+					 android:layout_height="wrap_content"
+					 android:layout_margin="10dp"
+					 android:orientation="vertical">
+					
+					
+					<LinearLayout
+						 android:id="@+id/layoutPaket"
+						 android:layout_width="match_parent"
+						 android:layout_height="wrap_content"
+						 android:orientation="vertical"
+						 android:visibility="visible">
+						
+						<TextView
+							 android:layout_width="wrap_content"
+							 android:layout_height="wrap_content"
+							 android:layout_gravity="center"
+							 android:layout_marginTop="10dp"
+							 android:text="Pilihan Paket"
+							 android:textColor="@color/black"
+							 android:textSize="25sp"
+							 android:textStyle="bold"/>
+						
+						<LinearLayout
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:layout_marginTop="10dp"
+							 android:background="@color/grey"
+							 android:orientation="horizontal">
+							
+							<ImageView
+								 android:id="@+id/imgPaket"
+								 android:layout_width="100dp"
+								 android:layout_height="100dp"
+								 android:src="@drawable/ic_baseline_mail_24"/>
+							
+							<LinearLayout
+								 android:layout_width="match_parent"
+								 android:layout_height="wrap_content"
+								 android:layout_gravity="center_vertical"
+								 android:layout_marginLeft="5dp"
+								 android:orientation="vertical">
+								
+								<TextView
+									 android:id="@+id/tvLayanan"
+									 android:layout_width="match_parent"
+									 android:layout_height="wrap_content"
+									 android:text="Nama Layanan"
+									 android:textColor="@color/black"
+									 android:textSize="18sp"
+									 android:textStyle="bold"/>
+								
+								<TextView
+									 android:id="@+id/tvPaket"
+									 android:layout_width="match_parent"
+									 android:layout_height="wrap_content"
+									 android:layout_marginTop="5dp"
+									 android:text="Nama Paket"
+									 android:textColor="@color/black"
+									 android:textSize="18sp"
+									 android:textStyle="bold"/>
+							
+							</LinearLayout>
+						
+						
+						</LinearLayout>
+						
+						<com.google.android.material.textfield.TextInputLayout
+							 android:id="@+id/txtHarga"
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:layout_marginTop="10dp"
+							 android:hint="Harga"
+							 app:helperText="Untuk harga hubungi ke nomor kantor 081312212015, setelah itu isi harga diatas. Jangan dibiarkan 0 !"
+							 app:helperTextEnabled="true"
+							 app:startIconDrawable="@drawable/ic_baseline_attach_money_24"
+							 app:boxBackgroundColor="@android:color/transparent"
+							 android:background="@android:color/transparent">
+							
+							<com.google.android.material.textfield.TextInputEditText
+								 android:layout_width="match_parent"
+								 android:layout_height="wrap_content"
+								 android:inputType="number"/>
+						
+						</com.google.android.material.textfield.TextInputLayout>
+						
+						<RelativeLayout
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:orientation="horizontal">
+							
+							<Button
+								 android:id="@+id/btnNextPaket"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"
+								 android:layout_alignParentEnd="true"
+								 android:layout_marginTop="10dp"
+								 android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right_24"
+								 android:text="Lanjutkan"/>
+						
+						</RelativeLayout>
+					
+					
+					</LinearLayout>
+					
+					<LinearLayout
+						 android:id="@+id/layoutPembayaran"
+						 android:layout_width="match_parent"
+						 android:layout_height="wrap_content"
+						 android:orientation="vertical"
+						 android:visibility="gone">
+						
+						
+						<TextView
+							 android:layout_width="wrap_content"
+							 android:layout_height="wrap_content"
+							 android:layout_gravity="center"
+							 android:layout_marginTop="10dp"
+							 android:text="Pembayaran"
+							 android:textColor="@color/black"
+							 android:textSize="25sp"
+							 android:textStyle="bold"/>
+						
+						<ImageView
+							 android:id="@+id/imgBukti"
+							 android:layout_width="250dp"
+							 android:layout_height="250dp"
+							 android:layout_gravity="center_horizontal"
+							 android:layout_marginTop="10dp"
+							 android:background="@color/grey"
+							 android:src="@drawable/ic_baseline_add_a_photo_24"/>
+						
+						<com.google.android.material.textfield.TextInputLayout
+							 android:id="@+id/txtDP"
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:layout_marginTop="10dp"
+							 android:hint="Nominal DP"
+							 app:startIconDrawable="@drawable/ic_baseline_attach_money_24"
+							 app:boxBackgroundColor="@android:color/transparent"
+							 android:background="@android:color/transparent">
+							
+							<com.google.android.material.textfield.TextInputEditText
+								 android:layout_width="match_parent"
+								 android:layout_height="wrap_content"
+								 android:inputType="number"/>
+						
+						</com.google.android.material.textfield.TextInputLayout>
+						
+						<RelativeLayout
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:orientation="horizontal">
+							
+							<Button
+								 android:id="@+id/btnPrevPembayaran"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"
+								 android:layout_alignParentStart="true"
+								 android:layout_marginTop="10dp"
+								 android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_24"
+								 android:text="Sebelumnya"/>
+							
+							<Button
+								 android:id="@+id/btnNextPembayaran"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"
+								 android:layout_alignParentEnd="true"
+								 android:layout_marginTop="10dp"
+								 android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right_24"
+								 android:text="Lanjutkan"/>
+						
+						</RelativeLayout>
+					
+					
+					</LinearLayout>
+					
+					<LinearLayout
+						 android:id="@+id/layoutDetail"
+						 android:layout_width="match_parent"
+						 android:layout_height="wrap_content"
+						 android:orientation="vertical"
+						 android:visibility="gone">
+						
+						<TextView
+							 android:layout_width="wrap_content"
+							 android:layout_height="wrap_content"
+							 android:layout_gravity="center"
+							 android:layout_marginTop="10dp"
+							 android:text="Detail Pemesanan"
+							 android:textColor="@color/black"
+							 android:textSize="25sp"
+							 android:textStyle="bold"/>
+						
+						<com.google.android.material.textfield.TextInputLayout
+							 android:id="@+id/txtJudul"
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:layout_marginTop="10dp"
+							 android:hint="Judul Aplikasi/Alat"
+							 app:startIconDrawable="@drawable/ic_baseline_content_paste_24"
+							 app:boxBackgroundColor="@android:color/transparent"
+							 android:background="@android:color/transparent">
+							
+							<com.google.android.material.textfield.TextInputEditText
+								 android:layout_width="match_parent"
+								 android:layout_height="wrap_content"/>
+						
+						</com.google.android.material.textfield.TextInputLayout>
+						
+						<RelativeLayout
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:layout_marginTop="10dp"
+							 android:orientation="horizontal">
+							
+							<Button
+								 android:id="@+id/btnPilih"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"
+								 android:layout_alignParentEnd="true"
+								 android:layout_centerHorizontal="true"
+								 android:layout_marginLeft="5dp"
+								 android:layout_toLeftOf="@id/tvFile"
+								 android:background="@drawable/edit_text_style"
+								 android:drawableLeft="@drawable/ic_baseline_archive_24"
+								 android:drawablePadding="5dp"
+								 android:text="Pilih File"/>
+							
+							<TextView
+								 android:id="@+id/tvFile"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"
+								 android:layout_alignParentStart="true"
+								 android:layout_centerHorizontal="true"
+								 android:layout_centerVertical="true"
+								 android:text="Pilih Skema/Proposal"
+								 android:textColor="@color/black"
+								 android:textSize="15sp"/>
+						
+						
+						</RelativeLayout>
+						
+						<TextView
+							 android:layout_width="wrap_content"
+							 android:layout_height="wrap_content"
+							 android:layout_marginTop="10dp"
+							 android:text="Pilih Tools"
+							 android:textSize="16sp"/>
+						
+						<Spinner
+							 android:id="@+id/spnTools"
+							 style="@style/TextAppearance.MaterialComponents.Body2"
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:layout_marginTop="10dp"
+							 android:spinnerMode="dialog"
+							 android:textSize="16sp"/>
+						
+						
+						<LinearLayout
+							 android:id="@+id/linearCustom"
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:orientation="vertical"
+							 android:visibility="gone">
+							
+							<com.google.android.material.textfield.TextInputLayout
+								 android:id="@+id/txtJangka"
+								 android:layout_width="match_parent"
+								 android:layout_height="wrap_content"
+								 android:layout_marginTop="10dp"
+								 android:clickable="true"
+								 android:hint="Jangka Waktu"
+								 app:startIconDrawable="@drawable/ic_baseline_date_range_24"
+								 android:focusable="true"
+								 app:boxBackgroundColor="@android:color/transparent"
+								 android:background="@android:color/transparent">
+								
+								<com.google.android.material.textfield.TextInputEditText
+									 android:layout_width="match_parent"
+									 android:layout_height="wrap_content"
+									 android:id="@+id/txtDate"
+									 android:focusable="false"
+									 android:clickable="true"/>
+							
+							</com.google.android.material.textfield.TextInputLayout>
+							
+							
+							<com.google.android.material.textfield.TextInputLayout
+								 android:id="@+id/txtGaransi"
+								 android:layout_width="match_parent"
+								 android:layout_height="wrap_content"
+								 android:layout_marginTop="10dp"
+								 android:hint="Garansi (Bulan)"
+								 app:startIconDrawable="@drawable/ic_baseline_browse_gallery_24"
+								 app:boxBackgroundColor="@android:color/transparent"
+								 android:background="@android:color/transparent">
+								
+								<com.google.android.material.textfield.TextInputEditText
+									 android:layout_width="match_parent"
+									 android:layout_height="wrap_content"
+									 android:inputType="number"
+									 android:maxLength="3"
+									 android:text="0"/>
+							
+							</com.google.android.material.textfield.TextInputLayout>
+							
+							<TextView
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"
+								 android:layout_marginTop="10dp"
+								 android:text="Masa Training"
+								 android:textSize="16sp"/>
+							
+							
+							<com.google.android.material.textfield.TextInputLayout
+								 android:id="@+id/txtMonthTrain"
+								 android:layout_width="match_parent"
+								 android:layout_height="match_parent"
+								 android:layout_marginTop="10dp"
+								 android:hint="Training(Bulan)"
+								 app:startIconDrawable="@drawable/ic_baseline_browse_gallery_24"
+								 app:boxBackgroundColor="@android:color/transparent"
+								 android:background="@android:color/transparent">
+								
+								<com.google.android.material.textfield.TextInputEditText
+									 android:layout_width="match_parent"
+									 android:layout_height="wrap_content"
+									 android:inputType="number"
+									 android:maxLength="2"
+									 android:text="0"/>
+							
+							</com.google.android.material.textfield.TextInputLayout>
+							
+							<com.google.android.material.textfield.TextInputLayout
+								 android:id="@+id/txtDayTrain"
+								 android:layout_width="match_parent"
+								 android:layout_height="match_parent"
+								 android:layout_marginTop="10dp"
+								 android:hint="Training (Hari)"
+								 app:startIconDrawable="@drawable/ic_baseline_browse_gallery_24"
+								 app:boxBackgroundColor="@android:color/transparent"
+								 android:background="@android:color/transparent">
+								
+								<com.google.android.material.textfield.TextInputEditText
+									 android:layout_width="match_parent"
+									 android:layout_height="wrap_content"
+									 android:inputType="number"
+									 android:maxLength="2"
+									 android:text="0"/>
+							
+							</com.google.android.material.textfield.TextInputLayout>
+						
+						
+						</LinearLayout>
+						
+						
+						<RelativeLayout
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:orientation="horizontal">
+							
+							<Button
+								 android:id="@+id/btnPrevDetail"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"
+								 android:layout_alignParentStart="true"
+								 android:layout_marginTop="10dp"
+								 android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_24"
+								 android:text="Sebelumnya"/>
+							
+							<Button
+								 android:id="@+id/btnNextDetail"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"
+								 android:layout_alignParentEnd="true"
+								 android:layout_marginTop="10dp"
+								 android:drawableRight="@drawable/ic_baseline_keyboard_arrow_right_24"
+								 android:text="Lanjutkan"/>
+						
+						</RelativeLayout>
+					
+					</LinearLayout>
+					
+					
+					<LinearLayout
+						 android:id="@+id/layoutSetuju"
+						 android:layout_width="match_parent"
+						 android:layout_height="wrap_content"
+						 android:layout_marginTop="10dp"
+						 android:orientation="vertical"
+						 android:visibility="gone">
+						
+						<TextView
+							 android:layout_width="wrap_content"
+							 android:layout_height="wrap_content"
+							 android:layout_gravity="center_horizontal"
+							 android:text="Peraturan Dan Ketentuan"
+							 android:textColor="@color/black"
+							 android:textSize="20sp"
+							 android:textStyle="bold"/>
+						
+						<TextView
+							 android:id="@+id/tvAgreement"
+							 android:layout_width="wrap_content"
+							 android:layout_height="wrap_content"
+							 android:layout_marginTop="20dp"
+							 android:textColor="@color/black"
+							 android:textSize="13sp"
+							 android:text="@string/lorem"
+						/>
+						
+						
+						<CheckBox
+							 android:id="@+id/cbAgree"
+							 android:layout_width="wrap_content"
+							 android:layout_height="wrap_content"
+							 android:text="Saya Setuju dengan Peraturan dan Ketentuan"
+							 android:textColor="@color/black"
+							 android:textSize="12sp"/>
+						
+						<RelativeLayout
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:orientation="horizontal">
+							
+							<Button
+								 android:id="@+id/btnPrevSetuju"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"
+								 android:layout_alignParentStart="true"
+								 android:layout_marginTop="10dp"
+								 android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_left_24"
+								 android:text="Sebelumnya"/>
+							
+							<Button
+								 android:id="@+id/btnNextSetuju"
+								 android:layout_width="wrap_content"
+								 android:layout_height="wrap_content"
+								 android:layout_alignParentEnd="true"
+								 android:layout_marginTop="10dp"
+								 android:drawableRight="@drawable/ic_baseline_app_registration_24"
+								 android:text="Daftar"/>
+						
+						</RelativeLayout>
+					
+					</LinearLayout>
+				
+				
+				</LinearLayout>
+			
+			</androidx.cardview.widget.CardView>
+		
+		</LinearLayout>
+	
+	</ScrollView>
 
 </RelativeLayout>

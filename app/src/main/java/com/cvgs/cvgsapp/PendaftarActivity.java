@@ -1,28 +1,20 @@
 package com.cvgs.cvgsapp;
 
-import android.graphics.Color;
-import android.os.Build;
-import android.view.View;
-import android.view.WindowManager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.cvgs.cvgsapp.adapter.PendaftarAdapter;
 import com.cvgs.cvgsapp.advances.Constance;
-import com.cvgs.cvgsapp.model.NotificationModel;
 import com.cvgs.cvgsapp.model.PendaftarModel;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +35,6 @@ public class PendaftarActivity extends AppCompatActivity {
     ImageView btnBack;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +50,12 @@ public class PendaftarActivity extends AppCompatActivity {
 
         initialize();
 
-        btnBack.setOnClickListener(view -> {startActivity(new Intent(getApplicationContext(),ProfileActivity.class));finish();});
+        btnBack.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            finish();
+        });
 
-        refreshLayout.setOnRefreshListener(()->{
+        refreshLayout.setOnRefreshListener(() -> {
             pendaftarList = new ArrayList<>();
             initialize();
         });
@@ -69,15 +63,15 @@ public class PendaftarActivity extends AppCompatActivity {
     }
 
 
-    private void initialize(){
-        AndroidNetworking.post(constance.server+"/api/pendaftar/getPendaftar.php")
+    private void initialize() {
+        AndroidNetworking.post(constance.server + "/api/pendaftar/getPendaftar.php")
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
                             boolean status = response.getBoolean("status");
-                            if(status){
+                            if (status) {
                                 layoutManager = new LinearLayoutManager(PendaftarActivity.this, RecyclerView.VERTICAL, false);
                                 recyPendaftar.setLayoutManager(layoutManager);
 
@@ -87,7 +81,7 @@ public class PendaftarActivity extends AppCompatActivity {
                                 recyPendaftar.setAdapter(adapter);
 
                                 JSONArray ja = response.getJSONArray("data");
-                                for(int i = 0;i<ja.length();i++){
+                                for (int i = 0; i < ja.length(); i++) {
                                     JSONObject jo = ja.getJSONObject(i);
                                     pendaftarList.add(new PendaftarModel(
                                             jo.getString("id_detail"),
@@ -99,11 +93,11 @@ public class PendaftarActivity extends AppCompatActivity {
 
                                     adapter.notifyDataSetChanged();
                                 }
-                            }else{
+                            } else {
                                 Toast.makeText(PendaftarActivity.this, "No Data", Toast.LENGTH_SHORT).show();
                             }
 
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(PendaftarActivity.this, "ERROR RESPONSE", Toast.LENGTH_SHORT).show();
                         }
@@ -115,6 +109,6 @@ public class PendaftarActivity extends AppCompatActivity {
                         Toast.makeText(PendaftarActivity.this, "ERROR CONNECTION", Toast.LENGTH_SHORT).show();
                     }
                 });
-    refreshLayout.setRefreshing(false);
+        refreshLayout.setRefreshing(false);
     }
 }

@@ -1,22 +1,15 @@
 package com.cvgs.cvgsapp;
 
-import android.graphics.Color;
-import android.os.Build;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.WindowManager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
@@ -25,7 +18,6 @@ import com.cvgs.cvgsapp.adapter.DetailPembayaranAdapter;
 import com.cvgs.cvgsapp.advances.Constance;
 import com.cvgs.cvgsapp.model.DetailPembayaranModel;
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,9 +26,9 @@ import java.util.ArrayList;
 
 public class PembayaranDetailActivity extends AppCompatActivity {
 
-    TextView tvNama,tvDetail,tvAlamat;
+    TextView tvNama, tvDetail, tvAlamat;
     Constance constance = new Constance();
-    ImageView logoApps,btnBack;
+    ImageView logoApps, btnBack;
 
     RecyclerView recyDetailPembayaran;
     RecyclerView.Adapter adapter;
@@ -46,7 +38,7 @@ public class PembayaranDetailActivity extends AppCompatActivity {
 
     SwipeRefreshLayout refreshLayout;
 
-    String id_daftar,judul,detail,logo,sisa;
+    String id_daftar, judul, detail, logo, sisa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +55,14 @@ public class PembayaranDetailActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.refreshLayout);
 
         Intent currentIntent = getIntent();
-        if(currentIntent.hasExtra("id_daftar")){
+        if (currentIntent.hasExtra("id_daftar")) {
             id_daftar = currentIntent.getStringExtra("id_daftar");
             judul = currentIntent.getStringExtra("judul");
             detail = currentIntent.getStringExtra("detail");
             logo = currentIntent.getStringExtra("logo");
             sisa = currentIntent.getStringExtra("sisa");
-        }else{
-            startActivity(new Intent(getApplicationContext(),PembayaranActivity.class));
+        } else {
+            startActivity(new Intent(getApplicationContext(), PembayaranActivity.class));
             finish();
         }
 
@@ -82,44 +74,47 @@ public class PembayaranDetailActivity extends AppCompatActivity {
 
         initializeData(this);
 
-        btnBack.setOnClickListener(view -> {startActivity(new Intent(getApplicationContext(),PembayaranActivity.class));finish();});
+        btnBack.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), PembayaranActivity.class));
+            finish();
+        });
 
-        refreshLayout.setOnRefreshListener(()->{
+        refreshLayout.setOnRefreshListener(() -> {
             detailList = new ArrayList<DetailPembayaranModel>();
             initializeData(this);
         });
 
     }
 
-    private void initializeProfile(){
-        Picasso.get().load(constance.server+logo).into(logoApps);
+    private void initializeProfile() {
+        Picasso.get().load(constance.server + logo).into(logoApps);
         tvNama.setText(judul);
         tvDetail.setText(detail);
         tvAlamat.setText(sisa);
     }
 
-    private void initializeData(Activity activity){
-        AndroidNetworking.post(constance.server+"/api/pembayaran/getAdmin.php")
-                .addBodyParameter("id_daftar",id_daftar)
+    private void initializeData(Activity activity) {
+        AndroidNetworking.post(constance.server + "/api/pembayaran/getAdmin.php")
+                .addBodyParameter("id_daftar", id_daftar)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
                             boolean status = response.getBoolean("status");
 
-                            if(status){
+                            if (status) {
                                 layoutManager = new LinearLayoutManager(activity, RecyclerView.VERTICAL, false);
                                 recyDetailPembayaran.setLayoutManager(layoutManager);
 
                                 recyDetailPembayaran.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
 
-                                adapter = new DetailPembayaranAdapter(activity,detailList,constance.server);
+                                adapter = new DetailPembayaranAdapter(activity, detailList, constance.server);
 
                                 recyDetailPembayaran.setAdapter(adapter);
 
                                 JSONArray ja = response.getJSONArray("data");
-                                for(int i=0;i<ja.length();i++) {
+                                for (int i = 0; i < ja.length(); i++) {
                                     JSONObject jo = ja.getJSONObject(i);
                                     detailList.add(new DetailPembayaranModel(
                                             jo.getString("id_transaksi"),
@@ -131,11 +126,11 @@ public class PembayaranDetailActivity extends AppCompatActivity {
                                     adapter.notifyDataSetChanged();
                                 }
 
-                            }else{
+                            } else {
                                 Toast.makeText(activity, "No Data", Toast.LENGTH_SHORT).show();
                             }
 
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(activity, "ERROR RESPONSE", Toast.LENGTH_SHORT).show();
                         }

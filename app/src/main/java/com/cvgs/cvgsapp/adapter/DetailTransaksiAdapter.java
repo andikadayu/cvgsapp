@@ -12,11 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -44,7 +42,7 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pembayaran_adapter,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pembayaran_adapter, parent, false);
         return new Holder(v);
     }
 
@@ -52,18 +50,18 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         DetailPembayaranModel dataModels = dataModel.get(position);
 
-        Picasso.get().load(server+dataModels.getImage()).into(holder.imgBLoogo);
+        Picasso.get().load(server + dataModels.getImage()).into(holder.imgBLoogo);
 
         holder.tvBJudul.setText(dataModels.getNominal());
         holder.tvBDetail.setText(dataModels.getTgl_transaksi());
         holder.tvBSisa.setText(dataModels.getStatus());
 
-        holder.layoutOuter.setOnClickListener(view->{
-            String[] options = {"Show Image","Print Receipt","Close"};
+        holder.layoutOuter.setOnClickListener(view -> {
+            String[] options = {"Show Image", "Print Receipt", "Close"};
             new MaterialAlertDialogBuilder(activity)
                     .setTitle("List Options")
-                    .setItems(options,((dialogInterface, i) -> {
-                        if(i == 0) {
+                    .setItems(options, ((dialogInterface, i) -> {
+                        if (i == 0) {
                             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                             View v = inflater.inflate(R.layout.custom_show_transaction, null);
                             final ImageView imgTrans;
@@ -74,13 +72,13 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
                                     .setView(v)
                                     .setTitle("Detail Transaction")
                                     .setNegativeButton("Cancel", ((dialogInterface1, i1) -> dialogInterface1.cancel())).show();
-                        }else if(i == 1){
+                        } else if (i == 1) {
                             new MaterialAlertDialogBuilder(activity)
                                     .setTitle("Download Receipt")
                                     .setMessage("Are you sure to download this receipt?")
-                                    .setNegativeButton("Camcel",((dialogInterfacel,is)->dialogInterfacel.cancel()))
-                                    .setPositiveButton("Confirm",((dialogInterface1, i1) -> holder.download_receipt(dataModels.getId_transaksi()))).show();
-                        }else if(i == 2){
+                                    .setNegativeButton("Camcel", ((dialogInterfacel, is) -> dialogInterfacel.cancel()))
+                                    .setPositiveButton("Confirm", ((dialogInterface1, i1) -> holder.download_receipt(dataModels.getId_transaksi()))).show();
+                        } else if (i == 2) {
                             dialogInterface.cancel();
                         }
                     })).show();
@@ -111,7 +109,7 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
             layoutOuter = v.findViewById(R.id.layoutOuter);
         }
 
-        public void download_receipt(String id_transaksi){
+        public void download_receipt(String id_transaksi) {
             ProgressDialog pgb = new ProgressDialog(activity);
             pgb.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             pgb.setTitle("Download Receipt");
@@ -121,9 +119,9 @@ public class DetailTransaksiAdapter extends RecyclerView.Adapter<DetailTransaksi
             pgb.show();
             UUID number = UUID.randomUUID();
             String randomId = number.toString().replace("-", "");
-            AndroidNetworking.download(server+"/api/report/kwitansi.php",String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)),id_transaksi+"_"+randomId+".pdf")
-                    .addQueryParameter("id_transaksi",id_transaksi)
-                    .addQueryParameter("mode","download")
+            AndroidNetworking.download(server + "/api/report/kwitansi.php", String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)), id_transaksi + "_" + randomId + ".pdf")
+                    .addQueryParameter("id_transaksi", id_transaksi)
+                    .addQueryParameter("mode", "download")
                     .setTag("DownloadReceipt")
                     .setPriority(Priority.MEDIUM)
                     .build()

@@ -1,13 +1,5 @@
 package com.cvgs.cvgsapp;
 
-import android.graphics.Color;
-import android.os.Build;
-import android.view.WindowManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,12 +9,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
@@ -30,7 +24,6 @@ import com.cvgs.cvgsapp.advances.Constance;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,12 +34,12 @@ public class PayActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_PERMISSION = 10;
 
-    TextView tvNama,tvDetail,tvAlamat;
+    TextView tvNama, tvDetail, tvAlamat;
     Constance constance = new Constance();
-    ImageView logoApps,btnBack,imgBukti;
+    ImageView logoApps, btnBack, imgBukti;
     TextInputLayout txtNominal;
     Bitmap bmpBukti;
-    String id_daftar,judul,detail,logo,sisa;
+    String id_daftar, judul, detail, logo, sisa;
     Button btnKirim;
     String nominal;
 
@@ -69,14 +62,14 @@ public class PayActivity extends AppCompatActivity {
         enablePermission();
 
         Intent currentIntent = getIntent();
-        if(currentIntent.hasExtra("id_daftar")){
+        if (currentIntent.hasExtra("id_daftar")) {
             id_daftar = currentIntent.getStringExtra("id_daftar");
             judul = currentIntent.getStringExtra("judul");
             detail = currentIntent.getStringExtra("detail");
             logo = currentIntent.getStringExtra("logo");
             sisa = currentIntent.getStringExtra("sisa");
-        }else{
-            startActivity(new Intent(getApplicationContext(),TransaksiActivity.class));
+        } else {
+            startActivity(new Intent(getApplicationContext(), TransaksiActivity.class));
             finish();
         }
 
@@ -84,24 +77,24 @@ public class PayActivity extends AppCompatActivity {
 
         initializeProfile();
 
-        btnBack.setOnClickListener(view->{
+        btnBack.setOnClickListener(view -> {
             Intent sendData = new Intent(getApplicationContext(), TransaksiDetailActivity.class);
-            sendData.putExtra("id_daftar",id_daftar);
-            sendData.putExtra("judul",judul);
-            sendData.putExtra("detail",detail);
-            sendData.putExtra("logo",logo);
-            sendData.putExtra("sisa",sisa);
+            sendData.putExtra("id_daftar", id_daftar);
+            sendData.putExtra("judul", judul);
+            sendData.putExtra("detail", detail);
+            sendData.putExtra("logo", logo);
+            sendData.putExtra("sisa", sisa);
             startActivity(sendData);
             finish();
         });
 
-        imgBukti.setOnClickListener(view->selectImage());
+        imgBukti.setOnClickListener(view -> selectImage());
 
-        btnKirim.setOnClickListener(view->{
-            if(checkSend()){
-               sendData();
-            }else{
-                Toast.makeText(getApplicationContext(),"Complete Form", Toast.LENGTH_SHORT).show();
+        btnKirim.setOnClickListener(view -> {
+            if (checkSend()) {
+                sendData();
+            } else {
+                Toast.makeText(getApplicationContext(), "Complete Form", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -109,8 +102,8 @@ public class PayActivity extends AppCompatActivity {
 
     private void enablePermission() {
         ActivityCompat.requestPermissions(PayActivity.this,
-                new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA },
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA},
                 REQUEST_CODE_PERMISSION);
     }
 
@@ -128,25 +121,25 @@ public class PayActivity extends AppCompatActivity {
         }
     }
 
-    private void initializeProfile(){
-        Picasso.get().load(constance.server+logo).into(logoApps);
+    private void initializeProfile() {
+        Picasso.get().load(constance.server + logo).into(logoApps);
         tvNama.setText(judul);
         tvDetail.setText(detail);
         tvAlamat.setText(sisa);
     }
 
-    private void selectImage(){
+    private void selectImage() {
         String[] options = {"Take Photo", "Choose From Gallery", "Cancel"};
         new MaterialAlertDialogBuilder(PayActivity.this)
                 .setTitle("Upload Bukti Transfer")
-                .setItems(options,((dialogInterface, i) -> {
-                    if(i == 2){
+                .setItems(options, ((dialogInterface, i) -> {
+                    if (i == 2) {
                         dialogInterface.cancel();
-                    }else if(i==1){
+                    } else if (i == 1) {
                         Intent intent = new Intent(Intent.ACTION_PICK,
                                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                         startActivityForResult(intent, 200);
-                    }else if(i==0){
+                    } else if (i == 0) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         startActivityForResult(intent, 100);
                     }
@@ -174,7 +167,7 @@ public class PayActivity extends AppCompatActivity {
         }
     }
 
-    private Boolean checkSend(){
+    private Boolean checkSend() {
         nominal = txtNominal.getEditText().getText().toString();
         return !nominal.equals("") && bmpBukti != null;
     }
@@ -187,33 +180,33 @@ public class PayActivity extends AppCompatActivity {
         return encodedImage;
     }
 
-    private void sendData(){
+    private void sendData() {
         String img_transaksi = getStringImage(bmpBukti);
         ProgressDialog pdg = new ProgressDialog(PayActivity.this);
         pdg.setCancelable(false);
         pdg.setMessage("Loading...");
         pdg.show();
-        AndroidNetworking.post(constance.server+"/api/pembayaran/pay.php")
-                .addBodyParameter("id_daftar",id_daftar)
-                .addBodyParameter("img_bukti",img_transaksi)
-                .addBodyParameter("nominal",nominal)
+        AndroidNetworking.post(constance.server + "/api/pembayaran/pay.php")
+                .addBodyParameter("id_daftar", id_daftar)
+                .addBodyParameter("img_bukti", img_transaksi)
+                .addBodyParameter("nominal", nominal)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
                             boolean status = response.getBoolean("status");
-                            if(status){
+                            if (status) {
                                 pdg.dismiss();
                                 Toast.makeText(PayActivity.this, "SUCCESS", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(PayActivity.this,TransaksiActivity.class));
+                                startActivity(new Intent(PayActivity.this, TransaksiActivity.class));
                                 finish();
-                            }else {
+                            } else {
                                 pdg.dismiss();
                                 Toast.makeText(PayActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                             }
 
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             pdg.dismiss();
                             Toast.makeText(PayActivity.this, "ERROR RESPONSE", Toast.LENGTH_SHORT).show();

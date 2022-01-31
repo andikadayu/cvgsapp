@@ -1,19 +1,13 @@
 package com.cvgs.cvgsapp;
 
-import android.graphics.Color;
-import android.os.Build;
-import android.view.WindowManager;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -31,8 +25,8 @@ public class AboutActivity extends AppCompatActivity {
 
         String version;
         try {
-            version = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(),0).versionName;
-            versionApps.setText("v "+version);
+            version = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0).versionName;
+            versionApps.setText("v " + version);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -40,7 +34,7 @@ public class AboutActivity extends AppCompatActivity {
         btnOpenSource.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),OpenSourceActivity.class));
+                startActivity(new Intent(getApplicationContext(), OpenSourceActivity.class));
             }
         });
     }

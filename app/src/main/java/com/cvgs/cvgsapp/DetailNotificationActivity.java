@@ -2,15 +2,11 @@ package com.cvgs.cvgsapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
-import android.view.View;
-import android.view.WindowManager;
+import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
@@ -24,8 +20,8 @@ public class DetailNotificationActivity extends AppCompatActivity {
 
     ImageView btnBack;
     MaterialButton btnDelete;
-    TextView tvTgl,tvDetail;
-    String id_notification,date_notify,detail;
+    TextView tvTgl, tvDetail;
+    String id_notification, date_notify, detail;
     Constance constance = new Constance();
 
     @Override
@@ -40,12 +36,12 @@ public class DetailNotificationActivity extends AppCompatActivity {
         tvDetail = findViewById(R.id.tvDetail);
 
         Intent currrentIntent = getIntent();
-        if(currrentIntent.hasExtra("id_notification")){
+        if (currrentIntent.hasExtra("id_notification")) {
             id_notification = currrentIntent.getStringExtra("id_notification");
             date_notify = currrentIntent.getStringExtra("date_notify");
             detail = currrentIntent.getStringExtra("detail");
-        }else{
-            startActivity(new Intent(getApplicationContext(),NotificationActivity.class));
+        } else {
+            startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
             finish();
         }
 
@@ -55,14 +51,17 @@ public class DetailNotificationActivity extends AppCompatActivity {
 
         setReadNotification(this);
 
-        btnBack.setOnClickListener(view->{startActivity(new Intent(getApplicationContext(),NotificationActivity.class));finish();});
+        btnBack.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+            finish();
+        });
 
-        btnDelete.setOnClickListener(view->{
+        btnDelete.setOnClickListener(view -> {
             new MaterialAlertDialogBuilder(this)
                     .setTitle("Delete this Notification")
                     .setMessage("Are you sure to delete this?")
-                    .setNegativeButton("Cancel",(dialog,i)->dialog.cancel())
-                    .setPositiveButton("Confirm",(dialog,i)->delete_notification(this)).show();
+                    .setNegativeButton("Cancel", (dialog, i) -> dialog.cancel())
+                    .setPositiveButton("Confirm", (dialog, i) -> delete_notification(this)).show();
         });
 
     }
@@ -70,28 +69,29 @@ public class DetailNotificationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(getApplicationContext(),NotificationActivity.class));finish();
+        startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+        finish();
     }
 
-    private void initializeData(){
+    private void initializeData() {
         tvTgl.setText(date_notify);
         tvDetail.setText(detail);
     }
 
-    private void setReadNotification(Activity activity){
-        AndroidNetworking.post(constance.server+"/api/notification/oncePost.php")
-                .addBodyParameter("id_notification",id_notification)
-                .addBodyParameter("purpose","read")
+    private void setReadNotification(Activity activity) {
+        AndroidNetworking.post(constance.server + "/api/notification/oncePost.php")
+                .addBodyParameter("id_notification", id_notification)
+                .addBodyParameter("purpose", "read")
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
                             boolean status = response.getBoolean("status");
-                            if(!status){
+                            if (!status) {
                                 Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
                             }
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(activity, "ERROR RESPONSE", Toast.LENGTH_SHORT).show();
                         }
@@ -105,24 +105,24 @@ public class DetailNotificationActivity extends AppCompatActivity {
                 });
     }
 
-    private void delete_notification(Activity activity){
-        AndroidNetworking.post(constance.server+"/api/notification/oncePost.php")
-                .addBodyParameter("id_notification",id_notification)
-                .addBodyParameter("purpose","delete")
+    private void delete_notification(Activity activity) {
+        AndroidNetworking.post(constance.server + "/api/notification/oncePost.php")
+                .addBodyParameter("id_notification", id_notification)
+                .addBodyParameter("purpose", "delete")
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
                             boolean status = response.getBoolean("status");
-                            if(!status){
+                            if (!status) {
                                 Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
-                            }else{
+                            } else {
                                 Toast.makeText(activity, "SUCCESS", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(activity,NotificationActivity.class));
+                                startActivity(new Intent(activity, NotificationActivity.class));
                                 finish();
                             }
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(activity, "ERROR RESPONSE", Toast.LENGTH_SHORT).show();
                         }

@@ -2,7 +2,7 @@ package com.cvgs.cvgsapp.model;
 
 public class OpenModel {
 
-    public String namePackage,linkPackage,licensePackage;
+    public String namePackage, linkPackage, licensePackage;
 
     public OpenModel(String namePackage, String linkPackage, String licensePackage) {
         this.namePackage = namePackage;

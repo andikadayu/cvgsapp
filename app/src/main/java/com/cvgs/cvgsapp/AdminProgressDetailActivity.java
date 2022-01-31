@@ -2,15 +2,12 @@ package com.cvgs.cvgsapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
+import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -28,21 +25,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class AdminProgressDetailActivity extends AppCompatActivity {
 
-    TextView tvNama,tvDetail,tvAlamat;
+    TextView tvNama, tvDetail, tvAlamat;
     Constance constance = new Constance();
-    ImageView logoApps,btnBack;
-    FloatingActionButton fabAddProgress,fabShowDetail;
+    ImageView logoApps, btnBack;
+    FloatingActionButton fabAddProgress, fabShowDetail;
 
     RecyclerView recyProgressDetail;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ArrayList<DetailProgressModel> detailList;
 
-    String id_daftar,judul,detail,logo,progress;
+    String id_daftar, judul, detail, logo, progress;
 
     SessionManager sessionManager;
 
@@ -64,14 +60,14 @@ public class AdminProgressDetailActivity extends AppCompatActivity {
         refreshLayout = findViewById(R.id.refreshLayout);
 
         Intent currentIntent = getIntent();
-        if(currentIntent.hasExtra("id_daftar")){
+        if (currentIntent.hasExtra("id_daftar")) {
             id_daftar = currentIntent.getStringExtra("id_daftar");
             judul = currentIntent.getStringExtra("judul");
             detail = currentIntent.getStringExtra("detail");
             logo = currentIntent.getStringExtra("logo");
             progress = currentIntent.getStringExtra("progress");
-        }else{
-            startActivity(new Intent(getApplicationContext(),ProgressAdminActivity.class));
+        } else {
+            startActivity(new Intent(getApplicationContext(), ProgressAdminActivity.class));
             finish();
         }
 
@@ -84,68 +80,71 @@ public class AdminProgressDetailActivity extends AppCompatActivity {
 
         initializeData(this);
 
-        if(!sessionManager.getUserDetail().get(SessionManager.ROLE).equals("pendaftar")){
+        if (!sessionManager.getUserDetail().get(SessionManager.ROLE).equals("pendaftar")) {
             fabAddProgress.setVisibility(View.VISIBLE);
         }
 
-        btnBack.setOnClickListener(view->{startActivity(new Intent(getApplicationContext(),ProgressAdminActivity.class));finish();});
-        fabAddProgress.setOnClickListener(view->{
-            Intent sendData = new Intent(getApplicationContext(),AddProgressActivity.class);
-            sendData.putExtra("id_daftar",id_daftar);
-            sendData.putExtra("judul",judul);
-            sendData.putExtra("detail",detail);
-            sendData.putExtra("logo",logo);
-            sendData.putExtra("progress",progress);
+        btnBack.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ProgressAdminActivity.class));
+            finish();
+        });
+        fabAddProgress.setOnClickListener(view -> {
+            Intent sendData = new Intent(getApplicationContext(), AddProgressActivity.class);
+            sendData.putExtra("id_daftar", id_daftar);
+            sendData.putExtra("judul", judul);
+            sendData.putExtra("detail", detail);
+            sendData.putExtra("logo", logo);
+            sendData.putExtra("progress", progress);
             startActivity(sendData);
         });
 
-        fabShowDetail.setOnClickListener(view->{
-            Intent sendData = new Intent(getApplicationContext(),DetailProjectActivity.class);
-            sendData.putExtra("id_daftar",id_daftar);
+        fabShowDetail.setOnClickListener(view -> {
+            Intent sendData = new Intent(getApplicationContext(), DetailProjectActivity.class);
+            sendData.putExtra("id_daftar", id_daftar);
             startActivity(sendData);
         });
 
-        refreshLayout.setOnRefreshListener(()->{
+        refreshLayout.setOnRefreshListener(() -> {
             detailList = new ArrayList<DetailProgressModel>();
             initializeData(this);
         });
 
     }
 
-    private void initializeProfile(){
-        Picasso.get().load(constance.server+logo).into(logoApps);
+    private void initializeProfile() {
+        Picasso.get().load(constance.server + logo).into(logoApps);
         tvNama.setText(judul);
         tvDetail.setText(detail);
         tvAlamat.setText(progress);
     }
 
-    private void initializeData(Activity activity){
-        AndroidNetworking.post(constance.server+"/api/progress/getAllProgress.php")
-                .addBodyParameter("id_daftar",id_daftar)
+    private void initializeData(Activity activity) {
+        AndroidNetworking.post(constance.server + "/api/progress/getAllProgress.php")
+                .addBodyParameter("id_daftar", id_daftar)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
 
                             boolean status = response.getBoolean("status");
 
-                            if(status){
-                                layoutManager = new LinearLayoutManager(activity,RecyclerView.VERTICAL,false);
+                            if (status) {
+                                layoutManager = new LinearLayoutManager(activity, RecyclerView.VERTICAL, false);
                                 recyProgressDetail.setLayoutManager(layoutManager);
 
-                                adapter = new DetailProgressAdapter(activity,detailList,constance.server,logo);
+                                adapter = new DetailProgressAdapter(activity, detailList, constance.server, logo);
 
                                 recyProgressDetail.setAdapter(adapter);
 
                                 JSONArray ja = response.getJSONArray("data");
-                                for(int i=0;i<ja.length();i++){
+                                for (int i = 0; i < ja.length(); i++) {
                                     JSONObject jo = ja.getJSONObject(i);
 
                                     detailList.add(new DetailProgressModel(
-                                       jo.getString("id_progress"),
+                                            jo.getString("id_progress"),
                                             jo.getString("id_daftar"),
-                                            jo.getString("progress")+"%",
+                                            jo.getString("progress") + "%",
                                             jo.getString("isi_progress"),
                                             jo.getString("tgl_progress"),
                                             jo.getString("screenshot"),
@@ -155,11 +154,11 @@ public class AdminProgressDetailActivity extends AppCompatActivity {
                                     adapter.notifyDataSetChanged();
                                 }
 
-                            }else{
+                            } else {
                                 Toast.makeText(activity, "No Data", Toast.LENGTH_SHORT).show();
                             }
 
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(activity, "ERROR RESPONSES", Toast.LENGTH_SHORT).show();
                         }

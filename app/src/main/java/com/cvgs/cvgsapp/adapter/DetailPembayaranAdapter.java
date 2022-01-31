@@ -13,10 +13,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -29,19 +27,18 @@ import com.cvgs.cvgsapp.model.DetailPembayaranModel;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class DetailPembayaranAdapter extends RecyclerView.Adapter<DetailPembayaranAdapter.Holder>{
+public class DetailPembayaranAdapter extends RecyclerView.Adapter<DetailPembayaranAdapter.Holder> {
     Activity activity;
     ArrayList<DetailPembayaranModel> dataModel;
     String server;
 
-    public DetailPembayaranAdapter(Activity activity, ArrayList<DetailPembayaranModel> dataModel,String server) {
+    public DetailPembayaranAdapter(Activity activity, ArrayList<DetailPembayaranModel> dataModel, String server) {
         this.activity = activity;
         this.dataModel = dataModel;
         this.server = server;
@@ -50,7 +47,7 @@ public class DetailPembayaranAdapter extends RecyclerView.Adapter<DetailPembayar
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pembayaran_adapter,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pembayaran_adapter, parent, false);
         return new Holder(v);
     }
 
@@ -58,45 +55,44 @@ public class DetailPembayaranAdapter extends RecyclerView.Adapter<DetailPembayar
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         DetailPembayaranModel dataModels = dataModel.get(position);
 
-        Picasso.get().load(server+dataModels.getImage()).into(holder.imgBLoogo);
+        Picasso.get().load(server + dataModels.getImage()).into(holder.imgBLoogo);
 
         holder.tvBJudul.setText(dataModels.getNominal());
         holder.tvBDetail.setText(dataModels.getTgl_transaksi());
         holder.tvBSisa.setText(dataModels.getStatus());
 
-        holder.layoutOuter.setOnClickListener(view->{
-            String[] options = {"Show Image","Print Receipt","Confirm Transaction","Close"};
+        holder.layoutOuter.setOnClickListener(view -> {
+            String[] options = {"Show Image", "Print Receipt", "Confirm Transaction", "Close"};
             new MaterialAlertDialogBuilder(activity)
                     .setTitle("List Options")
-                    .setItems(options,((dialogInterface, i) -> {
-                        if(i == 0){
+                    .setItems(options, ((dialogInterface, i) -> {
+                        if (i == 0) {
                             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                            View v = inflater.inflate(R.layout.custom_show_transaction,null);
+                            View v = inflater.inflate(R.layout.custom_show_transaction, null);
                             final PhotoView imgTrans;
                             imgTrans = v.findViewById(R.id.imgTrans);
-                            Picasso.get().load(server+dataModels.getImage()).into(imgTrans);
+                            Picasso.get().load(server + dataModels.getImage()).into(imgTrans);
 
                             new MaterialAlertDialogBuilder(activity)
                                     .setView(v)
                                     .setTitle("Detail Transaction")
-                                    .setNegativeButton("Cancel",((dialogInterface1, i1) -> dialogInterface1.cancel())).show();
-                        }else if(i == 1){
+                                    .setNegativeButton("Cancel", ((dialogInterface1, i1) -> dialogInterface1.cancel())).show();
+                        } else if (i == 1) {
                             new MaterialAlertDialogBuilder(activity)
                                     .setTitle("Download Receipt")
                                     .setMessage("Are you sure to download this receipt?")
-                                    .setNegativeButton("Camcel",((dialogInterfacel,is)->dialogInterfacel.cancel()))
-                                    .setPositiveButton("Confirm",((dialogInterface1, i1) -> holder.download_receipt(dataModels.getId_transaksi()))).show();
+                                    .setNegativeButton("Camcel", ((dialogInterfacel, is) -> dialogInterfacel.cancel()))
+                                    .setPositiveButton("Confirm", ((dialogInterface1, i1) -> holder.download_receipt(dataModels.getId_transaksi()))).show();
 
-                        }
-                        else if(i == 2){
+                        } else if (i == 2) {
                             new MaterialAlertDialogBuilder(activity)
                                     .setTitle("Confirm Transaction")
                                     .setMessage("Are you sure to confirm this transaction?")
-                                    .setNegativeButton("Cancel",((dialogInterface1, i1) -> dialogInterface1.cancel()))
-                                    .setPositiveButton("Confirm",((dialogInterface1, i1) -> {
+                                    .setNegativeButton("Cancel", ((dialogInterface1, i1) -> dialogInterface1.cancel()))
+                                    .setPositiveButton("Confirm", ((dialogInterface1, i1) -> {
                                         holder.confirm_transaction(dataModels.getId_transaksi());
                                     })).show();
-                        }else if(i == 3){
+                        } else if (i == 3) {
                             dialogInterface.cancel();
                         }
                     })).show();
@@ -110,10 +106,10 @@ public class DetailPembayaranAdapter extends RecyclerView.Adapter<DetailPembayar
         return dataModel.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder{
+    public class Holder extends RecyclerView.ViewHolder {
         DetailPembayaranModel model;
         ImageView imgBLoogo;
-        TextView tvBJudul,tvBDetail,tvBSisa;
+        TextView tvBJudul, tvBDetail, tvBSisa;
         RelativeLayout layoutOuter;
 
         public Holder(@NonNull View v) {
@@ -126,23 +122,23 @@ public class DetailPembayaranAdapter extends RecyclerView.Adapter<DetailPembayar
             layoutOuter = v.findViewById(R.id.layoutOuter);
         }
 
-        public void confirm_transaction(String id_transaksi){
-            AndroidNetworking.post(server+"/api/pembayaran/confirmTransaction.php")
-                    .addBodyParameter("id_transaksi",id_transaksi)
+        public void confirm_transaction(String id_transaksi) {
+            AndroidNetworking.post(server + "/api/pembayaran/confirmTransaction.php")
+                    .addBodyParameter("id_transaksi", id_transaksi)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            try{
+                            try {
                                 boolean status = response.getBoolean("status");
-                                if(status){
+                                if (status) {
                                     Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show();
                                     activity.startActivity(new Intent(activity, PembayaranActivity.class));
                                     activity.finish();
-                                }else{
+                                } else {
                                     Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
                                 }
-                            }catch (JSONException e){
+                            } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(activity, "ERROR RESPONSE", Toast.LENGTH_SHORT).show();
                             }
@@ -156,7 +152,7 @@ public class DetailPembayaranAdapter extends RecyclerView.Adapter<DetailPembayar
                     });
         }
 
-        public void download_receipt(String id_transaksi){
+        public void download_receipt(String id_transaksi) {
             ProgressDialog pgb = new ProgressDialog(activity);
             pgb.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             pgb.setTitle("Download Receipt");
@@ -166,9 +162,9 @@ public class DetailPembayaranAdapter extends RecyclerView.Adapter<DetailPembayar
             pgb.show();
             UUID number = UUID.randomUUID();
             String randomId = number.toString().replace("-", "");
-            AndroidNetworking.download(server+"/api/report/kwitansi.php",String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)),id_transaksi+"_"+randomId+".pdf")
-                    .addQueryParameter("id_transaksi",id_transaksi)
-                    .addQueryParameter("mode","download")
+            AndroidNetworking.download(server + "/api/report/kwitansi.php", String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)), id_transaksi + "_" + randomId + ".pdf")
+                    .addQueryParameter("id_transaksi", id_transaksi)
+                    .addQueryParameter("mode", "download")
                     .setTag("DownloadReceipt")
                     .setPriority(Priority.MEDIUM)
                     .build()

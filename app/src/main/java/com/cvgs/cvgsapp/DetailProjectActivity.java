@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -39,7 +39,7 @@ public class DetailProjectActivity extends AppCompatActivity {
 
     MaterialButton btnPendaftaran;
 
-    String nama,no_telp,email,alamat,judul,nama_paket,tool,penjelasan,tgl_daftar,jangka_waktu,training,garansi,harga;
+    String nama, no_telp, email, alamat, judul, nama_paket, tool, penjelasan, tgl_daftar, jangka_waktu, training, garansi, harga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,42 +69,42 @@ public class DetailProjectActivity extends AppCompatActivity {
         AndroidNetworking.initialize(getApplicationContext());
 
         Intent currentIntent = getIntent();
-        if(currentIntent.hasExtra("id_daftar")){
+        if (currentIntent.hasExtra("id_daftar")) {
             id_daftar = currentIntent.getStringExtra("id_daftar");
             getAllData(this);
-        }else{
+        } else {
             finish();
         }
 
 
-        btnBack.setOnClickListener(view->finish());
+        btnBack.setOnClickListener(view -> finish());
 
         btnSkema.setOnClickListener(view -> {
             new MaterialAlertDialogBuilder(this)
                     .setTitle("Download Skema")
                     .setMessage("Do you want download skema")
-                    .setNegativeButton("Cancel",(dialog,i)->dialog.cancel())
-                    .setPositiveButton("Confirm",(dialog,i)->downloadSkema(this)).show();
+                    .setNegativeButton("Cancel", (dialog, i) -> dialog.cancel())
+                    .setPositiveButton("Confirm", (dialog, i) -> downloadSkema(this)).show();
         });
 
-        btnPendaftaran.setOnClickListener(view->{
+        btnPendaftaran.setOnClickListener(view -> {
             new MaterialAlertDialogBuilder(this)
                     .setTitle("Download Receipt")
                     .setMessage("Are you sure to download this receipt?")
-                    .setNegativeButton("Camcel",((dialogInterfacel,is)->dialogInterfacel.cancel()))
-                    .setPositiveButton("Confirm",((dialogInterface, i) -> downloadReceipt(this))).show();
+                    .setNegativeButton("Camcel", ((dialogInterfacel, is) -> dialogInterfacel.cancel()))
+                    .setPositiveButton("Confirm", ((dialogInterface, i) -> downloadReceipt(this))).show();
         });
 
     }
 
-    private void getAllData(Activity activity){
-        AndroidNetworking.post(constance.server+"/api/progress/getDetailProject.php")
-                .addBodyParameter("id_daftar",id_daftar)
+    private void getAllData(Activity activity) {
+        AndroidNetworking.post(constance.server + "/api/progress/getDetailProject.php")
+                .addBodyParameter("id_daftar", id_daftar)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
                             nama = response.getString("nama");
                             no_telp = response.getString("no_telp");
                             email = response.getString("email");
@@ -119,7 +119,7 @@ public class DetailProjectActivity extends AppCompatActivity {
                             initializeData();
 
                             boolean has_other = response.getBoolean("has_other");
-                            if(has_other){
+                            if (has_other) {
                                 initializeOther();
                                 jangka_waktu = response.getString("jangka_waktu");
                                 training = response.getString("training");
@@ -144,7 +144,7 @@ public class DetailProjectActivity extends AppCompatActivity {
                 });
     }
 
-    private void initializeData(){
+    private void initializeData() {
         tvNama.setText(nama);
         tvTelp.setText(no_telp);
         tvEmail.setText(email);
@@ -157,14 +157,14 @@ public class DetailProjectActivity extends AppCompatActivity {
         btnSkema.setText(penjelasan);
     }
 
-    private void initializeOther(){
+    private void initializeOther() {
         cardLainnya.setVisibility(View.VISIBLE);
         tvJangka.setText(jangka_waktu);
         tvTraning.setText(training);
         tvGaransi.setText(garansi);
     }
 
-    private void downloadSkema(Activity activity){
+    private void downloadSkema(Activity activity) {
         ProgressDialog pgb = new ProgressDialog(activity);
         pgb.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         pgb.setTitle("Download Skema");
@@ -172,7 +172,7 @@ public class DetailProjectActivity extends AppCompatActivity {
 
         pgb.setCancelable(false);
         pgb.show();
-        AndroidNetworking.download(constance.server+"/api/register/assets/"+penjelasan, String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)),penjelasan)
+        AndroidNetworking.download(constance.server + "/api/register/assets/" + penjelasan, String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)), penjelasan)
                 .setTag("DownloadSkema")
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -201,7 +201,7 @@ public class DetailProjectActivity extends AppCompatActivity {
 
     }
 
-    private void downloadReceipt(Activity activity){
+    private void downloadReceipt(Activity activity) {
         ProgressDialog pgb = new ProgressDialog(activity);
         pgb.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         pgb.setTitle("Download Receipt");
@@ -211,9 +211,9 @@ public class DetailProjectActivity extends AppCompatActivity {
         pgb.show();
         UUID number = UUID.randomUUID();
         String randomId = number.toString().replace("-", "");
-        AndroidNetworking.download(constance.server+"/api/report/pendaftaran.php",String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)),id_daftar+"_"+randomId+".pdf")
-                .addQueryParameter("id_daftar",id_daftar)
-                .addQueryParameter("mode","download")
+        AndroidNetworking.download(constance.server + "/api/report/pendaftaran.php", String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)), id_daftar + "_" + randomId + ".pdf")
+                .addQueryParameter("id_daftar", id_daftar)
+                .addQueryParameter("mode", "download")
                 .setTag("DownloadReceipt")
                 .setPriority(Priority.MEDIUM)
                 .build()

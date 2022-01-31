@@ -1,46 +1,26 @@
 package com.cvgs.cvgsapp;
 
-import android.graphics.Color;
-import android.text.Html;
-import android.view.WindowManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.util.Base64;
-import android.view.FocusFinder;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.DatePicker;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.view.WindowManager;
+import android.widget.*;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -51,37 +31,20 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.reflect.Array;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-
 public class RegisterFormActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int REQUEST_CODE_PERMISSION = 10;
-
+    final Calendar myCalendar = Calendar.getInstance();
     Button btnNextBiodata, btnPrevPaket, btnNextPaket, btnPrevPembayaran, btnNextPembayaran, btnPrevDetail,
             btnNextDetail, btnPrevSetuju, btnNextSetuju, btnPilih;
     LinearLayout layoutBiodata, layoutPaket, layoutPembayaran, layoutDetail, layoutSetuju, linearCustom;
@@ -89,39 +52,28 @@ public class RegisterFormActivity extends AppCompatActivity implements View.OnCl
             txtMonthTrain, txtDayTrain;
     TextInputEditText txtDate;
     ImageView imgPaket, imgBukti;
-
-    TextView tvLayanan, tvPaket, tvFile,tvAgreement;
-
+    TextView tvLayanan, tvPaket, tvFile, tvAgreement;
     Spinner spnTools;
-
     CheckBox cbAgree;
-
     String id_paket, nama_layanan, nama_paket, img_paket;
-
     Constance constance = new Constance();
-
     ArrayList<CharSequence> listTools;
-
-    final Calendar myCalendar = Calendar.getInstance();
-
     Bitmap bmpBukti;
 
     File filePenjelasan = null;
-
-    private File cacheDir;
-
     String nama, alamat, no_telp, email, harga, nominal, judul, jangka, garansi, monthTrain, dayTrain, tools, training;
+    private File cacheDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            }else{
+            } else {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             }
             getWindow().setStatusBarColor(Color.TRANSPARENT);
@@ -239,14 +191,14 @@ public class RegisterFormActivity extends AppCompatActivity implements View.OnCl
 
     private void enablePermission() {
         ActivityCompat.requestPermissions(RegisterFormActivity.this,
-                new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA },
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA},
                 REQUEST_CODE_PERMISSION);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PERMISSION && grantResults.length > 0) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -260,9 +212,9 @@ public class RegisterFormActivity extends AppCompatActivity implements View.OnCl
 
     private void selectFile() {
         String[] mimeTypes =
-                {"application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .doc & .docx
-                        "application/vnd.ms-PowerPoint","application/vnd.openxmlformats-officedocument.presentationml.presentation", // .ppt & .pptx
-                        "application/vnd.ms-Excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // .xls & .xlsx
+                {"application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .doc & .docx
+                        "application/vnd.ms-PowerPoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation", // .ppt & .pptx
+                        "application/vnd.ms-Excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // .xls & .xlsx
                         "text/plain",
                         "application/pdf",
                         "application/zip"};
@@ -280,17 +232,17 @@ public class RegisterFormActivity extends AppCompatActivity implements View.OnCl
             for (String mimeType : mimeTypes) {
                 mimeTypesStr += mimeType + "|";
             }
-            intent.setType(mimeTypesStr.substring(0,mimeTypesStr.length() - 1));
+            intent.setType(mimeTypesStr.substring(0, mimeTypesStr.length() - 1));
         }
-        startActivityForResult(Intent.createChooser(intent,"Choose File"),300);
+        startActivityForResult(Intent.createChooser(intent, "Choose File"), 300);
     }
 
     private void selectImage() {
-        final CharSequence[] options = { "Take Photo", "Choose From Gallery", "Cancel" };
+        final CharSequence[] options = {"Take Photo", "Choose From Gallery", "Cancel"};
 
         new MaterialAlertDialogBuilder(RegisterFormActivity.this)
                 .setTitle("Upload Bukti Transfer")
-                .setItems(options,(dialogInterface,i)->{
+                .setItems(options, (dialogInterface, i) -> {
                     if (options[i].equals("Take Photo")) {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         startActivityForResult(intent, 100);
@@ -327,9 +279,9 @@ public class RegisterFormActivity extends AppCompatActivity implements View.OnCl
                 final Uri selected = data.getData();
 
                 try {
-                    File dest = new File(cacheDir,selected.getLastPathSegment());
+                    File dest = new File(cacheDir, selected.getLastPathSegment());
                     dest.createNewFile();
-                    filePenjelasan = copy(selected,dest);
+                    filePenjelasan = copy(selected, dest);
                     tvFile.setText(filePenjelasan.getName());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -389,9 +341,9 @@ public class RegisterFormActivity extends AppCompatActivity implements View.OnCl
                             String agreement = response.getString("agreement");
 
                             // Set Agreement
-                            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-                                tvAgreement.setText(Html.fromHtml(agreement,Html.FROM_HTML_MODE_COMPACT));
-                            }else{
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                tvAgreement.setText(Html.fromHtml(agreement, Html.FROM_HTML_MODE_COMPACT));
+                            } else {
                                 tvAgreement.setText(Html.fromHtml(agreement));
                             }
 
@@ -443,7 +395,7 @@ public class RegisterFormActivity extends AppCompatActivity implements View.OnCl
                     @Override
                     public void onError(ANError anError) {
                         anError.printStackTrace();
-                        Toast.makeText(RegisterFormActivity.this, "Error Connection," +anError.getMessage() , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterFormActivity.this, "Error Connection," + anError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -456,21 +408,21 @@ public class RegisterFormActivity extends AppCompatActivity implements View.OnCl
         pdg.setMessage("Loading...");
         pdg.show();
 
-        AndroidNetworking.upload(constance.server+"/api/register/addRegister.php")
-                .addMultipartParameter("nama",nama)
-                .addMultipartParameter("alamat",alamat)
-                .addMultipartParameter("no_telp",no_telp)
-                .addMultipartParameter("email",email)
-                .addMultipartParameter("id_paket",id_paket)
-                .addMultipartParameter("harga",harga)
-                .addMultipartParameter("judul",judul)
-                .addMultipartParameter("tools",tools)
-                .addMultipartFile("penjelasan",filePenjelasan)
-                .addMultipartParameter("jangka",jangka)
-                .addMultipartParameter("training",training)
-                .addMultipartParameter("garansi",garansi)
-                .addMultipartParameter("img_transaksi",img_transaksi)
-                .addMultipartParameter("nominal",nominal)
+        AndroidNetworking.upload(constance.server + "/api/register/addRegister.php")
+                .addMultipartParameter("nama", nama)
+                .addMultipartParameter("alamat", alamat)
+                .addMultipartParameter("no_telp", no_telp)
+                .addMultipartParameter("email", email)
+                .addMultipartParameter("id_paket", id_paket)
+                .addMultipartParameter("harga", harga)
+                .addMultipartParameter("judul", judul)
+                .addMultipartParameter("tools", tools)
+                .addMultipartFile("penjelasan", filePenjelasan)
+                .addMultipartParameter("jangka", jangka)
+                .addMultipartParameter("training", training)
+                .addMultipartParameter("garansi", garansi)
+                .addMultipartParameter("img_transaksi", img_transaksi)
+                .addMultipartParameter("nominal", nominal)
                 .setPriority(Priority.HIGH)
                 .build()
                 .setUploadProgressListener(new UploadProgressListener() {
@@ -482,21 +434,21 @@ public class RegisterFormActivity extends AppCompatActivity implements View.OnCl
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
 
                             boolean status = response.getBoolean("status");
-                            if(status){
+                            if (status) {
                                 pdg.dismiss();
                                 Toast.makeText(RegisterFormActivity.this, "Berhasil Mendaftar, Silahkan Menunggu Informasi Lebih Lanjut", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(RegisterFormActivity.this,HomeActivity.class));
+                                startActivity(new Intent(RegisterFormActivity.this, HomeActivity.class));
                                 finish();
 
-                            }else{
+                            } else {
                                 pdg.dismiss();
                                 Toast.makeText(RegisterFormActivity.this, "Gagal Mendaftar", Toast.LENGTH_SHORT).show();
                             }
 
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             pdg.dismiss();
                             Toast.makeText(RegisterFormActivity.this, "ERROR RESPONSE", Toast.LENGTH_SHORT).show();

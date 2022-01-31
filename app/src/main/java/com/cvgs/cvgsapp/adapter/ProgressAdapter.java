@@ -33,14 +33,14 @@ public class ProgressAdapter extends RecyclerView.Adapter<ProgressAdapter.Holder
     @NotNull
     @Override
     public Holder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pembayaran_adapter,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pembayaran_adapter, parent, false);
         return new Holder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull Holder holder, int position) {
         ProgressModel dataModels = dataModel.get(position);
-        Picasso.get().load(server+dataModels.getLogo()).into(holder.imgBLoogo);
+        Picasso.get().load(server + dataModels.getLogo()).into(holder.imgBLoogo);
 
 
         String juduls = dataModels.getJudul();
@@ -50,11 +50,11 @@ public class ProgressAdapter extends RecyclerView.Adapter<ProgressAdapter.Holder
 
         holder.layoutOuter.setOnClickListener(view -> {
             Intent sendData = new Intent(activity, AdminProgressDetailActivity.class);
-            sendData.putExtra("id_daftar",dataModels.getId_daftar());
-            sendData.putExtra("judul",juduls);
-            sendData.putExtra("detail",dataModels.getDetail());
-            sendData.putExtra("logo",dataModels.getLogo());
-            sendData.putExtra("progress",dataModels.getProgress());
+            sendData.putExtra("id_daftar", dataModels.getId_daftar());
+            sendData.putExtra("judul", juduls);
+            sendData.putExtra("detail", dataModels.getDetail());
+            sendData.putExtra("logo", dataModels.getLogo());
+            sendData.putExtra("progress", dataModels.getProgress());
 
             activity.startActivity(sendData);
         });
@@ -67,9 +67,9 @@ public class ProgressAdapter extends RecyclerView.Adapter<ProgressAdapter.Holder
         return dataModel.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder{
+    public class Holder extends RecyclerView.ViewHolder {
         ImageView imgBLoogo;
-        TextView tvBJudul,tvBDetail,tvBSisa;
+        TextView tvBJudul, tvBDetail, tvBSisa;
         ProgressModel model;
         RelativeLayout layoutOuter;
 

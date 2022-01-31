@@ -1,17 +1,11 @@
 package com.cvgs.cvgsapp;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -20,7 +14,6 @@ import com.cvgs.cvgsapp.adapter.PaketAdapter;
 import com.cvgs.cvgsapp.advances.Constance;
 import com.cvgs.cvgsapp.advances.SessionManager;
 import com.cvgs.cvgsapp.model.PaketModel;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -52,7 +45,7 @@ public class PilihPaketActivity extends AppCompatActivity {
         AndroidNetworking.initialize(getApplicationContext());
 
         is_logged_in = sessionManager.isLoggedIn();
-        role= sessionManager.getUserDetail().get(SessionManager.ROLE);
+        role = sessionManager.getUserDetail().get(SessionManager.ROLE);
 
         Intent inThis = getIntent();
         id_layanan = inThis.getStringExtra("id_layanan");
@@ -90,7 +83,7 @@ public class PilihPaketActivity extends AppCompatActivity {
                                 ));
 
                             }
-                            adapter = new PaketAdapter(PilihPaketActivity.this, paketList,nama_layanan,is_logged_in,role);
+                            adapter = new PaketAdapter(PilihPaketActivity.this, paketList, nama_layanan, is_logged_in, role);
                             gridPaket.setAdapter(adapter);
                         } catch (Exception e) {
                             e.printStackTrace();

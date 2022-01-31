@@ -3,6 +3,7 @@ package com.cvgs.cvgsapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,7 +11,6 @@ import android.widget.Toast;
 import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
@@ -29,11 +29,11 @@ import org.json.JSONObject;
 
 public class ShowProgressActivity extends AppCompatActivity {
 
-    TextView tvNoProgress,tvTglProgress,tvIsiProgress;
-    CardView cardScreenshot,cardVideo;
-    ImageView imgSS,btnBack,btnDeleteVideo,btnDeleteSS;
+    TextView tvNoProgress, tvTglProgress, tvIsiProgress;
+    CardView cardScreenshot, cardVideo;
+    ImageView imgSS, btnBack, btnDeleteVideo, btnDeleteSS;
     VideoView videoView;
-    String id_progress, progress, isi_progress,tgl_progress, screenshot, video;
+    String id_progress, progress, isi_progress, tgl_progress, screenshot, video;
     SessionManager sessionManager;
     Constance constance = new Constance();
 
@@ -55,9 +55,8 @@ public class ShowProgressActivity extends AppCompatActivity {
         btnDeleteSS = findViewById(R.id.btnDeleteSS);
 
 
-
         Intent currentIntent = getIntent();
-        if(currentIntent.hasExtra("id_progress")){
+        if (currentIntent.hasExtra("id_progress")) {
             id_progress = currentIntent.getStringExtra("id_progress");
             progress = currentIntent.getStringExtra("progress");
             isi_progress = currentIntent.getStringExtra("isi_progress");
@@ -66,76 +65,75 @@ public class ShowProgressActivity extends AppCompatActivity {
             video = currentIntent.getStringExtra("video");
             sessionManager = new SessionManager(getApplicationContext());
             intializing();
-        }else{
-            startActivity(new Intent(getApplicationContext(),ProgressAdminActivity.class));
+        } else {
+            startActivity(new Intent(getApplicationContext(), ProgressAdminActivity.class));
             finish();
         }
 
-        imgSS.setOnClickListener(view->{
-            Intent sendData = new Intent(getApplicationContext(),ViewVideoActivity.class);
-            sendData.putExtra("mode","image");
-            sendData.putExtra("urls",screenshot);
+        imgSS.setOnClickListener(view -> {
+            Intent sendData = new Intent(getApplicationContext(), ViewVideoActivity.class);
+            sendData.putExtra("mode", "image");
+            sendData.putExtra("urls", screenshot);
             startActivity(sendData);
         });
 
-        videoView.setOnClickListener(view->{
-            Intent sendData = new Intent(getApplicationContext(),ViewVideoActivity.class);
-            sendData.putExtra("mode","video");
-            sendData.putExtra("urls",video);
+        videoView.setOnClickListener(view -> {
+            Intent sendData = new Intent(getApplicationContext(), ViewVideoActivity.class);
+            sendData.putExtra("mode", "video");
+            sendData.putExtra("urls", video);
             startActivity(sendData);
         });
 
-        btnBack.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(),ProgressAdminActivity.class));
+        btnBack.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), ProgressAdminActivity.class));
             finish();
         });
 
-        btnDeleteSS.setOnClickListener(view->{
-          new MaterialAlertDialogBuilder(this)
-                  .setTitle("Delete Screenshot")
-                  .setMessage("Are you sure to delete the Screenshot?")
-                  .setNegativeButton("Cancel",(dialog,i)->{
-                      dialog.cancel();
-                  }).setPositiveButton("Confirm",(dialog,i)->{
-                      deleteCloud(this,"screenshot");
-                  }).show();
+        btnDeleteSS.setOnClickListener(view -> {
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle("Delete Screenshot")
+                    .setMessage("Are you sure to delete the Screenshot?")
+                    .setNegativeButton("Cancel", (dialog, i) -> {
+                        dialog.cancel();
+                    }).setPositiveButton("Confirm", (dialog, i) -> {
+                        deleteCloud(this, "screenshot");
+                    }).show();
         });
 
-        btnDeleteVideo.setOnClickListener(view->{
+        btnDeleteVideo.setOnClickListener(view -> {
             new MaterialAlertDialogBuilder(this)
                     .setTitle("Delete Video")
                     .setMessage("Are you sure to delete the Video?")
-                    .setNegativeButton("Cancel",(dialog,i)->{
+                    .setNegativeButton("Cancel", (dialog, i) -> {
                         dialog.cancel();
-                    }).setPositiveButton("Confirm",(dialog,i)->{
-                        deleteCloud(this,"video");
+                    }).setPositiveButton("Confirm", (dialog, i) -> {
+                        deleteCloud(this, "video");
                     }).show();
         });
     }
 
-    private void intializing(){
-        tvNoProgress.setText("Progress : "+progress);
+    private void intializing() {
+        tvNoProgress.setText(String.format("Progress : %s", progress));
         tvTglProgress.setText(tgl_progress);
         tvIsiProgress.setText(isi_progress);
 
-        if(!screenshot.equalsIgnoreCase("null")){
+        if (!screenshot.equalsIgnoreCase("null") && !screenshot.equals("")) {
             cardScreenshot.setVisibility(View.VISIBLE);
-            if(!sessionManager.getUserDetail().get(SessionManager.ROLE).equals("pendaftar")){
+            if (!sessionManager.getUserDetail().get(SessionManager.ROLE).equals("pendaftar")) {
                 btnDeleteSS.setVisibility(View.VISIBLE);
             }
             initialzeScreenshot();
         }
-
-        if(!video.equalsIgnoreCase("null")){
+        if (!video.equalsIgnoreCase("null") && !video.equals("")) {
             cardVideo.setVisibility(View.VISIBLE);
-            if(!sessionManager.getUserDetail().get(SessionManager.ROLE).equals("pendaftar")){
+            if (!sessionManager.getUserDetail().get(SessionManager.ROLE).equals("pendaftar")) {
                 btnDeleteVideo.setVisibility(View.VISIBLE);
             }
         }
 
     }
 
-    private void initialzeScreenshot(){
+    private void initialzeScreenshot() {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
         storageReference.child(screenshot).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -154,11 +152,11 @@ public class ShowProgressActivity extends AppCompatActivity {
     }
 
 
-    private void deleteCloud(Activity activity, @NotNull String purpose){
+    private void deleteCloud(Activity activity, @NotNull String purpose) {
         String urls = null;
-        if(purpose.equals("screenshot")){
+        if (purpose.equals("screenshot")) {
             urls = screenshot;
-        }else{
+        } else {
             urls = video;
         }
         // Create a storage reference from our app
@@ -170,7 +168,7 @@ public class ShowProgressActivity extends AppCompatActivity {
         desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                updateServer(activity,purpose);
+                updateServer(activity, purpose);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -182,22 +180,21 @@ public class ShowProgressActivity extends AppCompatActivity {
     }
 
 
-
-    private void updateServer(Activity activity, String purpose){
-        AndroidNetworking.post(constance.server+"/api/progress/deleteSV.php")
-                .addBodyParameter("id_progress",id_progress)
-                .addBodyParameter("purpose",purpose)
+    private void updateServer(Activity activity, String purpose) {
+        AndroidNetworking.post(constance.server + "/api/progress/deleteSV.php")
+                .addBodyParameter("id_progress", id_progress)
+                .addBodyParameter("purpose", purpose)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try{
+                        try {
                             boolean status = response.getBoolean("status");
-                            if(status){
+                            if (status) {
                                 Toast.makeText(activity, "SUCCESS", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(activity,ProgressAdminActivity.class));
+                                startActivity(new Intent(activity, ProgressAdminActivity.class));
                                 finish();
-                            }else{
+                            } else {
                                 Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {

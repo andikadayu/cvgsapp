@@ -1,78 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SuperBrosur">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardBack"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
-        android:background="@color/black">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_baseline_arrow_back_ios_24"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/btnBack"/>
-
-            <TextView
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Brosur"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_gravity="center_vertical"/>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:layout_below="@id/cardBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="List Brosur"
-        android:id="@+id/tvAtass"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_centerHorizontal="true"/>
-
-    <GridView
-        android:id="@+id/gridAdminBrosur"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tvAtass"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:horizontalSpacing="50dp"
-        android:verticalSpacing="10dp"
-        />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddBrosur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_add_a_photo_24"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="10dp"
-        android:contentDescription="Upload New Brosur" />
+                android:layout_height="match_parent"
+                tools:context=".SuperBrosur">
+	
+	<androidx.cardview.widget.CardView
+		 android:id="@+id/cardBack"
+		 android:layout_width="match_parent"
+		 android:layout_height="50dp"
+		 android:layout_margin="5dp"
+		 android:background="@color/black">
+		
+		<LinearLayout
+			 android:layout_width="match_parent"
+			 android:layout_height="match_parent"
+			 android:orientation="horizontal">
+			
+			<ImageView
+				 android:layout_width="40dp"
+				 android:layout_height="40dp"
+				 android:layout_gravity="center_vertical"
+				 android:src="@drawable/ic_baseline_arrow_back_ios_24"
+				 android:layout_marginLeft="10dp"
+				 android:id="@+id/btnBack"/>
+			
+			<TextView
+				 android:layout_width="match_parent"
+				 android:layout_height="wrap_content"
+				 android:text="Brosur"
+				 android:textColor="@color/black"
+				 android:textStyle="bold"
+				 android:textSize="18sp"
+				 android:layout_gravity="center_vertical"/>
+		
+		</LinearLayout>
+	
+	</androidx.cardview.widget.CardView>
+	
+	<TextView
+		 android:layout_below="@id/cardBack"
+		 android:layout_width="wrap_content"
+		 android:layout_height="wrap_content"
+		 android:text="List Brosur"
+		 android:id="@+id/tvAtass"
+		 android:textSize="20sp"
+		 android:textColor="@color/black"
+		 android:textStyle="bold"
+		 android:layout_marginLeft="5dp"
+		 android:layout_marginTop="5dp"
+		 android:layout_centerHorizontal="true"/>
+	
+	<GridView
+		 android:id="@+id/gridAdminBrosur"
+		 android:layout_width="match_parent"
+		 android:layout_height="match_parent"
+		 android:layout_below="@id/tvAtass"
+		 android:layout_marginLeft="5dp"
+		 android:layout_marginTop="10dp"
+		 android:layout_marginRight="5dp"
+		 android:horizontalSpacing="50dp"
+		 android:verticalSpacing="10dp"
+	/>
+	
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		 android:id="@+id/fabAddBrosur"
+		 android:layout_width="wrap_content"
+		 android:layout_height="wrap_content"
+		 android:src="@drawable/ic_baseline_add_a_photo_24"
+		 android:layout_alignParentBottom="true"
+		 android:layout_alignParentEnd="true"
+		 android:layout_marginBottom="20dp"
+		 android:layout_marginEnd="10dp"
+		 android:contentDescription="Upload New Brosur"/>
 
 </RelativeLayout>

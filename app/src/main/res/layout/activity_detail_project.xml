@@ -93,103 +93,101 @@
 						 android:background="#E91E63"/>
 					
 					<HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
-					
-					
-					
-					<TableLayout
-						 android:layout_width="match_parent"
-						 android:layout_height="wrap_content"
-						 android:stretchColumns="2"
-						 android:padding="8dp" >
 						
-						<TableRow>
-							
-							<TextView
-								 android:text="Nama"
-								 android:layout_column="1"
-								 android:textSize="16sp"
-								 android:textStyle="bold"
-								 android:textColor="@color/black"
-								 android:layout_width="150dp"
-							/>
-							
-							<TextView
-								 android:id="@+id/tvNama"
-								 android:text="@string/company_name"
-								 android:textSize="16sp"
-								 android:textStyle="bold"
-								 android:textColor="@color/black"
-								 android:layout_width="wrap_content"
-								 android:layout_height="wrap_content"/>
 						
-						</TableRow>
-						
-						<TableRow android:layout_marginTop="10dp">
-							<TextView
-								 android:text="Telp"
-								 android:layout_column="1"
-								 android:textSize="16sp"
-								 android:textStyle="bold"
-								 android:textColor="@color/black"
-								 android:layout_width="150dp"
-							/>
+						<TableLayout
+							 android:layout_width="match_parent"
+							 android:layout_height="wrap_content"
+							 android:stretchColumns="2"
+							 android:padding="8dp">
 							
-							<TextView
-								 android:id="@+id/tvTelp"
-								 android:text="@string/company_telp"
-								 android:textSize="16sp"
-								 android:textStyle="bold"
-								 android:textColor="@color/black"
-								 android:layout_width="wrap_content"
-								 android:layout_height="wrap_content"/>
+							<TableRow>
+								
+								<TextView
+									 android:text="Nama"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvNama"
+									 android:text="@string/company_name"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
+							
+							</TableRow>
+							
+							<TableRow android:layout_marginTop="10dp">
+								<TextView
+									 android:text="Telp"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvTelp"
+									 android:text="@string/company_telp"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
 							
 							
-						</TableRow>
-						<TableRow android:layout_marginTop="10dp">
-							<TextView
-								 android:text="Email"
-								 android:layout_column="1"
-								 android:textSize="16sp"
-								 android:textStyle="bold"
-								 android:textColor="@color/black"
-								 android:layout_width="150dp"
-							/>
-						
-							<TextView
-								 android:id="@+id/tvEmail"
-								 android:text="@string/company_hp"
-								 android:textSize="16sp"
-								 android:textStyle="bold"
-								 android:textColor="@color/black"
-								 android:layout_width="wrap_content"
-								 android:layout_height="wrap_content"/>
-						</TableRow>
-						
-						<TableRow android:layout_marginTop="10dp">
-							<TextView
-								 android:text="Alamat"
-								 android:layout_column="1"
-								 android:textSize="16sp"
-								 android:textStyle="bold"
-								 android:textColor="@color/black"
-								 android:layout_width="150dp"
-							/>
+							</TableRow>
+							<TableRow android:layout_marginTop="10dp">
+								<TextView
+									 android:text="Email"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvEmail"
+									 android:text="@string/company_hp"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
+							</TableRow>
 							
-							<TextView
-								android:id="@+id/tvAlamat"
-								android:text="@string/company_address"
-								android:textSize="16sp"
-								android:textStyle="bold"
-								android:textColor="@color/black"
-								android:layout_width="wrap_content"
-								android:layout_height="wrap_content"/>
+							<TableRow android:layout_marginTop="10dp">
+								<TextView
+									 android:text="Alamat"
+									 android:layout_column="1"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="150dp"
+								/>
+								
+								<TextView
+									 android:id="@+id/tvAlamat"
+									 android:text="@string/company_address"
+									 android:textSize="16sp"
+									 android:textStyle="bold"
+									 android:textColor="@color/black"
+									 android:layout_width="wrap_content"
+									 android:layout_height="wrap_content"/>
 							
-						</TableRow>
-					</TableLayout>
+							</TableRow>
+						</TableLayout>
 					</HorizontalScrollView>
-					
-					
-					
+				
+				
 				</LinearLayout>
 			
 			</androidx.cardview.widget.CardView>
@@ -228,7 +226,7 @@
 							 android:layout_width="match_parent"
 							 android:layout_height="wrap_content"
 							 android:stretchColumns="2"
-							 android:padding="8dp" >
+							 android:padding="8dp">
 							
 							<TableRow>
 								
@@ -339,10 +337,10 @@
 							
 							
 							</TableRow>
-							
-							
-						</TableLayout>
 						
+						
+						</TableLayout>
+					
 					</HorizontalScrollView>
 				
 				
@@ -390,8 +388,8 @@
 						 android:textAllCaps="false"
 						 android:textColor="@color/black"
 						 android:textSize="14sp"
-						 android:textStyle="bold" />
-					
+						 android:textStyle="bold"/>
+				
 				</LinearLayout>
 			</androidx.cardview.widget.CardView>
 			
@@ -430,7 +428,7 @@
 							 android:layout_width="match_parent"
 							 android:layout_height="wrap_content"
 							 android:stretchColumns="2"
-							 android:padding="8dp" >
+							 android:padding="8dp">
 							
 							
 							<TableRow>
@@ -498,17 +496,15 @@
 							
 							
 							</TableRow>
-							
-							
-							
-							
-						</TableLayout>
 						
-					</HorizontalScrollView>
+						
+						</TableLayout>
 					
+					</HorizontalScrollView>
+				
 				</LinearLayout>
-				
-				
+			
+			
 			</androidx.cardview.widget.CardView>
 		
 		</RelativeLayout>

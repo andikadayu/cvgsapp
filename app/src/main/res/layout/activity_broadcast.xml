@@ -63,8 +63,8 @@
 		 android:layout_width="match_parent"
 		 android:layout_above="@id/btnSend"
 		 android:layout_height="match_parent"
-	app:cardCornerRadius="20dp"
-	android:layout_margin="10dp">
+		 app:cardCornerRadius="20dp"
+		 android:layout_margin="10dp">
 		
 		<RelativeLayout
 			 android:layout_width="match_parent"
@@ -92,9 +92,9 @@
 				 android:layout_marginBottom="5dp"
 				 android:choiceMode="multipleChoice"
 				 android:textSize="14sp"/>
-			
-		</RelativeLayout>
 		
+		</RelativeLayout>
+	
 	</com.google.android.material.card.MaterialCardView>
 	
 	
@@ -114,5 +114,5 @@
 		 app:iconGravity="textEnd"
 		 app:cornerRadius="8dp"
 		 style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
-	
+
 </RelativeLayout>

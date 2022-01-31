@@ -2,24 +2,17 @@ package com.cvgs.cvgsapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.cvgs.cvgsapp.PendaftarActivity;
 import com.cvgs.cvgsapp.PendaftarDetailActivity;
 import com.cvgs.cvgsapp.R;
 import com.cvgs.cvgsapp.model.PendaftarModel;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 
@@ -35,7 +28,7 @@ public class PendaftarAdapter extends RecyclerView.Adapter<PendaftarAdapter.Hold
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pendaftar_adapter,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pendaftar_adapter, parent, false);
         return new Holder(v);
     }
 
@@ -45,16 +38,16 @@ public class PendaftarAdapter extends RecyclerView.Adapter<PendaftarAdapter.Hold
         PendaftarModel dataModels = dataModel.get(position);
 
         holder.tvPNama.setText(dataModels.getNama());
-        holder.tvPContact.setText(dataModels.getNo_telp()+" / "+dataModels.getEmail());
+        holder.tvPContact.setText(dataModels.getNo_telp() + " / " + dataModels.getEmail());
         holder.tvPAlamat.setText(dataModels.getAlamat());
 
-        holder.forClick.setOnClickListener(view->{
+        holder.forClick.setOnClickListener(view -> {
             Intent sendData = new Intent(activity, PendaftarDetailActivity.class);
-            sendData.putExtra("id_detail",dataModels.getId_detail());
-            sendData.putExtra("nama",dataModels.getNama());
-            sendData.putExtra("detail",dataModels.getNo_telp()+" / "+dataModels.getEmail());
-            sendData.putExtra("alamat",dataModels.getAlamat());
-            sendData.putExtra("email",dataModels.getEmail());
+            sendData.putExtra("id_detail", dataModels.getId_detail());
+            sendData.putExtra("nama", dataModels.getNama());
+            sendData.putExtra("detail", dataModels.getNo_telp() + " / " + dataModels.getEmail());
+            sendData.putExtra("alamat", dataModels.getAlamat());
+            sendData.putExtra("email", dataModels.getEmail());
             activity.startActivity(sendData);
         });
 
@@ -67,9 +60,9 @@ public class PendaftarAdapter extends RecyclerView.Adapter<PendaftarAdapter.Hold
     }
 
 
-    public class Holder extends RecyclerView.ViewHolder{
+    public class Holder extends RecyclerView.ViewHolder {
         PendaftarModel model;
-        TextView tvPNama,tvPContact,tvPAlamat;
+        TextView tvPNama, tvPContact, tvPAlamat;
         RelativeLayout forClick;
 
         public Holder(@NonNull View v) {

@@ -2,7 +2,7 @@ package com.cvgs.cvgsapp.model;
 
 public class LoginModel {
 
-    private String id_user,id_detail,nama,email,role;
+    private String id_user, id_detail, nama, email, role;
 
     public String getId_user() {
         return id_user;
