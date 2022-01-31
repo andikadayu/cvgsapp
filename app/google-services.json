@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1014587691661",
-    "project_id": "cvgs-c7965",
-    "storage_bucket": "cvgs-c7965.appspot.com"
+    "project_number": "33639018051",
+    "project_id": "ptckit-f6a1a",
+    "storage_bucket": "ptckit-f6a1a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1014587691661:android:d8aa192ba21de3bfa9c8c4",
+        "mobilesdk_app_id": "1:33639018051:android:b42956005c78cd31856ef6",
         "android_client_info": {
           "package_name": "com.cvgs.cvgsapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1014587691661-kkorg1qp2cl4tkmne01ilc479g2b61pl.apps.googleusercontent.com",
+          "client_id": "33639018051-j3qjo7t85gtff7mktagi2t692dckf30f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCzMh_AYz3GsrNV_ZVsmqm5Z2Y7f13Z60k"
+          "current_key": "AIzaSyDz2rlapjpJ85xdODE2owcII2vck0atewU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1014587691661-kkorg1qp2cl4tkmne01ilc479g2b61pl.apps.googleusercontent.com",
+              "client_id": "33639018051-j3qjo7t85gtff7mktagi2t692dckf30f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
